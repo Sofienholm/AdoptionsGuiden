@@ -1,0 +1,44 @@
+.section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+}
+
+/* wrapper der holder alt på plads når sektionen er pinned */
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;  overflow: hidden; /* vigtig: forhindrer hop og flashing */
+}
+
+/* INTRO TITLE */
+.introTitle {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* INTRO TEXT */
+.introText {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 500px;
+  
+}
+
+/* HUND I MIDTEN */
+.dogCenter {
+  position: fixed;
+  top: 45%;                 /* stabil placering */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
