@@ -8,6 +8,14 @@ import bubble2 from "./frames/bubble2.svg";
 import bubble3 from "./frames/bubble3.svg";
 import bubble4 from "./frames/bubble4.svg";
 
+import chaosDog1 from "./frames/chaos_dog1.svg";
+import chaosDog2 from "./frames/chaos_dog3.svg";
+import chaosDog3 from "./frames/chaos_dog4.svg";
+import chaosDog4 from "./frames/chaos_dog2.svg";
+
+import chaosSticker1 from "./frames/chaos_sticker1.svg";
+import chaosSticker2 from "./frames/chaos_sticker2.svg";
+
 import styles from "./step1.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,25 +32,50 @@ export default function Step1() {
   const bubble3Ref = useRef(null);
   const bubble4Ref = useRef(null);
 
+  const chaos1Ref = useRef(null);
+  const chaos2Ref = useRef(null);
+  const chaos3Ref = useRef(null);
+  const chaos4Ref = useRef(null);
 
+  const sticker1Ref = useRef(null);
+  const sticker2Ref = useRef(null);
+  const sticker3Ref = useRef(null);
+  const sticker4Ref = useRef(null);
+  const sticker5Ref = useRef(null);
+  const sticker6Ref = useRef(null);
 
+  // Rolig scene-tekster
+  const calmTextTopRef = useRef(null);
+  const calmTextBottomRef = useRef(null);
 
-  
+  // Slut-tekster
+  const finalSmallRef = useRef(null);
+  const finalBigRef = useRef(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Gør intro + hund synlige fra start
+      // Starttilstand: intro + hund synlige
       gsap.set(
         [introTitleRef.current, introTextRef.current, dogCenterRef.current],
-        {
-          opacity: 1,
-        }
+        { opacity: 1 }
+      );
+
+      // Øvrige tekster skjult fra start
+      gsap.set(
+        [
+          calmTextTopRef.current,
+          calmTextBottomRef.current,
+          finalSmallRef.current,
+          finalBigRef.current,
+        ],
+        { opacity: 0 }
       );
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=5000",
+          end: "+=7000",
           scrub: 1,
           pin: true,
         },
@@ -51,37 +84,180 @@ export default function Step1() {
       // --- FADE INTRO UD ---
       tl.to([introTitleRef.current, introTextRef.current], {
         opacity: 0,
-      });
-      // --- BUBBLE 1 IND ---
-      tl.to(bubble1Ref.current, { opacity: 1 })
-
-        // 0.3 pause
+      })
+        // --- BUBBLE 1 IND ---
+        .to(bubble1Ref.current, { opacity: 1 })
         .to({}, { duration: 0.3 })
 
         // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
         .to(bubble1Ref.current, { opacity: 0 })
         .to(bubble2Ref.current, { opacity: 1 }, "<")
-
-        // 0.3 pause
         .to({}, { duration: 0.3 })
 
-        // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
+        // --- BUBBLE 3 IND OG BUBBLE 2 UD ---
         .to(bubble2Ref.current, { opacity: 0 })
         .to(bubble3Ref.current, { opacity: 1 }, "<")
-
-        // 0.3 pause
         .to({}, { duration: 0.3 })
 
-        // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
+        // --- BUBBLE 4 IND OG BUBBLE 3 UD ---
         .to(bubble3Ref.current, { opacity: 0 })
-        .to(bubble4Ref.current, { opacity: 1 }, "<");
+        .to(bubble4Ref.current, { opacity: 1 }, "<")
 
+        // --- BUBBLE 4 UD ---
+        .to(bubble4Ref.current, { opacity: 0 })
+
+        // --- KORT PAUSE KUN HUND ---
+        .to({}, { duration: 2 })
+
+        // --- KAOS-HUNDE FLYVER IND FRA HJØRNERNE OG FORBLIVER ---
+        .fromTo(
+          chaos1Ref.current,
+          { opacity: 0, x: "-200%", y: "-200%" },
+          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+          "<"
+        )
+        .fromTo(
+          chaos2Ref.current,
+          { opacity: 0, x: "200%", y: "-200%" },
+          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+          "<"
+        )
+        .fromTo(
+          chaos3Ref.current,
+          { opacity: 0, x: "200%", y: "200%" },
+          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+          "<"
+        )
+        .fromTo(
+          chaos4Ref.current,
+          { opacity: 0, x: "-200%", y: "200%" },
+          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+          "<"
+        )
+
+        // --- STICKERS: FADE IND LIGE EFTER KAOS-HUNDE ---
+        .fromTo(
+          [
+            sticker1Ref.current,
+            sticker2Ref.current,
+            sticker3Ref.current,
+            sticker4Ref.current,
+            sticker5Ref.current,
+            sticker6Ref.current,
+          ],
+          { opacity: 0, scale: 0.7 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+          }
+        )
+
+        // --- HURTIG, LÆNGERE JUMP-SHAKE / URO ---
+        .to(
+          [sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
+          {
+            y: "-10%",
+            yoyo: true,
+            repeat: 8,
+            duration: 0.05,
+            stagger: 0.03,
+          },
+          "<"
+        )
+        .to(
+          [sticker2Ref.current, sticker4Ref.current, sticker6Ref.current],
+          {
+            x: "8%",
+            yoyo: true,
+            repeat: 8,
+            duration: 0.05,
+            stagger: 0.03,
+          },
+          "<"
+        )
+
+        // --- KAOS VÆK: hund bliver, alt andet ud ---
+        .to(
+          [
+            chaos1Ref.current,
+            chaos2Ref.current,
+            chaos3Ref.current,
+            chaos4Ref.current,
+            sticker1Ref.current,
+            sticker2Ref.current,
+            sticker3Ref.current,
+            sticker4Ref.current,
+            sticker5Ref.current,
+            sticker6Ref.current,
+          ],
+          {
+            opacity: 0,
+            duration: 1.5,
+          }
+        )
+
+        // --- ROLIG TEKST OVENFOR HUNDEN ---
+        .to(
+          calmTextTopRef.current,
+          {
+            opacity: 1,
+            y: "-10%",
+            duration: 1.5,
+          },
+          "<"
+        )
+
+        // --- PAUSE FØR NEDERSTE TEKST ---
+        .to({}, { duration: 2 })
+
+        // --- ROLIG TEKST UNDER HUNDEN ---
+        .to(calmTextBottomRef.current, {
+          opacity: 1,
+          y: "10%",
+          duration: 1.5,
+        })
+
+        // --- BEGGE ROLIGE TEKSTER FADER HURTIGT UD ---
+        .to(
+          [calmTextTopRef.current, calmTextBottomRef.current],
+          {
+            opacity: 0,
+            duration: 0.6,
+          }
+        )
+
+        // --- ZOOM IND PÅ HUNDEN (KUN TIL SIDST) ---
+        .to(dogCenterRef.current, {
+          scale: 1.4,
+          transformOrigin: "50% 50%",
+          duration: 2,
+        })
+
+        // --- SLUTTEKST: LILLE LINJE ---
+        .fromTo(
+          finalSmallRef.current,
+          { opacity: 0, y: "-10%" },
+          {
+            opacity: 1,
+            y: "0%",
+            duration: 1.2,
+          }
+        )
+
+        // --- SLUTTEKST: STOR LINJE ---
+        .fromTo(
+          finalBigRef.current,
+          { opacity: 0, y: "-5%" },
+          {
+            opacity: 1,
+            y: "0%",
+            duration: 1.2,
+          },
+          "<0.2"
+        );
     }, sectionRef);
-
-
-
-
-
 
     return () => ctx.revert();
   }, []);
@@ -89,47 +265,60 @@ export default function Step1() {
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.inner}>
+        {/* Intro */}
         <h1 ref={introTitleRef} className={styles.introTitle}>
-          Hvad er en internathund?
+          HVAD ER EN INTERNATHUND?
         </h1>
-
         <p ref={introTextRef} className={styles.introText}>
-          Mange internathunde har bagage, stress eller usynlige problemer.
-        </p>
+        HER ER NOGLE SÆRLIGE TING AT VÆRE OPMÆRKSOM PÅ FORUD FOR ADOPTION</p>
 
         <div className={styles.bubbleWrapper}>
-        <img
-          ref={dogCenterRef}
-          src={dogBox}
-          className={styles.dogCenter}
-          alt="Hund i kasse"
-        />
-        <img
-          ref={bubble1Ref}
-          src={bubble1}
-          className={styles.bubble1}
-          alt="Første infoboble"
-        />
-        <img
-          ref={bubble2Ref}
-          src={bubble2}
-          className={styles.bubble2}
-          alt="anden infoboble"
-        />
-        <img
-          ref={bubble3Ref}
-          src={bubble3}
-          className={styles.bubble3}
-          alt= "tredje infobobble"
-        />
-         <img
-          ref={bubble4Ref}
-          src={bubble4}
-          className={styles.bubble4}
-          alt= "fjerde infobobble"
-        />
+          {/* Hund i midten – bliver inde i bubbleWrapper hele vejen */}
+          <img
+            ref={dogCenterRef}
+            src={dogBox}
+            className={styles.dogCenter}
+            alt="Hund i kasse"
+          />
 
-      </div>
+          {/* BOBLER */}
+          <img ref={bubble1Ref} src={bubble1} className={styles.bubble1} alt="" />
+          <img ref={bubble2Ref} src={bubble2} className={styles.bubble2} alt="" />
+          <img ref={bubble3Ref} src={bubble3} className={styles.bubble3} alt="" />
+          <img ref={bubble4Ref} src={bubble4} className={styles.bubble4} alt="" />
+
+          {/* KAOS-HUNDE */}
+          <img ref={chaos1Ref} src={chaosDog1} className={styles.chaos1} alt="" />
+          <img ref={chaos2Ref} src={chaosDog2} className={styles.chaos2} alt="" />
+          <img ref={chaos3Ref} src={chaosDog3} className={styles.chaos3} alt="" />
+          <img ref={chaos4Ref} src={chaosDog4} className={styles.chaos4} alt="" />
+
+          {/* STICKERS */}
+          <img ref={sticker1Ref} src={chaosSticker1} className={styles.sticker1} alt="" />
+          <img ref={sticker2Ref} src={chaosSticker2} className={styles.sticker2} alt="" />
+          <img ref={sticker3Ref} src={chaosSticker1} className={styles.sticker3} alt="" />
+          <img ref={sticker4Ref} src={chaosSticker2} className={styles.sticker4} alt="" />
+          <img ref={sticker5Ref} src={chaosSticker1} className={styles.sticker5} alt="" />
+          <img ref={sticker6Ref} src={chaosSticker1} className={styles.sticker6} alt="" />
+
+          {/* ROLIG TEKST-SCENE */}
+          <p ref={calmTextTopRef} className={styles.calmTextTop}>
+            DET STRESSET MILJØ SÆTTER SIG OFTE I HUNDEN
+          </p>
+
+          <p ref={calmTextBottomRef} className={styles.calmTextBottom}>
+            DERFOR SER MAN TIT AT HUNDENS ADFÆRD <br /> ÆNDRE SIG NÅR DEN KOMMER HJEM
+          </p>
+
+          {/* SLUT-TEKSTER */}
+          <p ref={finalSmallRef} className={styles.finalSmall}>
+            SÅ HUSK
+          </p>
+
+          <p ref={finalBigRef} className={styles.finalBig}>
+            AT HVER INTERNATHUND HAR SIN EGEN <br /> HISTORIE!
+          </p>
+        </div>
       </div>
     </section>
   );
