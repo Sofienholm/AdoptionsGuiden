@@ -1,0 +1,106 @@
+* {
+
+}
+.section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #6e1a11;
+}
+
+.container {
+  width: 1300px;
+  height: 700px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+.clockWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+/* Selve clock.svg */
+.clock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: auto;
+}
+
+/* Minutviseren */
+.minuteHand {
+  position: absolute;
+  top: 150px;
+  left: 200px;
+  width: 12px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 95%;
+}
+
+/* Timeviseren */
+.hourHand {
+  position: absolute;
+  top: 160px;
+  left: 200px;
+  width: 12px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 95%;
+}
+
+.six {
+  position: absolute;
+  top: 53.9%;
+  left: 50.9%;
+  width: 100px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.overskrift {
+  opacity: 1;
+  color: white;
+
+  position: absolute;
+  top: 0;
+
+  font-size: 3rem;
+}
+
+.tekstTimer {
+  color: white;
+  opacity: 0;
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  font-size: 3rem;
+}
+
+.brodTekst {
+  color: white;
+  opacity: 1;
+  position: absolute;
+  top: 30%;
+  left: 75%;
+  font-size: 1.5rem;
+}
+.dogDoor{
+  position: absolute;
+  opacity: 1;
+  top: 50%;
+  left: 20%;
+  width: 200px;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
