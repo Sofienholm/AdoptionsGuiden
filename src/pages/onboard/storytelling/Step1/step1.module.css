@@ -2,17 +2,18 @@
   height: 100vh;
   width: 100%;
   position: relative;
-
 }
+
 body {
-  background-color: #2B352B;
+  background-color: #2b352b;
 }
 
 /* wrapper der holder alt på plads når sektionen er pinned */
 .inner {
   position: relative;
   width: 100%;
-  height: 100%;  overflow: hidden; /* vigtig: forhindrer hop og flashing */
+  height: 100%;
+  overflow: hidden; /* vigtig: forhindrer hop og flashing */
 }
 
 /* INTRO TITLE */
@@ -21,22 +22,26 @@ body {
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  color: var(--ash-grey);
+  font-family: var(--font-knewave);
+  font-size: 3rem;
   text-align: center;
 }
 
 /* INTRO TEXT */
 .introText {
   position: absolute;
-  bottom: 30%;
+  bottom: 18%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.2rem;
+  font-family: var(--font-knewave);
+  color: var(--ash-grey);
+  font-size: 1.8rem;
   text-align: center;
   max-width: 500px;
-  
 }
 
+/* BOBLE-SCENE WRAPPER */
 .bubbleWrapper {
   position: absolute;
   top: 50%;
@@ -44,17 +49,16 @@ body {
   transform: translate(-50%, -50%);
 
   /* responsiv størrelse */
-  width: min(90vw, 900px);  /* maks 900px, ellers 90% af viewport-bredden */
-  aspect-ratio: 900 / 650;  /* holder samme form på hele scenen */
+  width: min(90vw, 900px); /* maks 900px, ellers 90% af viewport-bredden */
+  aspect-ratio: 900 / 650; /* holder samme form på hele scenen */
 
   pointer-events: none; /* bare så man ikke klikker på den ved en fejl */
 }
 
-
 /* HUND I MIDTEN */
 .dogCenter {
- position: absolute;
-  width: 39%;     
+  position: absolute;
+  width: 39%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -62,42 +66,189 @@ body {
   opacity: 1;
 }
 
+/* INFO-BOBLER */
 .bubble1 {
   position: absolute;
-  top: 6%;            
+  top: 6%;
   left: 49.8%;
   transform: translateX(-50%);
-  width: 38%;             
+  width: 38%;
   opacity: 0;
   z-index: 5;
 }
 
 .bubble2 {
-   position: absolute;
-  top: 51.7%;        
-  right: 1.4%;             
+  position: absolute;
+  top: 51.7%;
+  right: 1.4%;
   transform: translateY(-50%);
-  width: 29.8%;        
+  width: 29.8%;
   opacity: 0;
   z-index: 5;
 }
 
 .bubble3 {
- position: absolute;
-  bottom: 1%;    
+  position: absolute;
+  bottom: 1%;
   left: 50%;
   transform: translateX(-50%);
-  width: 38%;            
+  width: 38.5%;
   opacity: 0;
   z-index: 5;
 }
 
 .bubble4 {
- position: absolute;
+  position: absolute;
   top: 51.4%;
-  left: 1.4%;        
+  left: 1.4%;
   transform: translateY(-50%);
-  width: 29.8%;      
+  width: 29.8%;
   opacity: 0;
   z-index: 5;
+}
+
+/* KAOS-HUNDE (slutpositioner) */
+.chaos1 {
+  position: absolute;
+  opacity: 0;
+  z-index: 8;
+  width: 35%;
+  top: 8%;
+  left: 5%;
+  transform: translate(0, 0);
+}
+
+.chaos2 {
+  position: absolute;
+  opacity: 0;
+  z-index: 8;
+  width: 50%;
+  top: 0%;
+  right: -5%;
+  transform: translate(0, 0);
+}
+
+.chaos3 {
+  position: absolute;
+  opacity: 0;
+  z-index: 8;
+  width: 22%;
+  bottom: -3%;
+  right: 5%;
+  transform: translate(0, 0);
+}
+
+.chaos4 {
+  position: absolute;
+  opacity: 0;
+  z-index: 8;
+  width: 32%;
+  bottom: -3%;
+  left: -5%;
+  transform: translate(0, 0);
+}
+
+/* KAOS-STICKERS – fælles base */
+.sticker1,
+.sticker2,
+.sticker3,
+.sticker4,
+.sticker5,
+.sticker6 {
+  position: absolute;
+  width: 10%; /* justér efter hvor dominerende de må være */
+  opacity: 0; /* GSAP viser dem frem */
+  z-index: 9;
+  transform: translate(0, 0) rotate(0deg);
+  pointer-events: none;
+}
+
+/* Placering mellem kaos-hundene */
+/* Tweak værdierne for at ramme "tomme rum" */
+.sticker1 {
+  top: 18%;
+  left: 42%;
+}
+
+.sticker2 {
+  top: 35%;
+  right: -5%;
+}
+
+.sticker3 {
+  bottom: 10%;
+  left: 38%;
+}
+
+.sticker4 {
+  top: 42%;
+  left: 2%;
+}
+
+.sticker5 {
+  bottom: 18%;
+  right: -10%;
+}
+
+.sticker6 {
+  top: 30%;
+  left: -10%;
+}
+.calmTextTop,
+.calmTextBottom {
+  position: absolute;
+  text-align: center;
+  font-family: var(--font-knewave);
+  width: 100%;
+   color: var(--ash-grey);
+  opacity: 0;
+  font-size: 1.9rem;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+/* Over hunden */
+.calmTextTop {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Under hunden */
+.calmTextBottom {
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* SLUT-TEKST – LILLE LINJE */
+.finalSmall {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: var(--font-knewave);
+  width: 100%;
+   color: var(--ash-grey);
+  opacity: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* SLUT-TEKST – STOR LINJE */
+.finalBig {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: var(--font-knewave);
+  width: 100%;
+  color: var(--ash-grey);
+  opacity: 0;
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 700;
 }

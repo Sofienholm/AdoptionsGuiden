@@ -2,3 +2,46 @@
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: 'Knewave';
+  src: url('/src/assets/fonts/Knewave-Regular.woff2') format('woff2'),
+       url('/src/assets/fonts/Knewave-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================
+   GLOBAL DESIGN TOKENS
+   ============================ */
+
+:root {
+  /* ============================
+       FONT FAMILY
+  ============================ */
+  --font-knewave: 'Knewave', cursive;
+
+  /* ============================
+       BRAND COLORS — HSL
+  ============================ */
+  --tomato: hsla(7, 100%, 61%, 1);
+  --ash-grey: hsla(120, 9%, 76%, 1);
+  --charcoal-brown: hsla(120, 10%, 20%, 1);
+  --white-smoke: hsla(0, 0%, 95%, 1);
+  --taupe: hsla(25, 19%, 23%, 1);
+  --molten-lava: hsla(6, 98%, 24%, 1);
+  --soft-linen: hsla(40, 43%, 93%, 1);
+
+  /* ============================
+       BRAND COLORS — HEX
+       (valgfrit, men praktisk)
+  ============================ */
+  --tomato-hex: #ff4f39ff;
+  --ash-grey-hex: #bdc8bdff;
+  --charcoal-brown-hex: #2d372dff;
+  --white-smoke-hex: #f2f2f2ff;
+  --taupe-hex: #463930ff;
+  --molten-lava-hex: #790c01ff;
+  --soft-linen-hex: #f5f0e6ff;
+}
