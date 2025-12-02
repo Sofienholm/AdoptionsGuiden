@@ -4,6 +4,9 @@
   position: relative;
 
 }
+body {
+  background-color: #2B352B;
+}
 
 /* wrapper der holder alt på plads når sektionen er pinned */
 .inner {
@@ -41,4 +44,24 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
+}
+
+.bubble1 {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-51%);
+  width: 295px;
+  opacity: 0; /* meget vigtigt */
+  z-index: 10;
+}
+
+.bubble2 {
+  position: absolute;
+  top: 34%;
+  left: 67%;
+  transform: translateX(-50%);
+  width: 230px;
+  opacity: 0; /* meget vigtigt */
+  z-index: 10;
 }
