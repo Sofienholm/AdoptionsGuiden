@@ -37,31 +37,67 @@ body {
   
 }
 
-/* HUND I MIDTEN */
-.dogCenter {
+.bubbleWrapper {
   position: absolute;
-  top: 45%;                 /* stabil placering */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+
+  /* responsiv størrelse */
+  width: min(90vw, 900px);  /* maks 900px, ellers 90% af viewport-bredden */
+  aspect-ratio: 900 / 650;  /* holder samme form på hele scenen */
+
+  pointer-events: none; /* bare så man ikke klikker på den ved en fejl */
+}
+
+
+/* HUND I MIDTEN */
+.dogCenter {
+ position: absolute;
+  width: 39%;     
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  opacity: 1;
 }
 
 .bubble1 {
   position: absolute;
-  top: 16%;
-  left: 50%;
-  transform: translateX(-51%);
-  width: 295px;
-  opacity: 0; /* meget vigtigt */
-  z-index: 10;
+  top: 6%;            
+  left: 49.8%;
+  transform: translateX(-50%);
+  width: 38%;             
+  opacity: 0;
+  z-index: 5;
 }
 
 .bubble2 {
-  position: absolute;
-  top: 34%;
-  left: 67%;
+   position: absolute;
+  top: 51.7%;        
+  right: 1.4%;             
+  transform: translateY(-50%);
+  width: 29.8%;        
+  opacity: 0;
+  z-index: 5;
+}
+
+.bubble3 {
+ position: absolute;
+  bottom: 1%;    
+  left: 50%;
   transform: translateX(-50%);
-  width: 230px;
-  opacity: 0; /* meget vigtigt */
-  z-index: 10;
+  width: 38%;            
+  opacity: 0;
+  z-index: 5;
+}
+
+.bubble4 {
+ position: absolute;
+  top: 51.4%;
+  left: 1.4%;        
+  transform: translateY(-50%);
+  width: 29.8%;      
+  opacity: 0;
+  z-index: 5;
 }
