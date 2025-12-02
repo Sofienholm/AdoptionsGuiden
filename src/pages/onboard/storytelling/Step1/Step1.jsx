@@ -5,6 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dogBox from "./frames/dog_center_box.svg";
 import bubble1 from "./frames/bubble1.svg";
 import bubble2 from "./frames/bubble2.svg";
+import bubble3 from "./frames/bubble3.svg";
+import bubble4 from "./frames/bubble4.svg";
 
 import styles from "./step1.module.css";
 
@@ -19,6 +21,8 @@ export default function Step1() {
   const dogCenterRef = useRef(null);
   const bubble1Ref = useRef(null);
   const bubble2Ref = useRef(null);
+  const bubble3Ref = useRef(null);
+  const bubble4Ref = useRef(null);
 
 
 
@@ -38,7 +42,7 @@ export default function Step1() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=3000",
+          end: "+=5000",
           scrub: 1,
           pin: true,
         },
@@ -56,7 +60,22 @@ export default function Step1() {
 
         // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
         .to(bubble1Ref.current, { opacity: 0 })
-        .to(bubble2Ref.current, { opacity: 1 }, "<");
+        .to(bubble2Ref.current, { opacity: 1 }, "<")
+
+        // 0.3 pause
+        .to({}, { duration: 0.3 })
+
+        // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
+        .to(bubble2Ref.current, { opacity: 0 })
+        .to(bubble3Ref.current, { opacity: 1 }, "<")
+
+        // 0.3 pause
+        .to({}, { duration: 0.3 })
+
+        // --- BUBBLE 2 IND OG BUBBLE 1 UD ---
+        .to(bubble3Ref.current, { opacity: 0 })
+        .to(bubble4Ref.current, { opacity: 1 }, "<");
+
     }, sectionRef);
 
 
@@ -78,6 +97,7 @@ export default function Step1() {
           Mange internathunde har bagage, stress eller usynlige problemer.
         </p>
 
+        <div className={styles.bubbleWrapper}>
         <img
           ref={dogCenterRef}
           src={dogBox}
@@ -96,6 +116,20 @@ export default function Step1() {
           className={styles.bubble2}
           alt="anden infoboble"
         />
+        <img
+          ref={bubble3Ref}
+          src={bubble3}
+          className={styles.bubble3}
+          alt= "tredje infobobble"
+        />
+         <img
+          ref={bubble4Ref}
+          src={bubble4}
+          className={styles.bubble4}
+          alt= "fjerde infobobble"
+        />
+
+      </div>
       </div>
     </section>
   );
