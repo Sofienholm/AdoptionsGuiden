@@ -4,13 +4,26 @@
 }
 
 @font-face {
-  font-family: 'Knewave';
-  src: url('/src/assets/fonts/Knewave-Regular.woff2') format('woff2'),
-       url('/src/assets/fonts/Knewave-Regular.woff') format('woff');
+  font-family: "Knewave";
+  src: url("/src/assets/fonts/Knewave-Regular.woff2") format("woff2"),
+    url("/src/assets/fonts/Knewave-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  text-transform: uppercase;
 }
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Helvetica"), url("Helvetica.woff") format("woff");
+}
+   @font-face {
+    font-family: 'Helvetica Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Helvetica Light'), url('helvetica-light-587ebe5a59211.woff') format('woff');
+    }
 
 /* ============================
    GLOBAL DESIGN TOKENS
@@ -20,7 +33,9 @@
   /* ============================
        FONT FAMILY
   ============================ */
-  --font-knewave: 'Knewave', cursive;
+  --font-knewave: "Knewave", cursive;
+  --font-hel: "Helvetica", sans-serif;
+  --font-hel-light: "Helvetica Light", sans-serif;
 
   /* ============================
        BRAND COLORS — HSL

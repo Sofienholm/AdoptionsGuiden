@@ -11,6 +11,11 @@ import cardOne from "./frames/card1.svg";
 import cardTwo from "./frames/card2.svg";
 import cardTree from "./frames/card3.svg";
 import cardFour from "./frames/card4.svg";
+import dog1 from "./frames/dog-1.svg"
+import dog2 from "./frames/dog-2.svg"
+import dog3 from "./frames/dog-3.svg"
+import dog4 from "./frames/dog-4.svg"
+import dog5 from "./frames/dog-5.svg"
 
 import styles from "./step2.module.css";
 
@@ -26,7 +31,21 @@ export default function Step1() {
   const timerRef = useRef(null);
   const brodtekstRef = useRef(null);
   const doorRef = useRef(null);
-  
+
+  const cardOneRef = useRef(null);
+  const cardTwoRef = useRef(null);
+  const cardTreeRef = useRef(null);
+  const cardFourRef = useRef(null);
+ const overskriftTwoRef = useRef(null);
+
+ const overskriftTreeRef = useRef(null);
+ const brodtekstTreeRef = useRef(null);
+ const dogOneRef = useRef(null);
+ const dogTwoRef = useRef(null);
+ const dogThreeRef = useRef(null);
+ const dogFourRef = useRef(null);
+ const dogFiveRef = useRef(null);
+ 
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -133,6 +152,27 @@ export default function Step1() {
       tl.to(doorRef.current, { y: -750, opacity: 1, duration: 1 }, "<");
       tl.to(sixRef.current, { y: -1300, opacity: 1, duration: 1 }, "<");
       tl.to(timerRef.current, { y: -800, opacity: 1, duration: 1 }, "<");
+
+      // INTRO: Overskrift flyver ind fra oven i et lille bounce
+      tl.from(overskriftTwoRef.current, { y: -160, opacity: 1, duration: 1.4, ease: "back.out(1.8)" });
+
+      // CARDS: Alle fire flyver ind fra højre med stagger
+      tl.to([cardOneRef.current, cardTwoRef.current, cardTreeRef.current, cardFourRef.current],
+        { x:2050, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.15 },"<0.2");
+
+      // pause
+      tl.to({}, { duration: 0.3 });
+
+
+      // CARDS: Alle fire flyver ind fra højre med stagger
+      tl.to([cardOneRef.current, cardTwoRef.current, cardTreeRef.current, cardFourRef.current],
+        { x:7050, opacity: 1, duration: 2, ease: "power3.out", stagger: -0.15 });
+           tl.to(overskriftTwoRef.current, { x: 1360, opacity: 1, duration: 1.4, ease:"power3.out" },"<0.45");
+
+      tl.to(sectionRef.current, { backgroundColor: "var(--taupe-hex)" });
+
+
+    
     }, sectionRef);
 
     return () => ctx.revert();
@@ -184,29 +224,46 @@ export default function Step1() {
           />
         </div>
         <div className={styles.cardSection}>
-          <h1>De fire grundbehov</h1>
+          <h1 ref={overskriftTwoRef}>De fire grundbehov</h1>
           <div className={styles.cardWrapper}>
             <img
+              ref={cardOneRef}
               src={cardOne}
               alt="Kort med hund og hjerte"
               className={styles.card1}
             />
             <img
+              ref={cardTwoRef}
               src={cardTwo}
               alt="Kort med hund og hjerte"
               className={styles.card2}
             />
             <img
+              ref={cardTreeRef}
               src={cardTree}
               alt="Kort med hund og hjerte"
               className={styles.card3}
             />
             <img
+              ref={cardFourRef}
               src={cardFour}
               alt="Kort med hund og hjerte"
               className={styles.card4}
             />
           </div>
+        </div>
+
+        <div className={styles.outro}>
+          <h2 ref={overskriftTreeRef}>En hund er en livsforpligtelse
+          - ikke en spontan beslutning</h2>
+          <p ref={brodtekstTreeRef}>
+          De fleste hunde lever 8–15 år. Det er et ansvar, der følger med glæder, rutiner og hverdagsliv
+          </p>
+          <img ref={dogOneRef} src={dog1}  className={styles.doggie} alt="" />
+          <img ref={dogTwoRef} src={dog2} className={styles.doggie} alt="" />
+          <img ref={dogThreeRef} src={dog3} className={styles.doggie} alt="" />
+          <img ref={dogFourRef} src={dog4} className={styles.doggie} alt="" />
+          <img ref={dogFiveRef} src={dog5} className={styles.doggie} alt="" />  
         </div>
       </div>
     </section>

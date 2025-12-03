@@ -1,5 +1,5 @@
 * {
-
+  border: 1px solid greenyellow;
 }
 .section {
   height: 100vh;
@@ -74,7 +74,7 @@
 
   position: absolute;
   top: 0;
-
+  font-family: var(--font-knewave);
   font-size: 3rem;
 }
 
@@ -85,6 +85,7 @@
   top: 60%;
   left: 45%;
   font-size: 3rem;
+  font-family: var(--font-knewave);
 }
 
 .brodTekst {
@@ -93,9 +94,12 @@
   position: absolute;
   top: 30%;
   left: 75%;
+  font-family: var(--font-hel-light);
+  font-weight: lighter;
+
   font-size: 1.5rem;
 }
-.dogDoor{
+.dogDoor {
   position: absolute;
   opacity: 1;
   top: 50%;
@@ -103,4 +107,81 @@
   width: 200px;
   height: auto;
   transform: translate(-50%, -50%);
+}
+
+.cardSection {
+  position: absolute;
+  inset: 0;           /* fylder hele containeren */
+}
+.cardSection h1 {
+  color: white;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-family: var(--font-knewave);
+text-transform: uppercase;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+
+}
+.cardWrapper {
+position: relative;
+top: 50%;
+left: -150%;
+}
+.card1,
+.card2,
+.card3,
+.card4 {
+  width: 240px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+  opacity: 1;
+}
+.card2,.card4{
+  margin-top: -10%;
+}
+.card1{
+  position: absolute;
+  top: 40%;
+  left: -1%;
+}
+.card2{
+  position: absolute;
+  top: 40%;
+  left: 21%;
+}
+.card3{
+  position: absolute;
+  top: 40%;
+  left: 43%;
+}
+.card4{
+  position: absolute;
+  top: 40%;
+  left: 65%;
+}
+
+.outro{
+opacity: 0;
+}
+
+.outro h2{
+
+}
+
+.outro p{
+
+}
+.doggie {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  width: 250px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  opacity: 1;
 }
