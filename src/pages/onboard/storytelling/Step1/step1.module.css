@@ -16,27 +16,25 @@ body {
   overflow: hidden; /* vigtig: forhindrer hop og flashing */
 }
 
-/* INTRO TITLE */
 .introTitle {
   position: absolute;
-  top: 20%;
+  top: 18%;
   left: 50%;
   transform: translateX(-50%);
   color: var(--ash-grey);
   font-family: var(--font-knewave);
-  font-size: 3rem;
+  font-size: clamp(1.6rem, 3vw, 3rem); /* <- NY */
   text-align: center;
 }
 
-/* INTRO TEXT */
 .introText {
   position: absolute;
-  bottom: 18%;
+  bottom: 14%;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-knewave);
   color: var(--ash-grey);
-  font-size: 1.8rem;
+  font-size: clamp(1rem, 2vw, 1.8rem); /* <- NY */
   text-align: center;
   max-width: 500px;
 }
@@ -194,18 +192,20 @@ body {
   top: 30%;
   left: -10%;
 }
+
 .calmTextTop,
 .calmTextBottom {
   position: absolute;
   text-align: center;
   font-family: var(--font-knewave);
   width: 100%;
-   color: var(--ash-grey);
+  color: var(--ash-grey);
   opacity: 0;
-  font-size: 1.9rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.9rem); /* <- NY */
   line-height: 1.3;
   font-weight: 400;
 }
+
 
 /* Over hunden */
 .calmTextTop {
@@ -230,9 +230,9 @@ body {
   text-align: center;
   font-family: var(--font-knewave);
   width: 100%;
-   color: var(--ash-grey);
+  color: var(--ash-grey);
   opacity: 0;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem); /* <- NY */
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -248,7 +248,7 @@ body {
   width: 100%;
   color: var(--ash-grey);
   opacity: 0;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem); /* <- NY */
   line-height: 1.3;
   font-weight: 700;
 }
