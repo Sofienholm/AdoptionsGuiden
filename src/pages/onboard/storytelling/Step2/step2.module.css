@@ -169,19 +169,17 @@ left: -150%;
 
 }
 
-.outro h2{
+.outroHeading{
   color: white;
   font-size: 3.5rem;
   margin-bottom: 20px;
   font-family: var(--font-knewave);
 text-transform: uppercase;
   opacity: 1;
+  position: 
+  relative;
+  left: 50%;
   transform: translate(-50%, -50%);
-}
-.outroHeading {
-  color: white;
-  font-size: 2.5rem;
-  font-family: var(--font-knewave);
   text-align: center;
 }
 
@@ -196,17 +194,15 @@ text-transform: uppercase;
   font-family: var(--font-hel-light);
   font-weight: lighter;
   font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10%;
 }
 
 
 .outro {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+  top: 10%;
+
 }
 
 
