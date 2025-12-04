@@ -1,0 +1,46 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--taupe); /* alt bag/over framen */
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.graphicWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Framer: fylder hele bredden, bevarer proportioner */
+.mainGraphic {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;     /* fylder hele bredden */
+  height: auto;    /* skalerer højde efter bredde */
+  display: block;
+  z-index: 1;      /* begge frames ligger over bottomFill */
+}
+
+/* Feltet UNDER framen – højde styres via JS
+   går lidt op bag billedet for at fjerne “kantlinie” */
+.bottomFill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #605046;
+  pointer-events: none;
+  z-index: 0; /* ligger bag billederne */
+  height: 0;  /* default – opdateres i JS */
+}
