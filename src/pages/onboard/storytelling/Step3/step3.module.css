@@ -67,6 +67,7 @@
     color: var(--charcoal-brown-hex);
     text-align: center;
     opacity: 0; /* vigtigt – starter skjult */
+    z-index: 1; /* under blur */
   }
   
   .scene2headline span {
@@ -78,7 +79,8 @@
     width: 100%;
     height: 100%;
     pointer-events: none; 
-    opacity: 0; /* fade-in styres af GSAP */
+    opacity: 1; /* fade-in styres af GSAP */
+    z-index: 1; /* under blur */
   }
   
   /* Alle hundebokse placeret frit */
@@ -152,4 +154,40 @@
 .dogBox:hover .overlay {
   opacity: 1;
 }
+
+  
+  .overlayText {
+    font-family: var(--font-hel);
+    font-size: 48px;
+    line-height: 1.2;
+    color: var(--charcoal-brown-hex);
+    margin-bottom: 40px;
+  }
+  
+  .overlayIllustration {
+    width: 380px;
+    opacity: 1;
+  }
+  
+  .blurOverlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(0px) brightness(1);
+    background: rgba(255,255,255,0); 
+    z-index: 5;  /* over canvas */
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .overlayContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* over bluren */
+    opacity: 0;
+    pointer-events: none;
+  }
   
