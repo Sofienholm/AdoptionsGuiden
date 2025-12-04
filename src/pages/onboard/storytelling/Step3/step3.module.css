@@ -1,0 +1,193 @@
+.section {
+    width: 100vw;
+    height: 100vh;
+    background: var(--ash-grey-hex); /* den lyse grønne baggrund */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Selve "canvas'et" i fast størrelse */
+  .canvas {
+    width: 1920px;
+    height: 1080px;
+    transform-origin: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Indholdet i scenen – centreret, som på dit billede */
+  .scene1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Overskrift-billede */
+  .headline {
+    display: block;
+    margin-bottom: 80px;
+  }
+  
+  /* Hund-tegningen */
+  .dog {
+    display: block;
+    margin-bottom: 80px;
+  }
+  
+  /* Brødteksten */
+  .brodtekst {
+    font-family: var(--font-hel-light);
+    font-size: 32px;
+    color: var(--charcoal-brown-hex);
+  }
+  
+
+  .scene2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+  
+  .scene2headline {
+    margin-top: 120px;
+    font-family: var(--font-knewave);
+    font-size: 96px;
+    color: var(--charcoal-brown-hex);
+    text-align: center;
+    opacity: 0; /* vigtigt – starter skjult */
+    z-index: 1; /* under blur */
+  }
+  
+  .scene2headline span {
+    font-size: 128px;
+  }
+/* Containeren for alle hunde */
+.dogRow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    opacity: 1; /* fade-in styres af GSAP */
+    z-index: 1; /* under blur */
+  }
+  
+  /* Alle hundebokse placeret frit */
+  .dogBox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto; /* så hover virker */
+    cursor: pointer;
+  }
+  
+  /* Hundebilledet */
+  .dogImg {
+    width: 300px;
+    transition: filter 0.3s ease;
+  }
+  
+  /* Teksten under hunden */
+  .dogLabel {
+    margin-top: 12px;
+    font-family: var(--font-knewave);
+    font-size: 32px;
+    color: var(--charcoal-brown-hex);
+    text-align: center;
+  }
+/* Venstre hund — NOGLE ER ÆLDRE */
+.dogOld {
+    left: 0;
+    top: 50%;
+    
+  }
+  .dogOld .dogImg{
+    width: 380px;
+  }
+  /* Midterhund — NOGLE ER AKTIVE */
+  .dogActive {
+    left:50%;
+    transform: translateX(-50%);
+    bottom: 10%;
+  }
+  
+  /* Højre hund — NOGLE ER USIKRE */
+  .dogShy {
+    right: 0;
+    bottom: 20%;
+  }
+    
+
+/* Hover: slør billede + label */
+.dogBox:hover .dogImg,
+.dogBox:hover .dogLabel {
+  filter: blur(10px) brightness(1.6);
+}
+
+/* Hover-overlay tekst */
+.overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-hel);
+  font-size: 28px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: var(--charcoal-brown-hex);
+  white-space: nowrap;
+}
+
+/* Når man hover over boksen, vis overlayen */
+.dogBox:hover .overlay {
+  opacity: 1;
+}
+
+  
+  .overlayText {
+    font-family: var(--font-hel);
+    font-size: 48px;
+    line-height: 1.2;
+    color: var(--charcoal-brown-hex);
+    margin-bottom: 40px;
+  }
+  
+  .overlayIllustration {
+    width: 380px;
+    opacity: 1;
+  }
+  
+  .blurOverlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(0px) brightness(1);
+    background: rgba(255,255,255,0); 
+    z-index: 5;  /* over canvas */
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .overlayContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* over bluren */
+    opacity: 0;
+    pointer-events: none;
+  }
+  

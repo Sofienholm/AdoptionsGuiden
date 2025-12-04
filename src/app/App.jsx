@@ -11,6 +11,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/onboard" element={<Onboard />} />
       <Route path="/onboard/step2" element={<Step2 />} />
+      <Route path="/onboard/step3" element={<Step3 />} />
       <Route path="/onboard/step4" element={<Step4 />} />
       <Route path="/onboard/step5" element={<Step5 />} />
     </Routes>
