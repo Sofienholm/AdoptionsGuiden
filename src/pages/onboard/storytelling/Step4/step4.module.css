@@ -12,23 +12,96 @@
   overflow: hidden; /* forhindrer hop og flashing når der pinnes */
 }
 
-/* Wrapper der styrer størrelsen på del1.svg – ligesom bubbleWrapper */
+/* Wrapper for hele scenen (del1 + tabs) */
 .graphicWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: min(90vw, 900px);  /* max 900px, ellers 90% af viewport-bredden */
-  aspect-ratio: 900 / 650;  /* så scenen holder en fast form */
-
-  pointer-events: none;
+  width: min(90vw, 900px);
+  aspect-ratio: 900 / 650;
+  pointer-events: auto; /* så vi kan klikke på tabs */
 }
 
-/* Selve SVG’en */
+/* del1.svg – første scene */
 .mainGraphic {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* 2x3 grid til tabs – ligger oven på samme scene */
+.tabsGrid {
+  position: absolute;
+  inset: 0; /* fylder hele graphicWrapper */
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(0.6rem, 1.5vw, 1.2rem);
+}
+
+/* hver tab */
+.tabCard {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+}
+
+/* ---------- POPUP (fullscreen tomato) ---------- */
+
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--tomato); /* fuld tomato-baggrund */
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupInner {
+  position: relative;
+  width: min(95vw, 1100px);
+  aspect-ratio: 4 / 3; /* justér hvis jagt_kort har anden form */
+}
+
+.popupImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* usynligt klikfelt oven på X i højre hjørne */
+.closeHitArea {
+  position: absolute;
+  top: 1%;
+  right: 4%;
+  width: 10%;
+  height: 6%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* usynligt klikfelt oven på 'Pasningsvejledning for jagt hunde' */
+.linkHitArea {
+  position: absolute;
+
+  /* JUSTERET PLACERING */
+  top: 28%;     /* ↓ rykket ned fra 16% */
+  left: 7%;     /* samme */
+  width: 32%;   /* lidt smallere */
+  height: 4%;   /* ↓ smallere i højden */
+
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
