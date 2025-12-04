@@ -7,6 +7,8 @@ import forsideHund from "./frames/forsidehund.svg";
 import dogOldImg from "./frames/dog-old.svg";
 import dogActiveImg from "./frames/dog-active.svg";
 import dogShyImg from "./frames/dog-shy.svg";
+import handIllustration from "./frames/hands.svg";
+
 
 
 import styles from "./step3.module.css";
@@ -29,6 +31,9 @@ export default function Step1() {
   const dogOldRef = useRef(null);
 const dogActiveRef = useRef(null);
 const dogShyRef = useRef(null);
+const blurOverlayRef = useRef(null);
+const overlayContentRef = useRef(null);
+
 
 
 
@@ -76,30 +81,42 @@ tl.fromTo(overskrift2Ref.current,
     { opacity: 1, y: 0, duration: 1 }
   );
   // Scene 2 – hunde kommer ind en ad gangen
-tl.from(dogOldRef.current, {
-    opacity: 0,
-    y: 80,
-    duration: 1
-  });
-  
-  tl.from(dogActiveRef.current, {
-    opacity: 0,
-    y: 80,
-    duration: 1
-  }, "+=0.2");
-  
-  tl.from(dogShyRef.current, {
-    opacity: 0,
-    y: 80,
-    duration: 1
-  }, "+=0.2");
-  
-  tl.to("." + styles.dogRow, {
-    opacity: 1,
-    duration: 0.5
-  });
-  
+  const dogs = [
+    dogOldRef.current,
+    dogActiveRef.current,
+    dogShyRef.current,
+  ];
 
+  // Hunde glider IND nedefra
+tl.from(dogs, {
+    y: "120%",
+    opacity: 0,
+    duration: 1.2,
+    ease: "power3.out",
+    stagger: 0.2
+  });
+
+ // Fade overlay ind + skru op for blur
+tl.to(blurOverlayRef.current, {
+    opacity: 1,
+    duration: 1.2,
+    ease: "power2.out",
+    onUpdate: (animation) => {
+      const p = animation.progress();
+      const blur = p * 12; // 0 → 12px blur
+      const bright = 1 + (p * 0.3); // 1 → 1.3
+      blurOverlayRef.current.style.backdropFilter = `blur(${blur}px) brightness(${bright})`;
+    }
+  });
+  
+// Overlay content fade-in
+tl.to(overlayContentRef.current, {
+    opacity: 1,
+    duration: 1.0,
+    ease: "power2.out",
+  });
+
+  
     }, sectionRef);
 
     // --- Skalering af canvas ---
@@ -126,6 +143,7 @@ tl.from(dogOldRef.current, {
 
   return (
     <section ref={sectionRef} className={styles.section}>
+         <div className={styles.blurOverlay} ref={blurOverlayRef}></div>  
       <div ref={canvasRef} className={styles.canvas}>
         <div className={styles.scene1}>
           <img src={overskrift1} ref={overskrift1Ref} alt="" className={styles.headline} />
@@ -135,6 +153,7 @@ tl.from(dogOldRef.current, {
           </p>
         </div>
         <div className={styles.scene2}>
+
             <h1 ref={overskrift2Ref} className={styles.scene2headline}>
              HUNDE HAR FORSKELLIGE <br/> <span>BEHOV</span>
             </h1>
@@ -161,6 +180,21 @@ tl.from(dogOldRef.current, {
             </div>
             </div>
 
+       
+             <div className={styles.overlayContent} ref={overlayContentRef}>
+                <p className={styles.overlayText}>
+                    FOR AT SIKRE AT DISSE<br/>
+                    BEHOV BLIVER SET<br/>
+                    LIGGER DU TILLIDEN<br/>
+                    I INTERNATETS HÆNDER
+                </p>
+
+                <img 
+                    src={handIllustration} 
+                    alt="" 
+                    className={styles.overlayIllustration}
+                />
+            </div>
         </div>
       </div>
     </section>
