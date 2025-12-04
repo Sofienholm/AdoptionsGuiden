@@ -55,6 +55,8 @@ export default function Step1() {
         rotation: 0,
       });
       gsap.set(clockRef.current, { opacity: 1 });
+      gsap.set([overskriftTreeRef.current, brodtekstTreeRef.current, dogOneRef.current, dogTwoRef.current, dogThreeRef.current, dogFourRef.current, dogFiveRef.current], { opacity: 1 });
+
 
       // --- ScrollTimeline setup ---
       const tl = gsap.timeline({
@@ -64,6 +66,7 @@ export default function Step1() {
           end: "+=10000",
           scrub: 1,
           pin: true,
+          
         },
       });
 
@@ -171,7 +174,18 @@ export default function Step1() {
 
       tl.to(sectionRef.current, { backgroundColor: "var(--taupe-hex)" });
 
+// overskrift: dropper lidt ned med bounce
+tl.from(overskriftTreeRef.current, { y: -80, opacity: 0, duration: 1.2, ease: "back.out(1.6)" });
 
+// brødtekst: glider roligt ind lidt senere
+tl.from(brodtekstTreeRef.current, { y: 40, opacity: 0, duration: 1, ease: "power3.out" }, "<0.2");
+
+// hundene: flyver ind fra højre, en efter en
+tl.from(
+  [dogOneRef.current, dogTwoRef.current, dogThreeRef.current, dogFourRef.current, dogFiveRef.current],
+  { x: 1500, opacity: 1, duration: 1.4, ease: "power4.out", stagger: 0.15 },
+  "<0.1"
+);
     
     }, sectionRef);
 
@@ -254,16 +268,21 @@ export default function Step1() {
         </div>
 
         <div className={styles.outro}>
-          <h2 ref={overskriftTreeRef}>En hund er en livsforpligtelse
-          - ikke en spontan beslutning</h2>
+        <h2 ref={overskriftTreeRef} className={styles.outroHeading}>
+  En hund er en livsforpligtelse<br />
+  <span className={styles.outroHeadingRed}>- ikke en spontan beslutning</span>
+</h2>
           <p ref={brodtekstTreeRef}>
           De fleste hunde lever 8–15 år. Det er et ansvar, der følger med glæder, rutiner og hverdagsliv
           </p>
-          <img ref={dogOneRef} src={dog1}  className={styles.doggie} alt="" />
-          <img ref={dogTwoRef} src={dog2} className={styles.doggie} alt="" />
-          <img ref={dogThreeRef} src={dog3} className={styles.doggie} alt="" />
-          <img ref={dogFourRef} src={dog4} className={styles.doggie} alt="" />
-          <img ref={dogFiveRef} src={dog5} className={styles.doggie} alt="" />  
+          <div className={styles.dogRow}>
+
+          <img ref={dogOneRef} src={dog1}  className={styles.doggie1} alt="" />
+          <img ref={dogTwoRef} src={dog2} className={styles.doggie2} alt="" />
+          <img ref={dogThreeRef} src={dog3} className={styles.doggie3} alt="" />
+          <img ref={dogFourRef} src={dog4} className={styles.doggie4} alt="" />
+          <img ref={dogFiveRef} src={dog5} className={styles.doggie5} alt="" />  
+        </div>
         </div>
       </div>
     </section>
