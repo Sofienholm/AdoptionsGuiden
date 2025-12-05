@@ -3,7 +3,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--taupe); /* alt bag/over framen */
+  background-color: var(--taupe);
 }
 
 .inner {
@@ -20,20 +20,27 @@
   align-items: center;
 }
 
-/* Framer: fylder hele bredden, bevarer proportioner */
+/* Sceneframes */
 .mainGraphic {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;     /* fylder hele bredden */
-  height: auto;    /* skalerer højde efter bredde */
+  width: 100%;
+  height: auto;
   display: block;
-  z-index: 1;      /* begge frames ligger over bottomFill */
+  z-index: 1;
 }
 
-/* Feltet UNDER framen – højde styres via JS
-   går lidt op bag billedet for at fjerne “kantlinie” */
+/* DEL 2 wrapper (overlay + hotspot) */
+.del2Wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bund-farvefelt */
 .bottomFill {
   position: absolute;
   left: 0;
@@ -41,6 +48,78 @@
   width: 100%;
   background-color: #605046;
   pointer-events: none;
-  z-index: 0; /* ligger bag billederne */
-  height: 0;  /* default – opdateres i JS */
+  z-index: 0;
+  height: 0;
+}
+
+/* Hotspot over den lyse hund */
+.dogHotspot {
+  position: absolute;
+  left: 50%;
+  bottom: 13%;
+  transform: translateX(-50%);
+  width: 20%;
+  height: 18%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Overlay med blur */
+.centerOverlay {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  transform: translate(-63%, 25%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.dogHotspot:hover ~ .centerOverlay {
+  opacity: 1;
+}
+
+.centerOverlayBox {
+  position: relative;
+  text-align: center;
+  padding: 10px 10px;
+}
+
+/* Sløret baggrund bag tekst */
+.centerOverlayBox::before {
+  content: "";
+  position: absolute;
+  inset: -54px -50px;
+  z-index: -1;
+  background: rgba(96, 80, 70, 0.02);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px;
+}
+
+.centerOverlayLine {
+  margin: 2px 0;
+  font-family: var(--font-knewave);
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--tomato);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+/* Videre-knap i nederste højre hjørne */
+.videreKnap {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  width: 12%;
+  height: auto;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 20;
+  transition: transform 0.18s ease;
+}
+
+.videreKnap:hover {
+  transform: scale(1.06);
 }
