@@ -179,25 +179,109 @@
   }
   
   .overlayText {
-    font-family: var(--font-hel);
-    font-size: 48px;
+    font-family: var(--font-knewave);
+    font-size: 55px;
     margin-bottom: 40px;
     color: var(--charcoal-brown-hex);
     text-align: center;
   }
   
   .overlayIllustration {
-    width: 380px;
+    width: 580px;
   }
-.scribbleLines{
+
+  .overskrift3{
+    font-family: var(--font-knewave);
+    font-size: 96px;
+    color: var(--charcoal-brown-hex);
+    text-transform:uppercase ;
+    
+  }
+  .brodtekst3{
+    font-family: var(--font-knewave);
+    font-size: 96px;
+    color: var(--molten-lava);
+    margin-top: -9rem;
+    margin-left: 15rem;
+    text-transform:uppercase ;
+  }
+  .tekst3{
+    position: absolute;
+    top: 0%;
+    left: -20%;
+   display: flex;
+   flex-direction: column;
+    align-items: center;
+
+
+  }
+  .mandOgHund{
+    position: absolute;
+    right:-30%;
+    top:0;
+    width: 600px;
+  }
+
+
+  .scribbleLines {
+    position: absolute;
+    left: 30%;
+    top: 45%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-}
+    gap: 30px;
 
+  }
+  
+  .lineWrapper {
+    display: flex;
+
+    gap: 60px; /* afstand mellem prik og linje */
+  }
+  
   .scribbleSvg {
-   
- 
-    width: 300px;
+    width:50rem;
+    height: auto;
+
+  }
+  .dot {
+    width: 20px;
+    height: 20px;
+    background: var(--charcoal-brown-hex);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0;
+    margin-top: 1.8rem;
   }
 
+  .scene4Indhold{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  width: 200%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  .overskrift4{
+    font-family: var(--font-knewave);
+    font-size: 96px;
+    color: var(--molten-lava);
+    
+  }
+  .brodtekst4{
+    font-family: var(--font-knewave);
+    font-size: 52px;
+    color: var(--charcoal-brown-hex);
+    
+  }
+  .kryds{
+    position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+    top:40%;
+    width: 600px;
+  }
