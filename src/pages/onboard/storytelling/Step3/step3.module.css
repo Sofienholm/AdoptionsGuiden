@@ -1,56 +1,57 @@
 .section {
     width: 100vw;
     height: 100vh;
-    background: var(--ash-grey-hex); /* den lyse grønne baggrund */
+    background: var(--ash-grey-hex);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
 
-  }
-  
-  /* Selve "canvas'et" i fast størrelse */
-  .canvas {
+/* Canvas */
+.canvas {
     width: 1920px;
     height: 1080px;
     transform-origin: center center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-  }
-  
-  /* Indholdet i scenen – centreret, som på dit billede */
-  .scene1 {
+/* -------------------------- */
+/*         SCENE 1            */
+/* -------------------------- */
+
+.scene1 {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  
-  /* Overskrift-billede */
-  .headline {
+}
+
+.headline {
     display: block;
     margin-bottom: 80px;
-  }
-  
-  /* Hund-tegningen */
-  .dog {
+}
+
+.dog {
     display: block;
     margin-bottom: 80px;
-  }
-  
-  /* Brødteksten */
-  .brodtekst {
+}
+
+.brodtekst {
     font-family: var(--font-hel-light);
     font-size: 32px;
     color: var(--charcoal-brown-hex);
-  }
-  
+}
 
-  .scene2 {
+/* -------------------------- */
+/*         SCENE 2            */
+/* -------------------------- */
+
+.scene2 {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -60,170 +61,169 @@
     justify-content: center;
     align-items: flex-start;
     pointer-events: none;
-  }
-  
-  .scene2headline {
+}
+
+.scene2headline {
     margin-top: 120px;
     font-family: var(--font-knewave);
     font-size: 96px;
     color: var(--charcoal-brown-hex);
     text-align: center;
-    opacity: 0; /* vigtigt – starter skjult */
-    z-index: 1; /* under blur */
-  }
-  
-  .scene2headline span {
+    opacity: 0;
+    z-index: 1;
+}
+
+.scene2headline span {
     font-size: 128px;
-  }
-/* Containeren for alle hunde */
+}
+
 .dogRow {
     position: absolute;
     width: 100%;
     height: 100%;
-    pointer-events: none; 
-    opacity: 1; /* fade-in styres af GSAP */
-    z-index: 1; /* under blur */
-  }
-  
-  /* Alle hundebokse placeret frit */
-  .dogBox {
+    pointer-events: none;
+    opacity: 1;
+    z-index: 1;
+}
+
+.dogBox {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    pointer-events: auto; /* så hover virker */
+    pointer-events: auto;
     cursor: pointer;
-  }
-  
-  /* Hundebilledet */
-  .dogImg {
+}
+
+.dogImg {
     width: 300px;
     transition: filter 0.3s ease;
-  }
-  
-  /* Teksten under hunden */
-  .dogLabel {
+}
+
+.dogLabel {
     margin-top: 12px;
     font-family: var(--font-knewave);
     font-size: 32px;
     color: var(--charcoal-brown-hex);
     text-align: center;
-  }
-/* Venstre hund — NOGLE ER ÆLDRE */
+}
+
 .dogOld {
     left: 0;
     top: 50%;
-    
-  }
-  .dogOld .dogImg{
+}
+.dogOld .dogImg {
     width: 380px;
-  }
-  /* Midterhund — NOGLE ER AKTIVE */
-  .dogActive {
-    left:50%;
+}
+
+.dogActive {
+    left: 50%;
     transform: translateX(-50%);
     bottom: 10%;
-  }
-  
-  /* Højre hund — NOGLE ER USIKRE */
-  .dogShy {
+}
+
+.dogShy {
     right: 0;
     bottom: 20%;
-  }
-    
+}
 
-/* Hover: slør billede + label */
 .dogBox:hover .dogImg,
 .dogBox:hover .dogLabel {
-  filter: blur(10px) brightness(1.6);
+    filter: blur(10px) brightness(1.6);
 }
 
-/* Hover-overlay tekst */
 .overlay {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-hel);
-  font-size: 28px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: var(--charcoal-brown-hex);
-  white-space: nowrap;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-hel);
+    font-size: 28px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: var(--charcoal-brown-hex);
+    white-space: nowrap;
 }
 
-/* Når man hover over boksen, vis overlayen */
 .dogBox:hover .overlay {
-  opacity: 1;
+    opacity: 1;
 }
 
 .blurLayer {
     position: absolute;
     inset: 0;
-    z-index: 5; /* over scener, under overlayContent */
+    z-index: 5;
     opacity: 0;
     filter: blur(0px) brightness(1);
     pointer-events: none;
-  }
-  
-  .overlayContent {
+}
+
+.overlayContent {
     position: absolute;
     inset: 0;
-    z-index: 10; /* øverst */
+    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
     pointer-events: none;
-  }
-  
-  .overlayText {
+}
+
+.overlayText {
     font-family: var(--font-knewave);
     font-size: 55px;
     margin-bottom: 40px;
     color: var(--charcoal-brown-hex);
     text-align: center;
-  }
-  
-  .overlayIllustration {
+}
+
+.overlayIllustration {
     width: 580px;
-  }
+}
 
-  .overskrift3{
+/* -------------------------- */
+/*         SCENE 3            */
+/* -------------------------- */
+
+/* 🔥 FIXED: Samme visuelle størrelse som originalen (96px),
+   men skalerer ned på mindre skærme */
+
+.overskrift3 {
     font-family: var(--font-knewave);
-    font-size: 96px;
+    text-transform: uppercase;
     color: var(--charcoal-brown-hex);
-    text-transform:uppercase ;
-    
-  }
-  .brodtekst3{
+    font-size: clamp(2rem, 5vw, 96px); /* ORIGINAL SIZE + scaling */
+    text-align: left;
+}
+
+.brodtekst3 {
     font-family: var(--font-knewave);
-    font-size: 96px;
+    text-transform: uppercase;
     color: var(--molten-lava);
-    margin-top: -9rem;
-    margin-left: 15rem;
-    text-transform:uppercase ;
-  }
-  .tekst3{
-    position: absolute;
-    top: 0%;
-    left: -20%;
-   display: flex;
-   flex-direction: column;
-    align-items: center;
+    font-size: clamp(1.8rem, 4.6vw, 96px); /* ORIGINAL SIZE + scaling */
+    margin-top: 0.4rem;
+    text-align: left;
+}
 
-
-  }
-  .mandOgHund{
+.tekst3 {
     position: absolute;
-    right:-30%;
-    top:0;
+    top: 12%;
+    left: -15%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mandOgHund {
+    position: absolute;
+    right: -30%;
+    top: 0;
     width: 600px;
-  }
+}
 
-
-  .scribbleLines {
+.scribbleLines {
     position: absolute;
     left: 30%;
     top: 45%;
@@ -231,21 +231,19 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
 
-  }
-  
-  .lineWrapper {
+.lineWrapper {
     display: flex;
+    gap: 60px;
+}
 
-    gap: 60px; /* afstand mellem prik og linje */
-  }
-  
-  .scribbleSvg {
-    width:50rem;
+.scribbleSvg {
+    width: 50rem;
     height: auto;
+}
 
-  }
-  .dot {
+.dot {
     width: 20px;
     height: 20px;
     background: var(--charcoal-brown-hex);
@@ -253,35 +251,39 @@
     flex-shrink: 0;
     opacity: 0;
     margin-top: 1.8rem;
-  }
+}
 
-  .scene4Indhold{
+/* -------------------------- */
+/*         SCENE 4            */
+/* -------------------------- */
+
+.scene4Indhold {
     position: absolute;
     top: 0%;
     left: 50%;
     transform: translateX(-50%);
-  width: 200%;
+    width: 200%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .overskrift4{
+}
+
+.overskrift4 {
     font-family: var(--font-knewave);
     font-size: 96px;
     color: var(--molten-lava);
-    
-  }
-  .brodtekst4{
+}
+
+.brodtekst4 {
     font-family: var(--font-knewave);
     font-size: 52px;
     color: var(--charcoal-brown-hex);
-    
-  }
-  .kryds{
+}
+
+.kryds {
     position: absolute;
-   left: 50%;
-   transform: translateX(-50%);
-    top:40%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40%;
     width: 600px;
-  }
+}
