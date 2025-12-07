@@ -44,11 +44,9 @@ export default function Step1() {
   const sticker5Ref = useRef(null);
   const sticker6Ref = useRef(null);
 
-  // Rolig scene-tekster
   const calmTextTopRef = useRef(null);
   const calmTextBottomRef = useRef(null);
 
-  // Slut-tekster
   const finalSmallRef = useRef(null);
   const finalBigRef = useRef(null);
 
@@ -109,7 +107,7 @@ export default function Step1() {
         // --- KORT PAUSE KUN HUND ---
         .to({}, { duration: 2 })
 
-        // --- KAOS-HUNDE FLYVER IND FRA HJØRNERNE OG FORBLIVER ---
+        // --- KAOS-HUNDE FLYVER IND ---
         .fromTo(
           chaos1Ref.current,
           { opacity: 0, x: "-200%", y: "-200%" },
@@ -135,7 +133,7 @@ export default function Step1() {
           "<"
         )
 
-        // --- STICKERS: FADE IND LIGE EFTER KAOS-HUNDE ---
+        // --- STICKERS: FADE IND ---
         .fromTo(
           [
             sticker1Ref.current,
@@ -154,7 +152,7 @@ export default function Step1() {
           }
         )
 
-        // --- HURTIG, LÆNGERE JUMP-SHAKE / URO ---
+        // --- JUMP-SHAKE / URO ---
         .to(
           [sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
           {
@@ -178,7 +176,7 @@ export default function Step1() {
           "<"
         )
 
-        // --- KAOS VÆK: hund bliver, alt andet ud ---
+        // --- KAOS VÆK ---
         .to(
           [
             chaos1Ref.current,
@@ -219,7 +217,7 @@ export default function Step1() {
           duration: 1.5,
         })
 
-        // --- BEGGE ROLIGE TEKSTER FADER HURTIGT UD ---
+        // --- BEGGE ROLIGE TEKSTER FADER UD ---
         .to(
           [calmTextTopRef.current, calmTextBottomRef.current],
           {
@@ -228,7 +226,7 @@ export default function Step1() {
           }
         )
 
-        // --- ZOOM IND PÅ HUNDEN (KUN TIL SIDST) ---
+        // --- ZOOM IND PÅ HUNDEN ---
         .to(dogCenterRef.current, {
           scale: 1.4,
           transformOrigin: "50% 50%",
@@ -259,7 +257,41 @@ export default function Step1() {
         );
     }, sectionRef);
 
-    return () => ctx.revert();
+    // 🔧 Sørg for at ScrollTrigger får korrekt layout efter billeder er loadet
+    const keyImages = [
+      dogCenterRef.current,
+      bubble1Ref.current,
+      bubble2Ref.current,
+      bubble3Ref.current,
+      bubble4Ref.current,
+    ].filter(Boolean);
+
+    const refreshIfReady = () => {
+      if (keyImages.every((img) => img.complete)) {
+        ScrollTrigger.refresh();
+      }
+    };
+
+    // hvis billeder allerede er loadet (cache), refresher vi med det samme
+    refreshIfReady();
+
+    // ellers lytter vi på load-events
+    keyImages.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener("load", refreshIfReady);
+      }
+    });
+
+    // ekstra sikkerhed: refresh ved resize/rotations
+    window.addEventListener("resize", refreshIfReady);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener("resize", refreshIfReady);
+      keyImages.forEach((img) => {
+        img.removeEventListener("load", refreshIfReady);
+      });
+    };
   }, []);
 
   return (
@@ -270,10 +302,11 @@ export default function Step1() {
           HVAD ER EN INTERNATHUND?
         </h1>
         <p ref={introTextRef} className={styles.introText}>
-        HER ER NOGLE SÆRLIGE TING AT VÆRE OPMÆRKSOM PÅ FORUD FOR ADOPTION</p>
+          HER ER NOGLE SÆRLIGE TING AT VÆRE OPMÆRKSOM PÅ FORUD FOR ADOPTION
+        </p>
 
         <div className={styles.bubbleWrapper}>
-          {/* Hund i midten – bliver inde i bubbleWrapper hele vejen */}
+          {/* Hund i midten */}
           <img
             ref={dogCenterRef}
             src={dogBox}

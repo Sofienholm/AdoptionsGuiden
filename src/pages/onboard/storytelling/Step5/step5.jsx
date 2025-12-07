@@ -45,7 +45,7 @@ export default function Step5() {
       //
       // INTRO → DEL 2 (smooth fade)
       //
-      tl.to({}, { duration: 0.2 }); // lille scroll før noget sker
+      tl.to({}, { duration: 0.45 }); // 🔼 mere scroll før første skift
 
       tl.to(bgRef.current, {
         opacity: 0,
@@ -60,14 +60,14 @@ export default function Step5() {
           duration: 0.2,
           ease: "power2.inOut",
         },
-        "<" // overlap = rigtig fade
+        "<"
       );
 
       // del 2 står lidt alene
-      tl.to({}, { duration: 0.2 });
+      tl.to({}, { duration: 0.45 }); // 🔼 længere tid på del 2
 
       //
-      // DEL 2 → DEL 3.1 (fade HELE wrapperen, så overlay også forsvinder)
+      // DEL 2 → DEL 3.1 (fade HELE wrapperen)
       //
       tl.to(".del2Wrapper", {
         opacity: 0,
@@ -86,7 +86,7 @@ export default function Step5() {
       );
 
       // del 3.1 vises kort
-      tl.to({}, { duration: 0.15 });
+      tl.to({}, { duration: 0.45 }); // 🔼 lidt mere tid på del 3.1
 
       //
       // DEL 3.1 → DEL 4 (fade)
@@ -107,8 +107,8 @@ export default function Step5() {
         "<"
       );
 
-      // lille pause på del4
-      tl.to({}, { duration: 0.15 });
+      // del4 står lidt længere alene
+      tl.to({}, { duration: 0.45 }); // 🔼 mere tid på del 4
 
       //
       // VIS VIDERE-KNAP (fade ind)
@@ -153,7 +153,7 @@ export default function Step5() {
           {/* INTRO */}
           <img ref={bgRef} src={bgStep5} className={styles.mainGraphic} alt="" />
 
-          {/* DEL 2 – med overlay og hotspot */}
+          {/* DEL 2 */}
           <div className={`${styles.del2Wrapper} del2Wrapper`}>
             <img
               ref={del2Ref}
@@ -161,19 +161,9 @@ export default function Step5() {
               className={styles.mainGraphic}
               alt=""
             />
-
-            <div className={styles.dogHotspot} />
-
-            <div className={styles.centerOverlay}>
-              <div className={styles.centerOverlayBox}>
-                <p className={styles.centerOverlayLine}>SAMME RUTINER</p>
-                <p className={styles.centerOverlayLine}>INGEN GÆSTER</p>
-                <p className={styles.centerOverlayLine}>&amp; KORTE GÅTURE</p>
-              </div>
-            </div>
           </div>
 
-          {/* DEL 3.1 – uden overlay */}
+          {/* DEL 3.1 */}
           <img
             ref={del31Ref}
             src={del31Step5}
@@ -181,7 +171,7 @@ export default function Step5() {
             alt=""
           />
 
-          {/* DEL 4 – uden overlay */}
+          {/* DEL 4 */}
           <img
             ref={del4Ref}
             src={del4Step5}
