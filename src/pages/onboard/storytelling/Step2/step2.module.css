@@ -1,6 +1,5 @@
-* {
+* {}
 
-}
 .section {
   height: 100vh;
   position: relative;
@@ -8,15 +7,18 @@
   background-color: #6e1a11;
 }
 
+/* Scenewrapper med responsiv skalering */
 .container {
   width: 1300px;
   height: 700px;
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: visible;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
 }
+
+/* CLOCK */
 .clockWrapper {
   position: absolute;
   top: 50%;
@@ -24,60 +26,58 @@
   width: 400px;
   height: 400px;
   transform: translate(-50%, -50%);
-  transform-origin: 50% 50%;
 }
 
-/* Selve clock.svg */
 .clock {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 400px;
   height: auto;
 }
 
-/* Minutviseren */
-.minuteHand {
-  position: absolute;
-  top: 150px;
-  left: 200px;
-  width: 12px;
-  height: auto;
-  transform: translate(-50%, -50%);
-  transform-origin: 50% 95%;
-}
-
-/* Timeviseren */
+.minuteHand,
 .hourHand {
   position: absolute;
-  top: 160px;
-  left: 200px;
   width: 12px;
   height: auto;
   transform: translate(-50%, -50%);
   transform-origin: 50% 95%;
 }
 
+.minuteHand {
+  top: 150px;
+  left: 200px;
+}
+
+.hourHand {
+  top: 160px;
+  left: 200px;
+}
+
+/* 6-tal */
 .six {
   position: absolute;
   top: 53.9%;
   left: 50.9%;
   width: 100px;
-  height: auto;
   transform: translate(-50%, -50%);
   opacity: 0;
 }
 
+/* INTRO OVERSKRIFT */
 .overskrift {
-  opacity: 1;
-  color: white;
-
   position: absolute;
-  top: 0;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
   font-family: var(--font-knewave);
-  font-size: 3rem;
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  white-space: nowrap;
+  text-align: center;
 }
 
+/* TIMER — NU UDEN TRANSFORM! */
 .tekstTimer {
   color: white;
   opacity: 0;
@@ -88,148 +88,106 @@
   font-family: var(--font-knewave);
 }
 
+/* BRØDTEKST */
 .brodTekst {
-  color: white;
-  opacity: 1;
   position: absolute;
   top: 30%;
-  left: 75%;
-  font-family: var(--font-hel-light);
-  font-weight: lighter;
+  left: 80%; /* lidt mindre mod højre end originalen */
+  transform: translateX(-50%);
+  max-width: 360px;
 
+  color: white;
+  font-family: var(--font-hel-light);
   font-size: 1.5rem;
+  line-height: 1.35;
 }
+
+/* DØREN (samme placering som original) */
 .dogDoor {
   position: absolute;
-  opacity: 1;
   top: 50%;
   left: 20%;
   width: 200px;
-  height: auto;
   transform: translate(-50%, -50%);
 }
 
+/* KORT-SEKTION */
 .cardSection {
   position: absolute;
-  inset: 0;           /* fylder hele containeren */
+  inset: 0;
 }
+
 .cardSection h1 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
   font-size: 4rem;
-  margin-bottom: 20px;
+  opacity: 0; /* skjult fra start */
   font-family: var(--font-knewave);
-text-transform: uppercase;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-
+  text-transform: uppercase;
 }
+
 .cardWrapper {
-position: relative;
-top: 50%;
-left: -150%;
+  position: relative;
+  top: 47%;
+  left: -150%;
 }
-.card1,
-.card2,
-.card3,
-.card4 {
+
+/* KORTPLACERING */
+.card1, .card2, .card3, .card4 {
   width: 240px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
-  opacity: 1;
-}
-.card2,.card4{
-  margin-top: -10%;
-}
-.card1{
-  position: absolute;
-  top: 40%;
-  left: -1%;
-}
-.card2{
-  position: absolute;
-  top: 40%;
-  left: 21%;
-}
-.card3{
-  position: absolute;
-  top: 40%;
-  left: 43%;
-}
-.card4{
-  position: absolute;
-  top: 40%;
-  left: 65%;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
 }
 
-.outro{
+.card1 { position: absolute; top: 40%; left: -1%; }
+.card2 { position: absolute; top: 40%; left: 21%; margin-top: -10%; }
+.card3 { position: absolute; top: 40%; left: 43%; }
+.card4 { position: absolute; top: 40%; left: 65%; margin-top: -10%; }
 
-}
-
-.outroHeading{
-  color: white;
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  font-family: var(--font-knewave);
-text-transform: uppercase;
-  opacity: 1;
-  position: 
-  relative;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.outroHeadingRed {
-  color: #ff4b4b; /* eller var(--brand-red) hvis du har sådan én */
-  font-size: 2rem;
-}
-
-.outro p{
-  color: white;
-  opacity: 1;
-  font-family: var(--font-hel-light);
-  font-weight: lighter;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-bottom: 10%;
-}
-
-
+/* OUTRO – centreres og får luft */
 .outro {
   position: absolute;
   top: 10%;
-
+  left: 50%;
+  width: min(90%, 900px);
+  transform: translateX(-50%);
 }
 
+.outroHeading {
+  text-align: center;
+  color: white;
+  font-size: 3.5rem;
+  font-family: var(--font-knewave);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
 
+.outroHeadingRed {
+  color: #ff4b4b;
+  font-size: 2rem;
+}
+
+.outro p {
+  color: white;
+  font-family: var(--font-hel-light);
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 10%;
+}
+
+/* HUNDE I OUTRO */
 .dogRow {
   display: flex;
+  justify-content: center;
   gap: 20px;
-  margin-top: 24px;
-  align-items: end;
+  align-items: flex-end;
 }
 
-.doggie1{
-  width: 120px;
-  height: auto;
-}
-.doggie2{
-  width: 170px;
-  height: auto;
-}
-.doggie3{
-  width: 220px;
-  height: auto;
-}
-.doggie4{
-  width: 280px;
-  height: auto;
-}
-.doggie5{
-  width: 380px;
-  height: auto;
-}
+.doggie1 { width: 120px; }
+.doggie2 { width: 170px; }
+.doggie3 { width: 220px; }
+.doggie4 { width: 280px; }
+.doggie5 { width: 380px; }

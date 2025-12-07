@@ -51,7 +51,6 @@ export default function Step1() {
   const brodtekst4Ref = useRef(null);
 
   useEffect(() => {
-    // GSAP context til animationer (tom lige nu)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -63,7 +62,7 @@ export default function Step1() {
         },
       });
 
-      // Scene 1 – intro fade-in
+      // --- SCENE 1 – intro ---
       tl.from(overskrift1Ref.current, {
         opacity: 0,
         y: -50,
@@ -90,7 +89,7 @@ export default function Step1() {
         "+=0.2"
       );
 
-      // Scene 1 fade out
+      // Scene 1 fade ud
       tl.to(
         [overskrift1Ref.current, forsideHundRef.current, brodtekst1Ref.current],
         {
@@ -99,13 +98,13 @@ export default function Step1() {
         }
       );
 
-      // Scene 2 – overskrift fade-in
+      // --- SCENE 2 – hunde + overlay ---
       tl.fromTo(
         overskrift2Ref.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1 }
       );
-      // Scene 2 – hunde kommer ind en ad gangen
+
       const dogs = [dogOldRef.current, dogActiveRef.current, dogShyRef.current];
 
       // Hunde glider IND nedefra
@@ -116,12 +115,14 @@ export default function Step1() {
         ease: "power3.out",
         stagger: 0.2,
       });
+
+      // Hunde + overskrift nedtones
       tl.to([dogs, overskrift2Ref.current], {
         opacity: 0.05,
         duration: 0.5,
       });
 
-      // OVERLAY
+      // Overlay (tekst + hænder) ind
       tl.to(
         overlayContentRef.current,
         {
@@ -131,7 +132,8 @@ export default function Step1() {
         },
         "<"
       );
-      // alt ud
+
+      // Alt i scene 2 glides op og FADES HELT UD (inkl. hånd-illustration)
       tl.to(
         [
           dogOldRef.current,
@@ -142,18 +144,19 @@ export default function Step1() {
         ],
         {
           y: -1300,
+          opacity: 0, // 👈 sørger for at det forsvinder helt
           duration: 1,
           ease: "power2.out",
         }
       );
 
       // --- SCENE 3 START ---
-tl.from(mandOgHundRef.current, {
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    ease: "power2.out"
-  });
+      tl.from(mandOgHundRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "power2.out",
+      });
 
       // Start: alle scribbles er usynlige
       gsap.set(
@@ -166,26 +169,32 @@ tl.from(mandOgHundRef.current, {
         opacity: 0,
       });
 
+      // Dot + scribble 1
       tl.to(dot1Ref.current, { opacity: 1, scale: 1.2, duration: 0.3 });
       tl.to(dot1Ref.current, { scale: 1 }, "<");
-      // Tegn scribble 1
+
       tl.to(scribble1Ref.current, {
         drawSVG: "0% 100%",
         duration: 1,
         ease: "power2.out",
       });
 
-      // Overskrift ind
-tl.from(overskrift3Ref.current, {
-    opacity: 0,
-    y: 30,
-    duration: 1,
-    ease: "power2.out"
-  }, "<");
+      // Overskrift ind (match-linjen)
+      tl.from(
+        overskrift3Ref.current,
+        {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "<"
+      );
 
+      // Dot + scribble 2
       tl.to(dot2Ref.current, { opacity: 1, scale: 1.2, duration: 0.3 });
       tl.to(dot2Ref.current, { scale: 1 }, "<");
-      // Tegn scribble 2 lige efter
+
       tl.to(
         scribble2Ref.current,
         {
@@ -194,19 +203,24 @@ tl.from(overskrift3Ref.current, {
           ease: "power2.out",
         },
         "<"
-      ); // lille pause mellem dem
+      );
 
-      // Brødtekst ind
-tl.from(brodtekst3Ref.current, {
-    opacity: 0,
-    y: 20,
-    duration: 1,
-    ease: "power2.out"
-  }, "-=0.6");
+      // Brødtekst ind (ikke først til mølle)
+      tl.from(
+        brodtekst3Ref.current,
+        {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.6"
+      );
 
+      // Dot + scribble 3
       tl.to(dot3Ref.current, { opacity: 1, scale: 1.2, duration: 0.3 });
-tl.to(dot3Ref.current, { scale: 1 }, "<");
-      // Tegn scribble 3 lige efter
+      tl.to(dot3Ref.current, { scale: 1 }, "<");
+
       tl.to(
         scribble3Ref.current,
         {
@@ -217,42 +231,59 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
         "<"
       );
 
-      tl.to([mandOgHundRef.current, overskrift3Ref.current, brodtekst3Ref.current, dot3Ref.current, dot2Ref.current, dot1Ref.current, scribble3Ref.current, scribble2Ref.current,scribble1Ref.current,], {
-        x: -5000,
-    duration: 2,}
+      // Scene 3 flyves ud til venstre
+      tl.to(
+        [
+          mandOgHundRef.current,
+          overskrift3Ref.current,
+          brodtekst3Ref.current,
+          dot3Ref.current,
+          dot2Ref.current,
+          dot1Ref.current,
+          scribble3Ref.current,
+          scribble2Ref.current,
+          scribble1Ref.current,
+        ],
+        {
+          x: -5000,
+          duration: 2,
+        }
       );
 
-       // --- SCENE 4 START ---
-
-       tl.from(krydsRef.current, {
+      // --- SCENE 4 ---
+      tl.from(krydsRef.current, {
         opacity: 0,
         scale: 5.5,
         rotate: 90,
         duration: 3,
         ease: "back.out(1.7)",
-    });
+      });
 
-        tl.from(overskrift4Ref.current, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power2.out",
-            });
-        tl.from(brodtekst4Ref.current, {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            ease: "power2.out",
-            }, "-=0.5");
-
-            tl.to([krydsRef.current, overskrift4Ref.current, brodtekst4Ref.current], {
+      tl.from(overskrift4Ref.current, {
         opacity: 0,
-        duration: 3,
-            });
-     
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
+      });
 
+      tl.from(
+        brodtekst4Ref.current,
+        {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      );
 
-
+      tl.to(
+        [krydsRef.current, overskrift4Ref.current, brodtekst4Ref.current],
+        {
+          opacity: 0,
+          duration: 3,
+        }
+      );
     }, sectionRef);
 
     // --- Skalering af canvas ---
@@ -279,6 +310,7 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
   return (
     <section ref={sectionRef} className={styles.section}>
       <div ref={canvasRef} className={styles.canvas}>
+        {/* SCENE 1 */}
         <div className={styles.scene1}>
           <img
             src={overskrift1}
@@ -296,10 +328,13 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
             Så husk det handler om andet end udseendet!
           </p>
         </div>
+
+        {/* SCENE 2 */}
         <div className={styles.scene2}>
           <h1 ref={overskrift2Ref} className={styles.scene2headline}>
             HUNDE HAR FORSKELLIGE <br /> <span>BEHOV</span>
           </h1>
+
           <div className={styles.dogRow}>
             {/* Ældre hund */}
             <div
@@ -348,6 +383,8 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
             />
           </div>
         </div>
+
+        {/* SCENE 3 */}
         <div className={styles.scene3} ref={scene3Ref}>
           <div className={styles.tekst3}>
             <h1 ref={overskrift3Ref} className={styles.overskrift3}>
@@ -357,6 +394,7 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
               Ikke først til mølle!
             </p>
           </div>
+
           <div className={styles.mandOgHund}>
             <img
               src={mandOgHund}
@@ -365,89 +403,75 @@ tl.to(dot3Ref.current, { scale: 1 }, "<");
               className={styles.overlayIllustration}
             />
           </div>
+
           <div className={styles.scribbleLines}>
+            {/* LINE 1 */}
+            <div className={styles.lineWrapper}>
+              <div ref={dot1Ref} className={styles.dot}></div>
 
+              <svg className={styles.scribbleSvg} viewBox="0 0 400 80">
+                <path
+                  ref={scribble1Ref}
+                  className="scribble"
+                  d="M.36,18.53c20.62,21.23,25.54,17.72,45.52-4.14,6,33.9,61.93,16.23,63.8-12.5,14.47,29.14,59.12,36.13,83.01,13,2.04,10.45,12.03,19.04,23.3,20.04s48.37-10.45,52.5-20.35c16.7,19.28,81.55-27.81,72.69-4.34-13.58,36,44.82.6,62.51,12.08,26.84,17.42,20.36-32.52,62.9-3.88"
+                  fill="none"
+                  stroke="#3c473c"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
 
-{/* LINE 1 */}
-<div className={styles.lineWrapper}>
-<div ref={dot1Ref} className={styles.dot}></div>
+            {/* LINE 2 */}
+            <div className={styles.lineWrapper}>
+              <div ref={dot2Ref} className={styles.dot}></div>
 
+              <svg className={styles.scribbleSvg} viewBox="0 0 400 80">
+                <path
+                  ref={scribble2Ref}
+                  className="scribble"
+                  d="M0.49,4.35 C3.47,21.67 17.57,36.54 33.03,40.11 c17.14,3.89 36.29-3.43 46.46-17.76 c15.9,12.49 39.5,4.4 55.51-7.95 c17.84,17.35 51.24,23.9 67.25,4.85 c3.7,9.96 14.15,16.19 25.04,15.98 s20.13-9.29 22.22-19.71 c10.77,10.95 27.12,22.82 42.3,20.52 c15.19-2.3 28.82-18.72 35.86-32.37 c2.54,17.12 18.46,31.26 35.77,31.76 c11.25.33 24.11-7.14 23.91-18.39 c9.12,10.57 22.77,17.08 36.72,17.52 c13.95.44 45.62-24.48 37.75-34.58"
+                  fill="none"
+                  stroke="#3c473c"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
 
-<svg className={styles.scribbleSvg} viewBox="0 0 400 80">
-<path
-ref={scribble1Ref}
-className="scribble"
-d="M.36,18.53c20.62,21.23,25.54,17.72,45.52-4.14,6,33.9,61.93,16.23,63.8-12.5,14.47,29.14,59.12,36.13,83.01,13,2.04,10.45,12.03,19.04,23.3,20.04s48.37-10.45,52.5-20.35c16.7,19.28,81.55-27.81,72.69-4.34-13.58,36,44.82.6,62.51,12.08,26.84,17.42,20.36-32.52,62.9-3.88"
-fill="none"
-stroke="#3c473c"
-strokeWidth="4"
-strokeLinecap="round"
-strokeLinejoin="round"
-/>
-</svg>
-</div>
+            {/* LINE 3 */}
+            <div className={styles.lineWrapper}>
+              <div ref={dot3Ref} className={styles.dot}></div>
 
-
-{/* LINE 2 */}
-<div className={styles.lineWrapper}>
-<div ref={dot2Ref} className={styles.dot}></div>
-
-
-<svg className={styles.scribbleSvg} viewBox="0 0 400 80">
-<path
-ref={scribble2Ref}
-className="scribble"
-d="M0.49,4.35 C3.47,21.67 17.57,36.54 33.03,40.11 c17.14,3.89 36.29-3.43 46.46-17.76 c15.9,12.49 39.5,4.4 55.51-7.95 c17.84,17.35 51.24,23.9 67.25,4.85 c3.7,9.96 14.15,16.19 25.04,15.98 s20.13-9.29 22.22-19.71 c10.77,10.95 27.12,22.82 42.3,20.52 c15.19-2.3 28.82-18.72 35.86-32.37 c2.54,17.12 18.46,31.26 35.77,31.76 c11.25.33 24.11-7.14 23.91-18.39 c9.12,10.57 22.77,17.08 36.72,17.52 c13.95.44 45.62-24.48 37.75-34.58"
-fill="none"
-stroke="#3c473c"
-strokeWidth="4"
-strokeLinecap="round"
-strokeLinejoin="round"
-/>
-</svg>
-</div>
-
-
-{/* LINE 3 */}
-<div className={styles.lineWrapper}>
-<div ref={dot3Ref} className={styles.dot}></div>
-
-
-<svg className={styles.scribbleSvg} viewBox="0 0 400 80">
-<path
-ref={scribble3Ref}
-className="scribble"
-d="M.36,15.16c9.6,10.13,23.54,16,37.5,15.79,13.96-.21,27.71-6.51,37-16.93-.38,11.25,12.36,18.92,23.61,18.77,17.31-.22,33.46-14.1,36.28-31.19,6.82,13.76,20.49,23.9,35.63,26.45,15.14,2.55,31.38-2.57,42.32-13.34,1.93,10.45,11.32,19.06,21.9,20.06s21.43-5.67,25.29-15.57c15.7,19.3,48.27,21.46,66.38,4.4,15.8,12.61,40.22,12.9,56.32.67,9.94,14.49,28.97,22.12,46.17,18.5s31.54-18.27,34.79-35.54"
-fill="none"
-stroke="#3c473c"
-strokeWidth="4"
-strokeLinecap="round"
-strokeLinejoin="round"
-/>
-</svg>
-</div>
-
-
-</div>
+              <svg className={styles.scribbleSvg} viewBox="0 0 400 80">
+                <path
+                  ref={scribble3Ref}
+                  className="scribble"
+                  d="M.36,15.16c9.6,10.13,23.54,16,37.5,15.79,13.96-.21,27.71-6.51,37-16.93-.38,11.25,12.36,18.92,23.61,18.77,17.31-.22,33.46-14.1,36.28-31.19,6.82,13.76,20.49,23.9,35.63,26.45,15.14,2.55,31.38-2.57,42.32-13.34,1.93,10.45,11.32,19.06,21.9,20.06s21.43-5.67,25.29-15.57c15.7,19.3,48.27,21.46,66.38,4.4,15.8,12.61,40.22,12.9,56.32.67,9.94,14.49,28.97,22.12,46.17,18.5s31.54-18.27,34.79-35.54"
+                  fill="none"
+                  stroke="#3c473c"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
+        {/* SCENE 4 */}
         <div className={styles.scene4}>
-        <div className={styles.scene4Indhold}>
-
+          <div className={styles.scene4Indhold}>
             <h1 ref={overskrift4Ref} className={styles.overskrift4}>
-            ET AFSLAG ER FOR HUNDENS SKYND
+              ET AFSLAG ER FOR HUNDENS SKYND
             </h1>
             <p ref={brodtekst4Ref} className={styles.brodtekst4}>
-            IKKE EN VUDERING AF DIG!
+              IKKE EN VUDERING AF DIG!
             </p>
-            </div>
-            <img
-                src={kryds}
-                ref={krydsRef}
-                alt=""
-                className={styles.kryds}
-            />
-
+          </div>
+          <img src={kryds} ref={krydsRef} alt="" className={styles.kryds} />
         </div>
       </div>
     </section>
