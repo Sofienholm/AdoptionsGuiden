@@ -1,0 +1,79 @@
+{
+    "sensitive_stable": {
+      "id": "sensitive_stable",
+      "label": "Let sensitiv, stabil familiehund",
+      "description": [
+        "Kan være lidt usikker i nye situationer",
+        "Har brug for rolige rammer og faste rutiner",
+        "Håndterer almindelige hverdagslyde og stimuli uden problemer",
+        "Har et moderat behov for fysisk og mental aktivering",
+        "Trives bedst uden små børn eller mange andre dyr"
+      ],
+      "shortSummary": "Du matcher hunde, der er sociale, lidt følsomme og stabiliserer sig hurtigt med en rolig og forudsigelig ejer."
+    },
+  
+    "social_mild": {
+      "id": "social_mild",
+      "label": "Social og mild hund med moderat energi",
+      "description": [
+        "Er imødekommende og tryg i de fleste situationer",
+        "Trives i hverdage med både ro og aktivitet",
+        "Kan bo i forskellige boligtyper, også lejlighed",
+        "Har et balanceret behov for motion og mental stimulering",
+        "Kan trives i hjem med større børn og rolige rammer"
+      ],
+      "shortSummary": "Du matcher hunde, der er venlige, ukomplicerede og tilpasningsdygtige."
+    },
+  
+    "active_robust": {
+      "id": "active_robust",
+      "label": "Aktiv og robust hund",
+      "description": [
+        "Har højt energiniveau og stor lyst til motion",
+        "Trives med udfordringer og varierende omgivelser",
+        "Kan håndtere larm, nye miljøer og uforudsete situationer",
+        "Kræver daglig fysisk og mental aktivering",
+        "Passer godt til erfarne og meget aktive ejere"
+      ],
+      "shortSummary": "Du matcher hunde, der elsker bevægelse, nye oplevelser og en engageret ejer, der kan give dem en aktiv hverdag."
+    },
+  
+    "young_training": {
+      "id": "young_training",
+      "label": "Ung og træningskrævende hund",
+      "description": [
+        "Har brug for tydelig guidning og løbende træning",
+        "Er energisk, nysgerrig og i udvikling",
+        "Trives hos ejere med tålmodighed og erfaring",
+        "Kan have mindre udfordringer som usikkerhed eller impulsivitet",
+        "Har brug for faste rammer og konsekvent, men venlig træning"
+      ],
+      "shortSummary": "Du matcher unge hunde, der har potentiale – men som har brug for struktur og støtte til at blive deres bedste jeg."
+    },
+  
+    "calm_senior": {
+      "id": "calm_senior",
+      "label": "Rolig og seniorvenlig hund",
+      "description": [
+        "Har lavt til moderat energiniveau",
+        "Trives med rolige omgivelser og forudsigelig hverdag",
+        "Har brug for korte ture og hyggelige stunder",
+        "Kan have aldersrelaterede hensyn, men er tryg og mild",
+        "Passer godt til ejere, der ønsker en stille og stabil selskabshund"
+      ],
+      "shortSummary": "Du matcher hunde, der søger ro, tryghed og nærvær – ikke tempo og udfordringer."
+    },
+  
+    "special_needs": {
+      "id": "special_needs",
+      "label": "Tryghedssøgende hund med særlige behov",
+      "description": [
+        "Kan have større udfordringer som reaktivitet, usikkerhed eller tidligere belastning",
+        "Har brug for et meget roligt hjem med høj stabilitet",
+        "Kræver tålmodighed og erfaring fra sin ejer",
+        "Trives sjældent med børn, gæster eller mange dyr",
+        "Udvikler sig positivt med en rolig og forstående ejer"
+      ],
+      "shortSummary": "Du matcher hunde, der har brug for ekstra støtte og omsorg – og som udvikler sig positivt med den rette, rolige ejer."
+    }
+  }
