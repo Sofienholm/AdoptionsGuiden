@@ -16,6 +16,8 @@ import chaosDog4 from "./frames/chaos_dog2.svg";
 import chaosSticker1 from "./frames/chaos_sticker1.svg";
 import chaosSticker2 from "./frames/chaos_sticker2.svg";
 
+import illuScroll from "./frames/illu_scroll.svg"; // ⭐ NY
+
 import styles from "./step1.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,13 +52,20 @@ export default function Step1() {
   const finalSmallRef = useRef(null);
   const finalBigRef = useRef(null);
 
+  const scrollHintRef = useRef(null); // ⭐ NY
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Starttilstand: intro + hund synlige
+      const sectionEl = sectionRef.current;
+
+      // Intro-tekst + hund SKJULT fra start
       gsap.set(
         [introTitleRef.current, introTextRef.current, dogCenterRef.current],
-        { opacity: 1 }
+        { opacity: 0 }
       );
+
+      // Scroll-illu synlig fra start (stor i centrum)
+      gsap.set(scrollHintRef.current, { opacity: 1 });
 
       // Øvrige tekster skjult fra start
       gsap.set(
@@ -71,13 +80,42 @@ export default function Step1() {
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: sectionEl,
           start: "top top",
           end: "+=7000",
           scrub: 1,
           pin: true,
         },
       });
+
+      // 1) Scroll-illustration forsvinder, når man begynder at scrolle
+      tl.to(scrollHintRef.current, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power1.out",
+      })
+        // 2) LAAAANGERE PAUSE EFTER scroll-illu er væk
+        .to({}, { duration: 1.2 })
+
+        // 3a) TITEL KOMMER FØRST ALENE ⭐
+        .to(introTitleRef.current, {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        })
+
+        // 3b) LILLE PAUSE EFTER TITEL ⭐
+        .to({}, { duration: 0.4 })
+
+        // 3c) DEREFTER INTRO-TEKST + HUND ⭐
+        .to(
+          [introTextRef.current, dogCenterRef.current],
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+          }
+        );
 
       // --- FADE INTRO UD ---
       tl.to([introTitleRef.current, introTextRef.current], {
@@ -255,6 +293,13 @@ export default function Step1() {
           },
           "<0.2"
         );
+
+      // FÆLLES FADE-OUT TIL SIDST (så vi kan scrolle videre til Step2)
+      tl.to(sectionEl, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
+      });
     }, sectionRef);
 
     // 🔧 Sørg for at ScrollTrigger får korrekt layout efter billeder er loadet
@@ -272,17 +317,14 @@ export default function Step1() {
       }
     };
 
-    // hvis billeder allerede er loadet (cache), refresher vi med det samme
     refreshIfReady();
 
-    // ellers lytter vi på load-events
     keyImages.forEach((img) => {
       if (!img.complete) {
         img.addEventListener("load", refreshIfReady);
       }
     });
 
-    // ekstra sikkerhed: refresh ved resize/rotations
     window.addEventListener("resize", refreshIfReady);
 
     return () => {
@@ -297,6 +339,14 @@ export default function Step1() {
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.inner}>
+        {/* Scroll-illustration – stor i centrum fra start */}
+        <img
+          ref={scrollHintRef}
+          src={illuScroll}
+          alt="Scroll ned"
+          className={styles.scrollHint}
+        />
+
         {/* Intro */}
         <h1 ref={introTitleRef} className={styles.introTitle}>
           HVAD ER EN INTERNATHUND?
