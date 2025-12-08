@@ -21,7 +21,7 @@
 
   width: min(90vw, 900px);
   aspect-ratio: 900 / 650;
-  pointer-events: auto; /* så vi kan klikke på tabs */
+  pointer-events: auto;
 }
 
 /* del1.svg + del2.svg + del3-tekst – ligger ovenpå hinanden */
@@ -32,12 +32,13 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  z-index: 1;
 }
 
 /* 2x3 grid til tabs – ligger oven på samme scene */
 .tabsGrid {
-  position: absolute;
-  inset: 0; /* fylder hele graphicWrapper */
+   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 
@@ -45,6 +46,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: clamp(0.6rem, 1.5vw, 1.2rem);
+
+  z-index: 5; 
 }
 
 /* hver tab */
@@ -54,6 +57,7 @@
   object-fit: contain;
   display: block;
   cursor: pointer;
+  pointer-events: auto; 
 }
 
 /* ---------- POPUP (fullscreen tomato) ---------- */
