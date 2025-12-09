@@ -22,6 +22,9 @@ import { QuizProvider } from "../pages/quiz/components/QuizContext.jsx";
 import ResultProfile from "../pages/result/ResultProfile.jsx";
 import ResultWhy from "../pages/result/ResultWhy.jsx";
 
+// Ansøgningsformular
+import AdoptionApplicationForm from "../pages/application/AdoptionApplicationForm";
+
 function App() {
   return (
     <QuizProvider>
@@ -47,6 +50,9 @@ function App() {
         {/* RESULTATSIDER */}
         <Route path="/result" element={<ResultProfile />} />
         <Route path="/result/why" element={<ResultWhy />} />
+
+         {/* Ansøgningsformular */}
+      <Route path="/ansoegning" element={<AdoptionApplicationForm />} />
       </Routes>
     </QuizProvider>
   );
