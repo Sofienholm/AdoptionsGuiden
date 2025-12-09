@@ -156,9 +156,9 @@ export default function Step4() {
 
       // ⭐ DEL 3: ikoner glider op – først hjem (midten), så dyr, så arbejde
       const del3Icons = [
-        del3HjemRef.current, // midten
-        del3DyrRef.current, // dyr
-        del3ArbejdeRef.current, // arbejde
+        del3HjemRef.current,   // midten
+        del3DyrRef.current,    // dyr
+        del3ArbejdeRef.current // arbejde
       ];
 
       tl.to(del3Icons, {
@@ -281,81 +281,79 @@ export default function Step4() {
   const currentConfig = activeCard ? cardConfig[activeCard] : null;
 
   return (
-    <>
-      <section ref={sectionRef} className={styles.section}>
-        <div className={styles.inner}>
-          <div className={styles.graphicWrapper}>
-            {/* del1, del2 og del3-lag ligger oven på hinanden og styres af GSAP */}
-            <img ref={del1Ref} src={del1} className={styles.mainGraphic} alt="" />
-            <img ref={del2Ref} src={del2} className={styles.mainGraphic} alt="" />
+    <section ref={sectionRef} className={styles.section}>
+      <div className={styles.inner}>
+        <div className={styles.graphicWrapper}>
+          {/* del1, del2 og del3-lag ligger oven på hinanden og styres af GSAP */}
+          <img ref={del1Ref} src={del1} className={styles.mainGraphic} alt="" />
+          <img ref={del2Ref} src={del2} className={styles.mainGraphic} alt="" />
 
-            {/* ⭐ DEL 3 – tekst fylder hele artboardet */}
-            <img ref={del3TextRef} src={del3Text} className={styles.mainGraphic} alt="" />
+          {/* ⭐ DEL 3 – tekst fylder hele artboardet */}
+          <img ref={del3TextRef} src={del3Text} className={styles.mainGraphic} alt="" />
 
-            {/* ⭐ DEL 3 – ikoner nederst placeret som i layoutet */}
+          {/* ⭐ DEL 3 – ikoner nederst placeret som i layoutet */}
+          <img
+            ref={del3HjemRef}
+            src={del3Hjem}
+            className={`${styles.del3Icon} ${styles.del3IconHjem}`}
+            alt=""
+          />
+          <img
+            ref={del3DyrRef}
+            src={del3Dyr}
+            className={`${styles.del3Icon} ${styles.del3IconDyr}`}
+            alt=""
+          />
+          <img
+            ref={del3ArbejdeRef}
+            src={del3Arbejde}
+            className={`${styles.del3Icon} ${styles.del3IconArbejde}`}
+            alt=""
+          />
+
+          <div className={styles.tabsGrid}>
             <img
-              ref={del3HjemRef}
-              src={del3Hjem}
-              className={`${styles.del3Icon} ${styles.del3IconHjem}`}
-              alt=""
+              ref={tab1Ref}
+              src={hyrdehundeTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("hyrde")}
             />
             <img
-              ref={del3DyrRef}
-              src={del3Dyr}
-              className={`${styles.del3Icon} ${styles.del3IconDyr}`}
-              alt=""
+              ref={tab2Ref}
+              src={jagthundeTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("jagt")}
             />
             <img
-              ref={del3ArbejdeRef}
-              src={del3Arbejde}
-              className={`${styles.del3Icon} ${styles.del3IconArbejde}`}
-              alt=""
+              ref={tab3Ref}
+              src={selskabshundeTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("selskab")}
             />
-
-            <div className={styles.tabsGrid}>
-              <img
-                ref={tab1Ref}
-                src={hyrdehundeTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("hyrde")}
-              />
-              <img
-                ref={tab2Ref}
-                src={jagthundeTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("jagt")}
-              />
-              <img
-                ref={tab3Ref}
-                src={selskabshundeTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("selskab")}
-              />
-              <img
-                ref={tab4Ref}
-                src={arbejdhundeTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("arbejd")}
-              />
-              <img
-                ref={tab5Ref}
-                src={blandingshundeTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("blanding")}
-              />
-              <img
-                ref={tab6Ref}
-                src={mynderTab}
-                className={styles.tabCard}
-                onClick={() => handleTabClick("mynde")}
-              />
-            </div>
+            <img
+              ref={tab4Ref}
+              src={arbejdhundeTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("arbejd")}
+            />
+            <img
+              ref={tab5Ref}
+              src={blandingshundeTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("blanding")}
+            />
+            <img
+              ref={tab6Ref}
+              src={mynderTab}
+              className={styles.tabCard}
+              onClick={() => handleTabClick("mynde")}
+            />
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* POPUP */}
-      {activeCard && (
+      {/* POPUP – NU INDEN I SECTION */}
+      {activeCard && currentConfig && (
         <div ref={popupOverlayRef} className={styles.popupOverlay}>
           <div ref={popupInnerRef} className={styles.popupInner}>
             <img
@@ -380,6 +378,6 @@ export default function Step4() {
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
