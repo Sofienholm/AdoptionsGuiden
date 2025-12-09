@@ -293,13 +293,7 @@ export default function Step1() {
           },
           "<0.2"
         );
-
-      // FÆLLES FADE-OUT TIL SIDST (så vi kan scrolle videre til Step2)
-      tl.to(sectionEl, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power2.inOut",
-      });
+      // ❌ ingen tl.to(sectionEl, ...) her længere
     }, sectionRef);
 
     // 🔧 Sørg for at ScrollTrigger får korrekt layout efter billeder er loadet
