@@ -198,12 +198,12 @@
 }
 
 .brodtekst3 {
-    font-family: var(--font-knewave);
-    text-transform: uppercase;
-    color: var(--molten-lava);
-    font-size: clamp(1.8rem, 4.6vw, 96px); /* ORIGINAL SIZE + scaling */
-    margin-top: 0.4rem;
-    text-align: left;
+  font-family: var(--font-knewave);
+  text-transform: uppercase;
+  color: var(--molten-lava);
+  font-size: clamp(2.8rem, 7vw, 130px);
+  margin-top: 0.4rem;
+  text-align: left;
 }
 
 .tekst3 {
@@ -259,7 +259,7 @@
 
 .scene4Indhold {
     position: absolute;
-    top: 0%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: 200%;
