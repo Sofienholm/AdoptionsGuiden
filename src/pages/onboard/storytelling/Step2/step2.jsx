@@ -177,7 +177,7 @@ export default function Step2() {
       tl.fromTo(
         overskriftTwoRef.current,
         { y: -160, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.4, ease: "back.out(1.8)" }
+        { y: 0, opacity: 1, duration: 1, ease: "back.out(1)" }
       );
 
       tl.to(
@@ -208,7 +208,7 @@ export default function Step2() {
         ],
         {
           x: 7050,
-          duration: 2,
+          duration: 1,
           ease: "power3.out",
           stagger: -0.15,
         }

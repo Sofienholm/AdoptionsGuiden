@@ -12,6 +12,7 @@
 .canvas {
     width: 1920px;
     height: 1080px;
+    position: relative;
     transform-origin: center center;
     display: flex;
     justify-content: center;
@@ -84,6 +85,7 @@
     pointer-events: none;
     opacity: 1;
     z-index: 1;
+    transform-origin: center center; /* ⭐ vigtig for skalering på mobil */
 }
 
 .dogBox {
@@ -108,6 +110,7 @@
     text-align: center;
 }
 
+/* Desktop-positioner (1920x1080 design) */
 .dogOld {
     left: 0;
     top: 50%;
@@ -182,18 +185,37 @@
     width: 580px;
 }
 
+/* ⭐ RESPONSIVE TWEAKS TIL HUNDERÆKKEN  */
+/* lidt mindre på laptop-ish bredde */
+@media (max-width: 1200px) {
+  .dogRow {
+    transform: scale(0.9);
+  }
+}
+
+/* endnu mindre på tablets/mindre skærme */
+@media (max-width: 900px) {
+  .dogRow {
+    transform: scale(0.8);
+  }
+}
+
+/* meget mindre på små mobiler i landscape */
+@media (max-width: 768px) {
+  .dogRow {
+    transform: scale(0.7);
+  }
+}
+
 /* -------------------------- */
 /*         SCENE 3            */
 /* -------------------------- */
-
-/* 🔥 FIXED: Samme visuelle størrelse som originalen (96px),
-   men skalerer ned på mindre skærme */
 
 .overskrift3 {
     font-family: var(--font-knewave);
     text-transform: uppercase;
     color: var(--charcoal-brown-hex);
-    font-size: clamp(2rem, 5vw, 96px); /* ORIGINAL SIZE + scaling */
+    font-size: clamp(2rem, 5vw, 96px);
     text-align: left;
 }
 

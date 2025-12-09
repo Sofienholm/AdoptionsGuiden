@@ -1,3 +1,4 @@
+// src/pages/onboard/storytelling/Step3/step3.jsx
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -144,7 +145,7 @@ export default function Step1() {
         ],
         {
           y: -1300,
-          opacity: 0, // 👈 sørger for at det forsvinder helt
+          opacity: 0,
           duration: 1,
           ease: "power2.out",
         }
