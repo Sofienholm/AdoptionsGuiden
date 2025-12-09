@@ -72,7 +72,9 @@
 .text-molten {
   color: var(--molten-lava);
 }
-
+.text-linen {
+  color: var(--soft-linen-hex);
+}
 }
 
 body{
