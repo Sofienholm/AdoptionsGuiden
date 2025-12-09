@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import profiles from "../../data/profiles.json";
+import { useQuiz } from "../pages/quiz/components/useQuiz"; // ret path efter hvor filen ligger
+
 
 export default function ResultProfile({ selectedProfileId }) {
   const navigate = useNavigate();
