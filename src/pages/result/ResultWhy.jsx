@@ -10,7 +10,7 @@ export default function ResultWhy() {
 
   // Redirect hvis brugeren ikke har et resultat
   useEffect(() => {
-    if (!selectedProfileId) navigate("/quiz");
+    if (!selectedProfileId) navigate("/quiz/start");
   }, [selectedProfileId, navigate]);
 
   if (!selectedProfileId) return null;

@@ -14,7 +14,9 @@ import Step3 from "../pages/onboard/storytelling/Step3/step3.jsx";
 import Step4 from "../pages/onboard/storytelling/Step4/step4.jsx";
 import Step5 from "../pages/onboard/storytelling/Step5/step5.jsx";
 
-import Quiz from "../pages/quiz/Quiz.jsx";
+import Intro1 from "../pages/quiz/Intro1";
+import Intro2 from "../pages/quiz/Intro2";
+import Quiz from "../pages/quiz/Quiz";
 // Quiz Context
 import { QuizProvider } from "../pages/quiz/components/QuizContext.jsx";
 
@@ -45,7 +47,9 @@ function App() {
         <Route path="/onboard/step5" element={<Step5 />} />
 
         {/* QUIZ */}
-        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz" element={<Intro1 />} />
+<Route path="/quiz/info" element={<Intro2 />} />
+<Route path="/quiz/start" element={<Quiz />} />
 
         {/* RESULTATSIDER */}
         <Route path="/result" element={<ResultProfile />} />

@@ -9,7 +9,7 @@ export default function ResultProfile() {
 
   // Hvis ingen resultat → send tilbage til quiz
   useEffect(() => {
-    if (!selectedProfileId) navigate("/quiz");
+    if (!selectedProfileId) navigate("/quiz/start");
   }, [selectedProfileId, navigate]);
 
   if (!selectedProfileId) return null;
