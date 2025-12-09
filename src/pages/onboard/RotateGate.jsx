@@ -1,5 +1,6 @@
 // src/pages/onboard/RotateGate.jsx
 import { useEffect, useState } from "react";
+import flipIcon from "./frames/flip_ikon.svg"; // din SVG
 
 export default function RotateGate({ children }) {
   const [showGate, setShowGate] = useState(false);
@@ -8,15 +9,14 @@ export default function RotateGate({ children }) {
     const check = () => {
       if (typeof window === "undefined") return;
 
-      const isMobile = window.innerWidth <= 768; // kun mobil
+      const isMobile = window.innerWidth <= 768;
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      // Vis gate KUN hvis mobil + stående
+      // Vis gate: mobil + portræt-orientering
       setShowGate(isMobile && isPortrait);
     };
 
     check();
-
     window.addEventListener("resize", check);
     window.addEventListener("orientationchange", check);
 
@@ -39,12 +39,12 @@ export default function RotateGate({ children }) {
           "
           style={{ backgroundColor: "var(--soft-linen-hex)" }}
         >
-          {/* Nyt: større SVG + langsommere nudge */}
+          {/* SVG-animation */}
           <img
-            src="/src/pages/onboard/frames/flip_ikon.svg"
-            alt="Vend telefonen"
-            className="flip-icon-anim w-32 h-auto mb-10"
-            style={{ filter: "drop-shadow(0 0 6px rgba(0,0,0,0.15))" }}
+            src={flipIcon}
+            alt="rotate phone"
+            className="rotateHintAnimation mb-10"
+            style={{ width: "180px" }} // base-size (overskrives på mobil)
           />
 
           {/* Overskrift */}
@@ -58,8 +58,6 @@ export default function RotateGate({ children }) {
           >
             VEND DIN SKÆRM
           </p>
-
-          {/* Brødtekst fjernet */}
         </div>
       )}
     </>

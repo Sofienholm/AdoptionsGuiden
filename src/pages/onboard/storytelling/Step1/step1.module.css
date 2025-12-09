@@ -5,7 +5,6 @@
   background-color: var(--charcoal-brown-hex);
 }
 
-
 /* wrapper der holder alt på plads når sektionen er pinned */
 .inner {
   position: relative;
@@ -58,10 +57,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: min(90vw, 900px);
   aspect-ratio: 900 / 650;
-
   pointer-events: none;
 }
 
@@ -244,7 +241,7 @@
 /* SLUT-TEKST – STOR LINJE */
 .finalBig {
   position: absolute;
-  top: 12%;
+  top: 16%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -252,18 +249,39 @@
   width: 100%;
   color: var(--ash-grey);
   opacity: 0;
-  font-size: clamp(1.3rem, 3vw, 2.2rem);
-  line-height: 1.3;
+
+  /* mindre og i én linje */
+  font-size: clamp(1rem, 2.4vw, 1.8rem);
+  white-space: nowrap;
+
+  line-height: 1.28;
   font-weight: 700;
 }
-
 .scrollHint {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(80vw, 550px);
+  width: 60vw;           /* standard desktop / større skærme */
+  max-width: 550px;
   height: auto;
   z-index: 20;
   pointer-events: none;
+}
+
+/* 💡 Mobil – stående */
+@media (max-width: 768px) and (orientation: portrait) {
+  .scrollHint {
+    width: 55vw;         /* lidt mindre end desktop */
+    max-width: 320px;
+  }
+}
+
+/* 💡 Mobil – liggende (det du ser når man har vendt telefonen) */
+@media (max-width: 868px) and (orientation: landscape) {
+  .scrollHint {
+  top: 48%;
+    width: 45vw;           /* standard desktop / større skærme */
+  max-width: 550px;
+  }
 }

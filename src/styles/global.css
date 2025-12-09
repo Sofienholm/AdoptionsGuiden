@@ -27,18 +27,13 @@
 /* ============================
    GLOBAL DESIGN TOKENS
    ============================ */
-
 :root {
-  /* ============================
-       FONT FAMILY
-  ============================ */
+  /* FONT FAMILY */
   --font-knewave: "Knewave", cursive;
   --font-hel: "Helvetica", sans-serif;
   --font-hel-light: "Helvetica Light", sans-serif;
 
-  /* ============================
-       BRAND COLORS — HSL
-  ============================ */
+  /* BRAND COLORS — HSL */
   --tomato: hsla(7, 100%, 61%, 1);
   --ash-grey: hsla(120, 9%, 76%, 1);
   --charcoal-brown: hsla(120, 10%, 20%, 1);
@@ -47,9 +42,7 @@
   --molten-lava: hsla(6, 98%, 24%, 1);
   --soft-linen: hsla(40, 43%, 93%, 1);
 
-  /* ============================
-       BRAND COLORS — HEX
-  ============================ */
+  /* BRAND COLORS — HEX */
   --tomato-hex: #ff4f39ff;
   --ash-grey-hex: #bdc8bdff;
   --charcoal-brown-hex: #2d372dff;
@@ -89,24 +82,50 @@ body {
    FLIP ICON ANIMATION
    ============================ */
 
-.flip-icon-anim {
-  animation: flipNudge 2.4s ease-in-out infinite;
+.rotateHintAnimation {
+  animation: rotatePhoneHint 2.8s ease-in-out infinite;
+  transform-origin: center center;
 }
 
-@keyframes flipNudge {
+@keyframes rotatePhoneHint {
   0% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
-  25% {
-    transform: translateY(-10px) rotate(-8deg);
+  20% {
+    transform: translateY(-10px) rotate(0deg);
   }
-  50% {
-    transform: translateX(18px) rotate(90deg);
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  60% {
+    transform: translateY(-6px) rotate(90deg);
   }
   75% {
-    transform: translateY(-6px) rotate(0deg);
+    transform: translateY(0) rotate(90deg);
   }
   100% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* ============================
+   FLIP ICON – MOBIL SIZE
+   ============================ */
+
+@media (max-width: 480px) {
+  .rotateHintAnimation {
+    width: 95px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .rotateHintAnimation {
+    width: 80px !important;
+  }
+}
+
+@media (max-width: 330px) {
+  .rotateHintAnimation {
+    width: 70px !important;
   }
 }
