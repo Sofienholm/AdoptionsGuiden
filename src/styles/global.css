@@ -1,5 +1,3 @@
-
-
 @import "tailwindcss";
 
 @font-face {
@@ -11,18 +9,20 @@
   font-display: swap;
   text-transform: uppercase;
 }
+
 @font-face {
   font-family: "Helvetica";
   font-style: normal;
   font-weight: normal;
   src: local("Helvetica"), url("Helvetica.woff") format("woff");
 }
-   @font-face {
-    font-family: 'Helvetica Light';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Helvetica Light'), url('helvetica-light-587ebe5a59211.woff') format('woff');
-    }
+
+@font-face {
+  font-family: "Helvetica Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Helvetica Light"), url("helvetica-light-587ebe5a59211.woff") format("woff");
+}
 
 /* ============================
    GLOBAL DESIGN TOKENS
@@ -49,7 +49,6 @@
 
   /* ============================
        BRAND COLORS — HEX
-       (valgfrit, men praktisk)
   ============================ */
   --tomato-hex: #ff4f39ff;
   --ash-grey-hex: #bdc8bdff;
@@ -58,8 +57,11 @@
   --taupe-hex: #463930ff;
   --molten-lava-hex: #790c01ff;
   --soft-linen-hex: #f5f0e6ff;
+}
 
-  /* FONT HELPERS */
+/* ============================
+   FONT HELPERS
+   ============================ */
 .font-knewave {
   font-family: var(--font-knewave);
 }
@@ -68,15 +70,43 @@
   font-family: var(--font-hel-light);
 }
 
-/* COLOR HELPERS */
+/* ============================
+   COLOR HELPERS
+   ============================ */
 .text-molten {
   color: var(--molten-lava);
 }
+
 .text-linen {
   color: var(--soft-linen-hex);
 }
+
+body {
+  background-color: var(--soft-linen-hex);
 }
 
-body{
-  background-color: var(--soft-linen-hex);
+/* ============================
+   FLIP ICON ANIMATION
+   ============================ */
+
+.flip-icon-anim {
+  animation: flipNudge 2.4s ease-in-out infinite;
+}
+
+@keyframes flipNudge {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-8deg);
+  }
+  50% {
+    transform: translateX(18px) rotate(90deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 }
