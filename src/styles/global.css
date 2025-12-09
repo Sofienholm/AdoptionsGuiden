@@ -58,4 +58,23 @@
   --taupe-hex: #463930ff;
   --molten-lava-hex: #790c01ff;
   --soft-linen-hex: #f5f0e6ff;
+
+  /* FONT HELPERS */
+.font-knewave {
+  font-family: var(--font-knewave);
+}
+
+.font-hel-light {
+  font-family: var(--font-hel-light);
+}
+
+/* COLOR HELPERS */
+.text-molten {
+  color: var(--molten-lava);
+}
+
+}
+
+body{
+  background-color: var(--soft-linen-hex);
 }

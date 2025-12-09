@@ -2,11 +2,9 @@
   height: 100vh;
   width: 100%;
   position: relative;
+  background-color: var(--charcoal-brown-hex);
 }
 
-body {
-  background-color: #2b352b;
-}
 
 /* wrapper der holder alt på plads når sektionen er pinned */
 .inner {
