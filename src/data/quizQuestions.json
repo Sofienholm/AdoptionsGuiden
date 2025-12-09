@@ -1,0 +1,169 @@
+[
+    {
+      "id": "q1",
+      "question": "Hvor bor du?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der trives i dine fysiske rammer.",
+      "options": [
+        {
+          "label": "Lejlighed – fællesarealer, lyd fra naboer og begrænset udendørsplads",
+          "effects": { "environment": 3 }
+        },
+        {
+          "label": "Rækkehus – moderat ro og delte omgivelser",
+          "effects": { "environment": 5 }
+        },
+        {
+          "label": "Hus med have – mere plads og færre naboforstyrrelser",
+          "effects": { "environment": 7 }
+        },
+        {
+          "label": "Landligt – meget rolige omgivelser og store udendørsarealer",
+          "effects": { "environment": 10 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q2",
+      "question": "Er der børn i hjemmet?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der passer til familiens dynamik og børnenes alder.",
+      "options": [
+        {
+          "label": "Ingen børn",
+          "effects": { "kids": 0 }
+        },
+        {
+          "label": "Ja, børn 0–12 år",
+          "effects": { "kids": 8 }
+        },
+        {
+          "label": "Ja, børn 13+ år",
+          "effects": { "kids": 5 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q3",
+      "question": "Har du andre dyr i hjemmet?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der kan trives sammen med de dyr, du allerede har.",
+      "options": [
+        {
+          "label": "Ingen dyr",
+          "effects": { "otherPets": 0 }
+        },
+        {
+          "label": "Hund(e)",
+          "effects": { "otherPets": 8 }
+        },
+        {
+          "label": "Kat/katte",
+          "effects": { "otherPets": 6 }
+        },
+        {
+          "label": "Smådyr",
+          "effects": { "otherPets": 4 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q4",
+      "question": "Hvor længe kan hunden forvente at være alene i hverdagen?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der kan håndtere den mængde alenetid, du kan tilbyde.",
+      "options": [
+        {
+          "label": "0–2 timer – meget begrænset alenetid",
+          "effects": { "aloneTolerance": 2 }
+        },
+        {
+          "label": "2–4 timer – moderat alenetid",
+          "effects": { "aloneTolerance": 5 }
+        },
+        {
+          "label": "4–6 timer – længere perioder med planlagte pauser",
+          "effects": { "aloneTolerance": 8 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q5",
+      "question": "Hvad er din erfaring med hunde?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der passer til dit erfaringsniveau og daglige rammer.",
+      "options": [
+        {
+          "label": "Ingen erfaring – jeg har ikke haft hund før",
+          "effects": { "experience": 2 }
+        },
+        {
+          "label": "Har haft hund – jeg kender til ansvar og daglige rutiner",
+          "effects": { "experience": 6 }
+        },
+        {
+          "label": "Erfaring med træning/adfærd – jeg er vant til at arbejde med hundeadfærd og træningsforløb",
+          "effects": { "experience": 10 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q6",
+      "question": "Hvor aktiv er du i hverdagen?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, hvis energiniveau passer til din daglige aktivitet.",
+      "options": [
+        {
+          "label": "Rolige ture – primært korte, afslappede gåture",
+          "effects": { "activity": 3 }
+        },
+        {
+          "label": "Én længere daglig tur – daglig motion i et moderat tempo",
+          "effects": { "activity": 6 }
+        },
+        {
+          "label": "Meget aktiv – løb, træning, sporarbejde eller hyppige lange ture",
+          "effects": { "activity": 10 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q7",
+      "question": "Hvor tryg er du ved hunde med adfærdsmæssige udfordringer?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, hvis behov for træning og støtte passer til dine kompetencer.",
+      "options": [
+        {
+          "label": "Jeg ønsker en hund uden større udfordringer",
+          "effects": { "challengeComfort": 2 }
+        },
+        {
+          "label": "Jeg kan håndtere mindre udfordringer – fx usikkerhed eller træningsbehov",
+          "effects": { "challengeComfort": 6 }
+        },
+        {
+          "label": "Jeg er tryg ved større udfordringer – fx reaktivitet eller tidligere belastende oplevelser",
+          "effects": { "challengeComfort": 10 }
+        }
+      ]
+    },
+  
+    {
+      "id": "q8",
+      "question": "Hvordan ser du den første tid med hunden?",
+      "helpText": "Dette hjælper os med at sikre, at du matches med en hund, der trives med den opstart og det tempo, du kan tilbyde.",
+      "options": [
+        {
+          "label": "Mest ro og faste rutiner – stille introduktion til det nye hjem",
+          "effects": { "introStyle": 2 }
+        },
+        {
+          "label": "Roligt med gradvise nye oplevelser – en balanceret og tryg opstart",
+          "effects": { "introStyle": 5 }
+        },
+        {
+          "label": "Mange nye oplevelser og fleksibilitet – egnet til robuste og nysgerrige hunde",
+          "effects": { "introStyle": 9 }
+        }
+      ]
+    }
+  ]
