@@ -21,32 +21,42 @@ export default function LandingPage() {
       <img
         src={tekstIntro}
         alt="Adoption"
-        className="w-[60%] max-w-[700px] h-auto mb-[3rem]"
+        className="
+          w-[80%]         /* ⭐ større på mobil */
+          sm:w-[60%]      /* ⭐ original størrelse fra sm og op */
+          max-w-[700px]
+          h-auto 
+          mb-[3rem]
+        "
       />
 
-      {/* Ikon-række */}
-      <div className="flex gap-10 justify-center items-center mt-[3rem]">
+      {/* Ikon-række – GRID på mobil, FLEX på større */}
+      <div
+        className="
+          grid grid-cols-2 gap-10 mt-[3rem]
+          sm:flex sm:flex-row sm:gap-10 sm:justify-center sm:items-center
+        "
+      >
         {/* HUND — eneste der kan klikkes */}
         <Link
           to="/intro-ansvar"
-          className="transition-transform duration-200 hover:scale-110"
+          className="transition-transform duration-200 hover:scale-110 flex justify-center"
         >
-          <img
-            src={hundIcon}
-            alt="Hund"
-            className="w-[110px] h-auto"
-          />
+          <img src={hundIcon} alt="Hund" className="w-[110px] h-auto" />
         </Link>
 
-        <div className="opacity-40 pointer-events-none">
+        {/* KAT */}
+        <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={katIcon} alt="Kat" className="w-[110px] h-auto" />
         </div>
 
-        <div className="opacity-40 pointer-events-none">
+        {/* KANIN */}
+        <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={kaninIcon} alt="Kanin" className="w-[110px] h-auto" />
         </div>
 
-        <div className="opacity-40 pointer-events-none">
+        {/* MARSVIN */}
+        <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={marsvinIcon} alt="Marsvin" className="w-[110px] h-auto" />
         </div>
       </div>

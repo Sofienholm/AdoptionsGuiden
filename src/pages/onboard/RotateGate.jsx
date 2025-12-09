@@ -1,5 +1,6 @@
 // src/pages/onboard/RotateGate.jsx
 import { useEffect, useState } from "react";
+import flipIcon from "./frames/flip_ikon.svg"; // din SVG
 
 export default function RotateGate({ children }) {
   const [showGate, setShowGate] = useState(false);
@@ -8,15 +9,14 @@ export default function RotateGate({ children }) {
     const check = () => {
       if (typeof window === "undefined") return;
 
-      const isMobile = window.innerWidth <= 768; // kun mobil
+      const isMobile = window.innerWidth <= 768;
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      // Vis gate KUN hvis mobil + stående
+      // Vis gate: mobil + portræt-orientering
       setShowGate(isMobile && isPortrait);
     };
 
     check();
-
     window.addEventListener("resize", check);
     window.addEventListener("orientationchange", check);
 
@@ -37,49 +37,26 @@ export default function RotateGate({ children }) {
             flex flex-col items-center justify-center
             px-8
           "
-          style={{ backgroundColor: "var(--charcoal-brown-hex)" }}
+          style={{ backgroundColor: "var(--soft-linen-hex)" }}
         >
-          {/* “Telefon”-animation */}
-          <div className="mb-8 animate-bounce">
-            <div
-              className="
-                w-20 h-32
-                rounded-3xl
-                flex items-center justify-center
-              "
-              style={{
-                border: "3px solid var(--soft-linen-hex)",
-              }}
-            >
-              <div
-                className="w-10 h-1 rounded-full"
-                style={{ backgroundColor: "var(--soft-linen-hex)" }}
-              />
-            </div>
-          </div>
+          {/* SVG-animation */}
+          <img
+            src={flipIcon}
+            alt="rotate phone"
+            className="rotateHintAnimation mb-10"
+            style={{ width: "180px" }} // base-size (overskrives på mobil)
+          />
 
           {/* Overskrift */}
           <p
-            className="text-center text-2xl sm:text-3xl mb-3"
+            className="text-center text-3xl sm:text-4xl"
             style={{
               fontFamily: "var(--font-knewave)",
               textTransform: "uppercase",
-              color: "var(--soft-linen-hex)",
+              color: "var(--molten-lava-hex)",
             }}
           >
             VEND DIN SKÆRM
-          </p>
-
-          {/* Brødtekst */}
-          <p
-            className="text-center text-sm sm:text-base max-w-md"
-            style={{
-              fontFamily: "var(--font-hel-light)",
-              color: "var(--ash-grey-hex)",
-            }}
-          >
-            Drej din mobil vandret for at opleve storytelling-forløbet på den
-            måde, det er designet til.
           </p>
         </div>
       )}

@@ -1,5 +1,3 @@
-
-
 @import "tailwindcss";
 
 @font-face {
@@ -11,34 +9,31 @@
   font-display: swap;
   text-transform: uppercase;
 }
+
 @font-face {
   font-family: "Helvetica";
   font-style: normal;
   font-weight: normal;
   src: local("Helvetica"), url("Helvetica.woff") format("woff");
 }
-   @font-face {
-    font-family: 'Helvetica Light';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Helvetica Light'), url('helvetica-light-587ebe5a59211.woff') format('woff');
-    }
+
+@font-face {
+  font-family: "Helvetica Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Helvetica Light"), url("helvetica-light-587ebe5a59211.woff") format("woff");
+}
 
 /* ============================
    GLOBAL DESIGN TOKENS
    ============================ */
-
 :root {
-  /* ============================
-       FONT FAMILY
-  ============================ */
+  /* FONT FAMILY */
   --font-knewave: "Knewave", cursive;
   --font-hel: "Helvetica", sans-serif;
   --font-hel-light: "Helvetica Light", sans-serif;
 
-  /* ============================
-       BRAND COLORS — HSL
-  ============================ */
+  /* BRAND COLORS — HSL */
   --tomato: hsla(7, 100%, 61%, 1);
   --ash-grey: hsla(120, 9%, 76%, 1);
   --charcoal-brown: hsla(120, 10%, 20%, 1);
@@ -47,10 +42,7 @@
   --molten-lava: hsla(6, 98%, 24%, 1);
   --soft-linen: hsla(40, 43%, 93%, 1);
 
-  /* ============================
-       BRAND COLORS — HEX
-       (valgfrit, men praktisk)
-  ============================ */
+  /* BRAND COLORS — HEX */
   --tomato-hex: #ff4f39ff;
   --ash-grey-hex: #bdc8bdff;
   --charcoal-brown-hex: #2d372dff;
@@ -58,8 +50,11 @@
   --taupe-hex: #463930ff;
   --molten-lava-hex: #790c01ff;
   --soft-linen-hex: #f5f0e6ff;
+}
 
-  /* FONT HELPERS */
+/* ============================
+   FONT HELPERS
+   ============================ */
 .font-knewave {
   font-family: var(--font-knewave);
 }
@@ -68,15 +63,69 @@
   font-family: var(--font-hel-light);
 }
 
-/* COLOR HELPERS */
+/* ============================
+   COLOR HELPERS
+   ============================ */
 .text-molten {
   color: var(--molten-lava);
 }
+
 .text-linen {
   color: var(--soft-linen-hex);
 }
+
+body {
+  background-color: var(--soft-linen-hex);
 }
 
-body{
-  background-color: var(--soft-linen-hex);
+/* ============================
+   FLIP ICON ANIMATION
+   ============================ */
+
+.rotateHintAnimation {
+  animation: rotatePhoneHint 2.8s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotatePhoneHint {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  60% {
+    transform: translateY(-6px) rotate(90deg);
+  }
+  75% {
+    transform: translateY(0) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* ============================
+   FLIP ICON – MOBIL SIZE
+   ============================ */
+
+@media (max-width: 480px) {
+  .rotateHintAnimation {
+    width: 95px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .rotateHintAnimation {
+    width: 80px !important;
+  }
+}
+
+@media (max-width: 330px) {
+  .rotateHintAnimation {
+    width: 70px !important;
+  }
 }

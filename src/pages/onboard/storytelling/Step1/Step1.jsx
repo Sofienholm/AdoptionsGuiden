@@ -240,19 +240,19 @@ export default function Step1() {
           {
             opacity: 1,
             y: "-10%",
-            duration: 1.5,
+            duration: 1,
           },
           "<"
         )
 
         // --- PAUSE FØR NEDERSTE TEKST ---
-        .to({}, { duration: 2 })
+        .to({}, { duration: 1 })
 
         // --- ROLIG TEKST UNDER HUNDEN ---
         .to(calmTextBottomRef.current, {
           opacity: 1,
           y: "10%",
-          duration: 1.5,
+          duration: 1,
         })
 
         // --- BEGGE ROLIGE TEKSTER FADER UD ---
@@ -388,12 +388,8 @@ export default function Step1() {
           </p>
 
           {/* SLUT-TEKSTER */}
-          <p ref={finalSmallRef} className={styles.finalSmall}>
-            SÅ HUSK
-          </p>
-
           <p ref={finalBigRef} className={styles.finalBig}>
-            AT HVER INTERNATHUND HAR SIN EGEN <br /> HISTORIE!
+            SÅ HUSK AT HVER INTERNATHUND HAR SIN EGEN HISTORIE!
           </p>
         </div>
       </div>
