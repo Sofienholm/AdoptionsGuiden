@@ -117,13 +117,13 @@ export default function Step1() {
         stagger: 0.2,
       });
 
-      // Hunde + overskrift nedtones
+      // 🔴 Hunde + overskrift nedtones HELT væk
       tl.to([dogs, overskrift2Ref.current], {
-        opacity: 0.05,
+        opacity: 0,            // <--- ændret fra 0.05 til 0
         duration: 0.5,
       });
 
-      // Overlay (tekst + hænder) ind
+      // 🔴 Overlay (tekst + hænder) ind – ovenpå ren baggrund
       tl.to(
         overlayContentRef.current,
         {
