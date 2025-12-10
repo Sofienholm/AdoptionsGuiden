@@ -389,7 +389,7 @@ export default function Step1() {
         <div className={styles.scene3} ref={scene3Ref}>
           <div className={styles.tekst3}>
             <h1 ref={overskrift3Ref} className={styles.overskrift3}>
-              Internatet vurderer ud fra match.
+              Internatet vurderer her ud fra match
             </h1>
             <p ref={brodtekst3Ref} className={styles.brodtekst3}>
               Ikke først til mølle!
