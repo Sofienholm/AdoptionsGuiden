@@ -1,22 +1,22 @@
 .section {
-    width: 100vw;
-    height: 100vh;
-    background: var(--ash-grey-hex);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: var(--ash-grey-hex);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* Canvas */
 .canvas {
-    width: 1920px;
-    height: 1080px;
-    position: relative;
-    transform-origin: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  transform-origin: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* -------------------------- */
@@ -24,28 +24,28 @@
 /* -------------------------- */
 
 .scene1 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .headline {
-    display: block;
-    margin-bottom: 80px;
+  display: block;
+  margin-bottom: 80px;
 }
 
 .dog {
-    display: block;
-    margin-bottom: 80px;
+  display: block;
+  margin-bottom: 80px;
 }
 
 .brodtekst {
-    font-family: var(--font-hel-light);
-    font-size: 32px;
-    color: var(--charcoal-brown-hex);
+  font-family: var(--font-hel-light);
+  font-size: 32px;
+  color: var(--charcoal-brown-hex);
 }
 
 /* -------------------------- */
@@ -53,157 +53,267 @@
 /* -------------------------- */
 
 .scene2 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none;
 }
 
+/* SCENE 2 – overskrift (centeret) */
 .scene2headline {
-    margin-top: 120px;
-    font-family: var(--font-knewave);
-    font-size: 96px;
-    color: var(--charcoal-brown-hex);
-    text-align: center;
-    opacity: 0;
-    z-index: 1;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: var(--font-knewave);
+  color: var(--charcoal-brown-hex);
+  text-align: center;
+  white-space: nowrap;
+  font-size: 96px;
+  line-height: 0.9;
+  opacity: 0;
+  z-index: 10;
 }
 
 .scene2headline span {
-    font-size: 128px;
+  display: inline-block;
+  font-size: 128px;
+  line-height: 1;
 }
 
+/* RESPONSIVE overskrift */
+@media (max-width: 1400px) {
+  .scene2headline {
+    font-size: 80px;
+  }
+  .scene2headline span {
+    font-size: 110px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .scene2headline {
+    font-size: 68px;
+  }
+  .scene2headline span {
+    font-size: 95px;
+  }
+}
+
+@media (max-width: 800px) {
+  .scene2headline {
+    font-size: 44px;
+  }
+  .scene2headline span {
+    font-size: 62px;
+  }
+}
+
+@media (max-width: 640px) {
+  .scene2headline {
+    font-size: 36px;
+  }
+  .scene2headline span {
+    font-size: 50px;
+  }
+}
+
+/* Rækken med hunde – fuld “canvas” */
 .dogRow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 1;
-    z-index: 1;
-    transform-origin: center center; /* ⭐ vigtig for skalering på mobil */
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 1;
+  transform-origin: center center;
 }
 
+/* Fælles styling for hver hundeboks */
 .dogBox {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    pointer-events: auto;
-    cursor: pointer;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .dogImg {
-    width: 300px;
-    transition: filter 0.3s ease;
+  width: 300px;
+  transition: filter 0.3s ease;
 }
 
 .dogLabel {
-    margin-top: 12px;
-    font-family: var(--font-knewave);
-    font-size: 32px;
-    color: var(--charcoal-brown-hex);
-    text-align: center;
+  margin-top: 12px;
+  font-family: var(--font-knewave);
+  font-size: 32px;
+  color: var(--charcoal-brown-hex);
+  text-align: center;
 }
 
-/* Desktop-positioner (1920x1080 design) */
+/* ✅ Desktop-positioner – venstre / center / højre */
 .dogOld {
-    left: 0;
-    top: 50%;
+  left: 8%;
+  top: 52%;
+  transform: translateY(-50%);
 }
 .dogOld .dogImg {
-    width: 380px;
+  width: 380px;
 }
 
 .dogActive {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 10%;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
 }
 
 .dogShy {
-    right: 0;
-    bottom: 20%;
+  right: 8%;
+  top: 52%;
+  transform: translateY(-50%);
 }
 
+/* Hover-effekt + overlay */
 .dogBox:hover .dogImg,
 .dogBox:hover .dogLabel {
-    filter: blur(10px) brightness(1.6);
+  filter: blur(10px) brightness(1.6);
 }
 
 .overlay {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-hel);
-    font-size: 28px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: var(--charcoal-brown-hex);
-    white-space: nowrap;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-hel);
+  font-size: 28px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: var(--charcoal-brown-hex);
+  white-space: nowrap;
 }
 
 .dogBox:hover .overlay {
-    opacity: 1;
+  opacity: 1;
 }
 
 .blurLayer {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    opacity: 0;
-    filter: blur(0px) brightness(1);
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  opacity: 0;
+  filter: blur(0px) brightness(1);
+  pointer-events: none;
 }
 
 .overlayContent {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--ash-grey-hex); /* dækker alt under overlayet */
 }
 
 .overlayText {
-    font-family: var(--font-knewave);
-    font-size: 55px;
-    margin-bottom: 40px;
-    color: var(--charcoal-brown-hex);
-    text-align: center;
+  font-family: var(--font-knewave);
+  font-size: 55px;
+  margin-bottom: 40px;
+  color: var(--charcoal-brown-hex);
+  text-align: center;
 }
 
 .overlayIllustration {
-    width: 580px;
+  width: 580px;
 }
 
-/* ⭐ RESPONSIVE TWEAKS TIL HUNDERÆKKEN  */
-/* lidt mindre på laptop-ish bredde */
-@media (max-width: 1200px) {
-  .dogRow {
-    transform: scale(0.9);
+/* ⭐ RESPONSIVE TWEAKS TIL HUNDERNE – mere luft på mobil */
+
+/* lidt mindre hunde på laptop-ish bredde */
+@media (max-width: 1400px) {
+  .dogImg {
+    width: 260px;
+  }
+  .dogOld .dogImg {
+    width: 320px;
+  }
+  .dogLabel {
+    font-size: 28px;
   }
 }
 
-/* endnu mindre på tablets/mindre skærme */
-@media (max-width: 900px) {
-  .dogRow {
-    transform: scale(0.8);
+/* tablets/mindre skærme */
+@media (max-width: 1100px) {
+  .dogImg {
+    width: 230px;
+  }
+  .dogOld .dogImg {
+    width: 280px;
+  }
+  .dogLabel {
+    font-size: 24px;
+  }
+  .dogActive {
+    top: 72%;
   }
 }
 
-/* meget mindre på små mobiler i landscape */
-@media (max-width: 768px) {
-  .dogRow {
-    transform: scale(0.7);
+/* mobil landscape – hundene længere fra hinanden */
+@media (max-width: 800px) {
+  .dogImg {
+    width: 200px;
+  }
+  .dogOld .dogImg {
+    width: 240px;
+  }
+  .dogLabel {
+    font-size: 20px;
+  }
+
+  .dogOld {
+    left: 4%;
+    top: 56%;
+  }
+  .dogShy {
+    right: 4%;
+    top: 56%;
+  }
+  .dogActive {
+    top: 74%;
+  }
+}
+
+/* små mobiler – endnu mere luft */
+@media (max-width: 640px) {
+  .dogImg {
+    width: 170px;
+  }
+  .dogOld .dogImg {
+    width: 210px;
+  }
+  .dogLabel {
+    font-size: 18px;
+  }
+
+  .dogOld {
+    left: 3%;
+    top: 60%;
+  }
+  .dogShy {
+    right: 3%;
+    top: 60%;
+  }
+  .dogActive {
+    top: 78%;
   }
 }
 
@@ -211,68 +321,207 @@
 /*         SCENE 3            */
 /* -------------------------- */
 
+/* lidt mere kontrolleret tekst */
 .overskrift3 {
-    font-family: var(--font-knewave);
-    text-transform: uppercase;
-    color: var(--charcoal-brown-hex);
-    font-size: clamp(2rem, 5vw, 96px);
-    text-align: left;
+ font-family: var(--font-knewave);
+  text-transform: uppercase;
+  color: var(--charcoal-brown-hex);
+
+  font-size: clamp(2.2rem, 4.4vw, 92px); /* ⭐ lidt større */
+  text-align: left;
 }
 
 .brodtekst3 {
   font-family: var(--font-knewave);
   text-transform: uppercase;
   color: var(--molten-lava);
-  font-size: clamp(2.8rem, 7vw, 130px);
+
+  font-size: clamp(3rem, 6vw, 120px); /* ⭐ større */
   margin-top: 0.4rem;
   text-align: left;
 }
 
 .tekst3 {
-    position: absolute;
-    top: 12%;
-    left: -15%;
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  position: absolute;
+  top: 16%;     /* ⭐ tidligere 12% → rykket ned */
+  left: -15%;
+  max-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
+/* 🎨 mand-og-hund – lidt større og længere ned */
 .mandOgHund {
-    position: absolute;
-    right: -30%;
-    top: 0;
-    width: 600px;
+  position: absolute;
+  right: -24%;
+  top: 8%;         /* før: 2% */
+  width: 580px;    /* før: 520px */
 }
 
+.mandOgHund .overlayIllustration {
+  width: 100%;
+  height: auto;
+}
+
+/* scribble-linjer – rykkes tættere på teksten */
 .scribbleLines {
-    position: absolute;
-    left: 30%;
-    top: 45%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  position: absolute;
+  left: 30%;
+  top: 34%;     /* ⭐ tidligere 40% → tættere på teksten */
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 26px; 
 }
 
 .lineWrapper {
-    display: flex;
-    gap: 60px;
+  display: flex;
+  gap: 40px;
 }
 
 .scribbleSvg {
-    width: 50rem;
-    height: auto;
+  width: 40rem;
+  height: auto;
 }
 
 .dot {
-    width: 20px;
-    height: 20px;
-    background: var(--charcoal-brown-hex);
-    border-radius: 50%;
-    flex-shrink: 0;
-    opacity: 0;
-    margin-top: 1.8rem;
+  width: 20px;
+  height: 20px;
+  background: var(--charcoal-brown-hex);
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0;
+  margin-top: 1.8rem;
+}
+
+/* --- SCENE 3 RESPONSIVE --- */
+
+/* store laptops / mindre desktop */
+@media (max-width: 1600px) {
+  .mandOgHund {
+    right: -18%;
+    top: 9%;
+    width: 520px;   /* lidt større end før */
+  }
+
+  .scribbleLines {
+    left: 28%;
+    top: 38%;       /* rykket op = tættere på tekst */
+  }
+
+  .scribbleSvg {
+    width: 36rem;
+  }
+}
+
+/* ca. 1200–1400 bredde */
+@media (max-width: 1400px) {
+  .tekst3 {
+    left: -12%;
+    top: 10%;
+  }
+
+  .mandOgHund {
+    right: -14%;
+    top: 10%;
+    width: 480px;
+  }
+
+  .scribbleLines {
+    left: 27%;
+    top: 40%;       /* før: 46% */
+  }
+
+  .scribbleSvg {
+    width: 32rem;
+  }
+}
+
+/* tablets / små laptops */
+@media (max-width: 1100px) {
+  .tekst3 {
+    left: -8%;
+    top: 10%;
+    max-width: 900px;
+  }
+
+  .mandOgHund {
+    right: -10%;
+    top: 12%;
+    width: 420px;
+  }
+
+  .scribbleLines {
+    left: 26%;
+    top: 42%;       /* før: 50% */
+  }
+
+  .scribbleSvg {
+    width: 28rem;
+  }
+
+  .dot {
+    width: 16px;
+    height: 16px;
+    margin-top: 1.4rem;
+  }
+}
+
+/* mobil landscape / small width */
+@media (max-width: 800px) {
+  .tekst3 {
+    left: -4%;
+    top: 8%;
+    max-width: 760px;
+  }
+
+  .mandOgHund {
+    right: -12%;
+    top: 14%;
+    width: 340px;
+  }
+
+  .scribbleLines {
+    left: 25%;
+    top: 44%;       /* før: 54% */
+  }
+
+  .scribbleSvg {
+    width: 24rem;
+  }
+}
+
+/* små mobiler */
+@media (max-width: 640px) {
+  .tekst3 {
+    left: -2%;
+    top: 8%;
+    max-width: 700px;
+  }
+
+  .mandOgHund {
+    right: -10%;
+    top: 16%;
+    width: 300px;
+  }
+
+  .scribbleLines {
+    left: 24%;
+    top: 46%;       /* før: 56% */
+  }
+
+  .scribbleSvg {
+    width: 20rem;
+  }
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    margin-top: 1.2rem;
+  }
 }
 
 /* -------------------------- */
@@ -280,32 +529,32 @@
 /* -------------------------- */
 
 .scene4Indhold {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .overskrift4 {
-    font-family: var(--font-knewave);
-    font-size: 96px;
-    color: var(--molten-lava);
+  font-family: var(--font-knewave);
+  font-size: 96px;
+  color: var(--molten-lava);
 }
 
 .brodtekst4 {
-    font-family: var(--font-knewave);
-    font-size: 52px;
-    color: var(--charcoal-brown-hex);
+  font-family: var(--font-knewave);
+  font-size: 52px;
+  color: var(--charcoal-brown-hex);
 }
 
 .kryds {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 40%;
-    width: 600px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40%;
+  width: 600px;
 }

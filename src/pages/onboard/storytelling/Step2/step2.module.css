@@ -64,7 +64,7 @@
   opacity: 0;
 }
 
-/* INTRO OVERSKRIFT */
+/* INTRO OVERSKRIFT — DEN VI SKAL ØGE PÅ MOBIL */
 .overskrift {
   position: absolute;
   top: 10%;
@@ -77,7 +77,7 @@
   text-align: center;
 }
 
-/* TIMER — NU UDEN TRANSFORM! */
+/* TIMER */
 .tekstTimer {
   color: white;
   opacity: 0;
@@ -92,7 +92,7 @@
 .brodTekst {
   position: absolute;
   top: 30%;
-  left: 80%; /* lidt mindre mod højre end originalen */
+  left: 80%;
   transform: translateX(-50%);
   max-width: 360px;
 
@@ -102,7 +102,7 @@
   line-height: 1.35;
 }
 
-/* DØREN (samme placering som original) */
+/* DØREN */
 .dogDoor {
   position: absolute;
   top: 50%;
@@ -124,7 +124,7 @@
   transform: translate(-50%, -50%);
   color: white;
   font-size: 4rem;
-  opacity: 0; /* skjult fra start */
+  opacity: 0;
   font-family: var(--font-knewave);
   text-transform: uppercase;
 }
@@ -146,7 +146,7 @@
 .card3 { position: absolute; top: 40%; left: 43%; }
 .card4 { position: absolute; top: 40%; left: 65%; margin-top: -10%; }
 
-/* OUTRO – centreres og får luft */
+/* OUTRO */
 .outro {
   position: absolute;
   top: 10%;
@@ -178,7 +178,7 @@
   margin: 0 auto 10%;
 }
 
-/* HUNDE I OUTRO */
+/* OUTRO HUNDE */
 .dogRow {
   display: flex;
   justify-content: center;
@@ -191,3 +191,16 @@
 .doggie3 { width: 220px; }
 .doggie4 { width: 280px; }
 .doggie5 { width: 380px; }
+
+/* --- MOBILE SIZE BOOST FOR DEN RIGTIGE OVERSKRIFT --- */
+@media (max-width: 900px) {
+  .overskrift {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .overskrift {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+}
