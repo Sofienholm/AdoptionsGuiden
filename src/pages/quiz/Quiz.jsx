@@ -25,9 +25,9 @@ export default function Quiz() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F6F0E8] px-6 py-10 md:px-16 lg:px-32 relative left-1/2 -translate-x-1/2 ">
+    <div className="min-h-screen bg-[#F6F0E8] px-6 py-10 md:px-16 lg:px-72 relative left-1/2 -translate-x-1/2 ">
       {/* PROGRESS BAR */}
-      <div className="flex gap-4 mb-10 justify-center">
+      <div className="flex gap-4 mb-20 justify-center ">
         {Array.from({ length: total }).map((_, i) => (
           <div
             key={i}
@@ -46,7 +46,7 @@ export default function Quiz() {
       </h1>
 
       {/* HJÆLPETEKST */}
-      <p className="text-[#FF4F3C] text-lg md:text-xl uppercase font-knewave mb-8 max-w-3xl">
+      <p className="text-[#FF4F3C] text-lg md:text-xl uppercase font-knewave mb-14 max-w-3xl">
         {currentQuestion.helpText}
       </p>
 
@@ -108,13 +108,13 @@ export default function Quiz() {
       <button
         onClick={handleRestart}
         className="
-    fixed bottom-40 left-35
-   text-molten font-bold underline
+    fixed bottom-40 left-75
+   text-molten font-extralight underline
     hover:scale-105 transition-transform
 
   "
       >
-        Usikker på dit svar? - START FORFRA
+        Usikker på dit svar? - Start forfra
       </button>
     </div>
   );
