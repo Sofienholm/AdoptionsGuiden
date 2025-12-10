@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router";
-import arrow from "../../assets/arrow.svg";
+import arrow from "./frames/arrow.svg";
+import dogimg from "./frames/ddog1.jpg";
 
 export default function MatchDogs() {
   const navigate = useNavigate();
 
   // Midlertidig dummy data, indtil vi kobler Firestore på
   const dogs = [
-    { id: "buster", name: "Buster", race: "Gravhund", imageUrl: "/placeholder1.jpg" },
+    { id: "buster", name: "Buster", race: "Gravhund", imageUrl: "./frames/ddog1.jpg" },
     { id: "nala", name: "Nala", race: "Ulvehund", imageUrl: "/placeholder2.jpg" },
     { id: "holly", name: "Holly", race: "Schæfer/labrador", imageUrl: "/placeholder3.jpg" }
   ];
@@ -35,14 +36,14 @@ export default function MatchDogs() {
             key={dog.id}
             className="
               w-[260px] h-[430px]
-              bg-white rounded-[30px] border-4 border-[var(--molten-lava-hex)]
+              bg-white rounded-[30px] border-1 border-[var(--molten-lava-hex)]
               flex flex-col overflow-hidden shadow-md
             "
           >
             {/* IMAGE */}
-            <div className="h-[60%] w-full">
+            <div className="h-[70%] w-full">
               <img
-                src={dog.imageUrl}
+                src={dogimg}
                 alt={dog.name}
                 className="w-full h-full object-cover"
               />
@@ -60,23 +61,24 @@ export default function MatchDogs() {
                   {dog.race}
                 </p>
               </div>
+              </div>
 
               {/* BUTTONS */}
-              <div className="flex justify-between text-sm font-knewave">
+              <div className="flex justify-between text-sm font-knewave bg-[var(--molten-lava-hex)]">
                 <button
-                  className="bg-[var(--tomato-hex)] text-white py-2 px-4 rounded-full hover:scale-105 transition"
+                  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition"
                 >
                   KONTAKT
                 </button>
 
                 <button
-                  className="bg-[var(--tomato-hex)] text-white py-2 px-4 rounded-full hover:scale-105 transition"
+                  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition"
                 >
                   LÆS MERE
                 </button>
               </div>
             </div>
-          </div>
+          
         ))}
 
       </div>
