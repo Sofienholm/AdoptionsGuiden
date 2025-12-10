@@ -9,10 +9,10 @@
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* forhindrer hop og flashing når der pinnes */
+  overflow: hidden;
 }
 
-/* Wrapper for hele scenen (del1 + tabs) */
+/* Wrapper for hele scenen */
 .graphicWrapper {
   position: absolute;
   top: 50%;
@@ -24,68 +24,64 @@
   pointer-events: auto;
 }
 
-/* del1.svg + del2.svg + del3-tekst – ligger ovenpå hinanden */
+/* SVG lag */
 .mainGraphic {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
   z-index: 1;
 }
 
-/* 2x3 grid til tabs – ligger oven på samme scene */
+/* Tabs grid */
 .tabsGrid {
-   position: absolute;
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: clamp(0.6rem, 1.5vw, 1.2rem);
-
-  z-index: 5; 
+  z-index: 5;
 }
 
-/* hver tab */
 .tabCard {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
   cursor: pointer;
-  pointer-events: auto; 
+  pointer-events: auto;
 }
 
-/* ---------- POPUP (fullscreen tomato) ---------- */
+
+/* ---------- POPUP ---------- */
 
 .popupOverlay {
   position: fixed;
   inset: 0;
-  background: var(--tomato); /* fuld tomato-baggrund */
+  background: var(--tomato);
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* popupInner – grundstørrelse */
 .popupInner {
   position: relative;
   width: min(95vw, 1100px);
-  aspect-ratio: 4 / 3; /* justér hvis jagt_kort har anden form */
+  aspect-ratio: 4 / 3;
+  transform-origin: center;
 }
 
 .popupImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
 }
 
-/* usynligt klikfelt oven på X i højre hjørne */
 .closeHitArea {
   position: absolute;
   top: 13%;
@@ -93,46 +89,56 @@
   width: 10%;
   height: 5%;
   background: transparent;
-  border: none;
   cursor: pointer;
 }
 
-/* usynligt klikfelt oven på 'Pasningsvejledning for jagt hunde' */
 .linkHitArea {
   position: absolute;
-
-  /* JUSTERET PLACERING */
-  top: 28%;     /* ↓ rykket ned fra 16% */
-  left: 7%;     /* samme */
-  width: 32%;   /* lidt smallere */
-  height: 4%;   /* ↓ smallere i højden */
-
-  display: block;
-  text-decoration: none;
+  top: 28%;
+  left: 7%;
+  width: 32%;
+  height: 4%;
   cursor: pointer;
 }
 
-/* ---------- DEL 3 ikoner nederst ---------- */
+
+/* ---------- DEL 3 ikoner ---------- */
 
 .del3Icon {
   position: absolute;
-  bottom: 7%;     /* hvor højt oppe de står – finjustér efter behov */
+  bottom: 7%;
   width: 22%;
-  height: auto;
   object-fit: contain;
 }
 
-/* midten – huset */
-.del3IconHjem {
-  left: 39%;
+.del3IconHjem { left: 39%; }
+.del3IconDyr { left: 9%; }
+.del3IconArbejde { right: 8%; }
+
+
+/* ---------- MOBIL SKALERING ---------- */
+
+/* mindre zoom på mobil – både scene og popup */
+@media (max-width: 868px) {
+  .graphicWrapper {
+    width: 100vw;
+    max-width: 100vw;
+    transform: translate(-50%, -50%) scale(0.65);
+  }
+
+  /* popup-kortene gøres smallere så de matcher den generelle skalering */
+  .popupInner {
+    width: 80vw; /* mindre end 95vw */
+  }
 }
 
-/* venstre – hund + kat */
-.del3IconDyr {
-  left: 9%;
-}
+/* endnu lidt mindre på meget små mobiler */
+@media (max-width: 480px) {
+  .graphicWrapper {
+    transform: translate(-50%, -50%) scale(0.65);
+  }
 
-/* højre – arbejde / skrivebord */
-.del3IconArbejde {
-  right: 8%;
+  .popupInner {
+    width: 70vw; /* endnu mindre kort */
+  }
 }
