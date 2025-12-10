@@ -69,7 +69,12 @@
 .text-molten {
   color: var(--molten-lava);
 }
-
+.text-tomato {
+  color: var(--tomato);
+}
+.text-green {
+  color: var(--charcoal-brown);
+}
 .text-linen {
   color: var(--soft-linen-hex);
 }
