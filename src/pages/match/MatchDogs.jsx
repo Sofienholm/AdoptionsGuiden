@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+
 import arrow from "./frames/arrow.svg";
 import { matchDogs } from "../../utils/matchDogs";
 import { useQuiz } from "../quiz/components/useQuiz";
@@ -11,6 +13,9 @@ export default function MatchDogs() {
   const [dogs, setDogs] = useState(null);
   const [loading, setLoading] = useState(true);
   const { userProfile } = useQuiz();
+  const location = useLocation();
+  const behaviorProfile = location.state?.behaviorProfile || null;
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     async function loadDogs() {
@@ -93,11 +98,24 @@ export default function MatchDogs() {
 
             {/* BUTTONS */}
             <div className="flex justify-center gap-5 text-sm font-knewave bg-[var(--molten-lava-hex)] h-50">
-              <button className=" text-white py-2 px-4 rounded-full hover:scale-105 transition">
+              <button
+                onClick={() =>
+                  navigate("/application", {
+                    state: {
+                      dogId: dog.id,
+                      behaviorProfile: behaviorProfile,
+                    },
+                  })
+                }
+                className="text-white py-2 px-4 rounded-full hover:scale-105 transition"
+              >
                 KONTAKT
               </button>
 
-              <button   onClick={() => window.open(dog.profileUrl, "_blank")}  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition">
+              <button
+                onClick={() => window.open(dog.profileUrl, "_blank")}
+                className=" text-white py-2 px-4 rounded-full hover:scale-105 transition"
+              >
                 LÆS MERE
               </button>
             </div>
@@ -108,15 +126,74 @@ export default function MatchDogs() {
       {/* "ALLE HUNDE" BUTTON */}
       <div className="mt-16 flex justify-end gap-5">
         <button
+          onClick={() => setShowPopup(true)}
           className="
-            font-knewave text-[var(--tomato-hex)] text-3xl
-            hover:scale-110 transition-transform
-          "
+    font-knewave text-[var(--tomato-hex)] text-3xl
+    hover:scale-110 transition-transform
+  "
         >
           ALLE HUNDE
         </button>
         <img src={arrow} alt="pil" className="lg:w-20 md:w-20 w-20 mr-3" />
       </div>
+      {/* POPUP MODAL */}
+      {showPopup && (
+        <div
+          className="
+            fixed inset-0
+            bg-[#F6F0E8]/40
+            backdrop-blur-sm
+            flex items-center justify-center
+            z-50
+                "
+        >
+          <div
+            className="
+            bg-[var(--soft-linen-hex)]
+            rounded-3xl
+            shadow-xl
+            p-8
+            w-[90%] max-w-md
+            text-center
+                "
+          >
+            <p className="font-hel-light text-lg text-[var(--molten-lava-hex)] mb-8">
+              Er du sikker på, at du vil forlade siden?
+              <br />
+              Din adfærdsprofil forsvinder.
+            </p>
+
+            <div className="flex justify-center gap-6">
+              <button
+                onClick={() => setShowPopup(false)}
+                className="
+            px-6 py-2 rounded-full
+            bg-[#ffd0c9] text-[var(--molten-lava-hex)]
+            font-knewave hover:scale-105 transition
+          "
+              >
+                FORTRYD
+              </button>
+
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.dyrenesbeskyttelse.dk/adopter-et-dyr?species[1140]=1140",
+                    "_blank"
+                  )
+                }
+                className="
+            px-6 py-2 rounded-full
+            bg-[var(--tomato-hex)] text-white
+            font-knewave hover:scale-105 transition
+          "
+              >
+                FORTSÆT
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

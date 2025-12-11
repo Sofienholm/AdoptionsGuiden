@@ -50,8 +50,8 @@ function App() {
 
         {/* QUIZ */}
         <Route path="/quiz" element={<Intro1 />} />
-<Route path="/quiz/info" element={<Intro2 />} />
-<Route path="/quiz/start" element={<Quiz />} />
+        <Route path="/quiz/info" element={<Intro2 />} />
+        <Route path="/quiz/start" element={<Quiz />} />
 
         {/* RESULTATSIDER */}
         <Route path="/result" element={<ResultProfile />} />
@@ -59,9 +59,8 @@ function App() {
         {/* Hundematch */}
         <Route path="/dog-matches" element={<MatchDogs />} />
 
-
-         {/* Ansøgningsformular */}
-      <Route path="/ansoegning" element={<AdoptionApplicationForm />} />
+        {/* Ansøgningsformular */}
+        <Route path="/application" element={<AdoptionApplicationForm />} />
       </Routes>
     </QuizProvider>
   );
