@@ -72,7 +72,8 @@ export default function ResultWhy() {
 <div
   className="
     flex flex-col items-center text-center 
-    mx-6 md:mx-0 lg:mx-0
+    mx-10  md:mx-0 lg:mx-0
+    my-10  md:my-20 lg:my-20
     md:flex-row md:justify-center md:text-left w-full
   "
 >
@@ -111,7 +112,7 @@ export default function ResultWhy() {
             flex items-center justify-center
             text-lg md:text-xl shadow-lg
             hover:scale-105 transition-transform
-            mb:20
+            mb:50
   "
 >
   SE MATCH
