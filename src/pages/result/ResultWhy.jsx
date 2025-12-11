@@ -17,44 +17,74 @@ export default function ResultWhy() {
 
   if (!selectedProfileId) return null;
 
+  // NU definerer vi profile og explanationLines
   const profile = profiles[selectedProfileId];
-  const explanationLines = generateExplanation(userProfile, selectedProfileId);
+  const explanationLines = generateExplanation(
+    userProfile,
+    selectedProfileId
+  );
+
+  // Her må vi først bygge behavior-data EFTER variablerne findes
+  const profileData = {
+    label: profile.label,
+    description: profile.description,
+    why: explanationLines,
+  };
 
   return (
     <div className="min-h-screen bg-[#F6F0E8] ">
-<div className="px-6 pt-20 pb-16 md:px-16 lg:px-32">
+      <div className="px-6 pt-20 pb-16 md:px-16 lg:px-32">
 
-      {/* TITLE */}
-      <h1 className="text-3xl md:text-5xl font-knewave text-[#8B1D14] mb-12">
-        HVORFOR NETOP DENNE PROFIL?
-      </h1>
+        {/* TITLE */}
+        <h1 className="text-3xl md:text-5xl font-knewave text-[#8B1D14] mb-12">
+          HVORFOR NETOP DENNE PROFIL?
+        </h1>
 
-      {/* SUBTITLE */}
-      <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-12 ">
-        DU HAR FÅET PROFILEN: {profile.label.toUpperCase()}
-      </h2>
+        {/* SUBTITLE */}
+        <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-12 ">
+          DU HAR FÅET PROFILEN: {profile.label.toUpperCase()}
+        </h2>
 
-      {/* EXPLANATION LINES */}
-      <ul className="space-y-2  max-w-2xl">
-        {explanationLines.map((line, index) => (
-          <li key={index} className="text-[#FF4F3C]  font-hel-light text-lg md:text-xl flex gap-6">
-            <span className="text-[#FF4F3C]">•</span>
-            <span>{line}</span>
-          </li>
-        ))}
-      </ul>
-</div>
-{/*pote img */}
-<img src={pote} alt="dogpaw" className="absolute top-20 right-20 invisible lg:visible md:visible lg:w-90 md:w-30" />
-      {/* BUTTON → Hundematch */}
-      <div className="flex justify-end lg:justify-between flex-col md:flex-row lg:flex-row items-center px-6 md:px-16 lg:px-32 gap-15 md:gap-0">
-        <h3 className="text-xl md:text-3xl font-knewave text-[#FF4F3C] mb-12> mr-3">
-        TRYK NU VIDERE OG SE VORES BUD PÅ HUNDE DER KUNNE VÆRE ET MATCH
+        {/* EXPLANATION LIST */}
+        <ul className="space-y-2 max-w-2xl">
+          {explanationLines.map((line, index) => (
+            <li
+              key={index}
+              className="text-[#FF4F3C] font-hel-light text-lg md:text-xl flex gap-6"
+            >
+              <span>•</span>
+              <span dangerouslySetInnerHTML={{ __html: line }} />
+            </li>
+          ))}
+        </ul>
+
+      </div>
+
+      {/* POTE */}
+      <img
+        src={pote}
+        alt="dogpaw"
+        className="absolute top-20 right-20 invisible lg:visible md:visible lg:w-90 md:w-30"
+      />
+
+      {/* BUTTON → MATCHDOGS */}
+      <div className="flex justify-end lg:justify-between flex-col md:flex-row items-center px-6 md:px-16 lg:px-32 gap-15 md:gap-0">
+        <h3 className="text-xl md:text-3xl font-knewave text-[#FF4F3C] mb-12 mr-3">
+          TRYK NU VIDERE OG SE VORES BUD PÅ HUNDE DER KUNNE VÆRE ET MATCH
         </h3>
-        <img src={arrow} alt="arrow" className="rotate-90 sm:rotate-0 lg:w-28 md:w-25 w-20 mr-3" />
-        <div className="">
-          <button
-          onClick={() => navigate("/dog-matches")}
+
+        <img
+          src={arrow}
+          alt="arrow"
+          className="rotate-90 sm:rotate-0 lg:w-28 md:w-25 w-20 mr-3"
+        />
+
+        <button
+          onClick={() =>
+            navigate("/dog-matches", {
+              state: { behaviorProfile: profileData },
+            })
+          }
           className="
             bg-[#FF4F3C] text-white font-knewave
             lg:w-32 lg:h-32 md:w-32 md:h-32 w-35 h-35 rounded-full
@@ -64,10 +94,8 @@ export default function ResultWhy() {
           "
         >
           SE MATCH
-        </button> 
-        </div>
-       
+        </button>
       </div>
-      </div>
+    </div>
   );
 }
