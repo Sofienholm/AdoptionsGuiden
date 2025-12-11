@@ -11,7 +11,7 @@ import IntroStart from "../pages/landing/IntroStart";
 // Storytelling steps
 import Step2 from "../pages/onboard/storytelling/Step2/step2.jsx";
 import Step3 from "../pages/onboard/storytelling/Step3/step3.jsx";
-import Step4 from "../pages/onboard/storytelling/Step4/step4.jsx";
+import Step4 from "../pages/onboard/storytelling/Step4/Step4.jsx";
 import Step5 from "../pages/onboard/storytelling/Step5/step5.jsx";
 
 import Intro1 from "../pages/quiz/Intro1";
@@ -61,7 +61,7 @@ function App() {
         <Route path="/dog-matches" element={<MatchDogs />} />
 
         {/* Ansøgningsformular */}
-        <Route path="/ansoegning" element={<AdoptionApplicationForm />} />
+        <Route path="/application" element={<AdoptionApplicationForm />} />
       </Routes>
     </QuizProvider>
   );

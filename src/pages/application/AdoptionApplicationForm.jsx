@@ -1,5 +1,9 @@
 // src/pages/application/AdoptionApplicationForm.jsx
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useLocation } from "react-router";
+import { useNavigate } from "react-router";
+import { getDogs } from "../../services/getDogs";
+import arrow from "../../pages/match/frames/arrow.svg";
 
 const QUESTIONS = [
   {
@@ -32,33 +36,45 @@ const QUESTIONS = [
   },
 ];
 
-// TODO: Erstat med rigtige hunde fra API / CMS
-const MOCK_DOGS = [
-  { id: 1, name: "Bella", age: 3 },
-  { id: 2, name: "Max", age: 5 },
-  { id: 3, name: "Luna", age: 2 },
-];
+export default function AdoptionApplicationForm() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Firestore data
+  const [dogs, setDogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-export default function AdoptionApplicationForm({
-  dogs = MOCK_DOGS,
-  behaviorProfile,
-}) {
-  const [selectedDogId, setSelectedDogId] = useState("");
+  // Modtag data fra /application navigation
+  const preselectedDogId = location.state?.dogId || "";
+  const behaviorProfile = location.state?.behaviorProfile || null;
+
+  // Form state
+  const [selectedDogId, setSelectedDogId] = useState(preselectedDogId);
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [answers, setAnswers] = useState(() =>
+  const [answers, setAnswers] = useState(
     QUESTIONS.reduce((acc, q) => ({ ...acc, [q.id]: "" }), {})
   );
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const MIN_CHARS = 300;
 
+  // 🔥 Hent hunde fra Firestore
+  useEffect(() => {
+    async function load() {
+      const result = await getDogs();
+      setDogs(result);
+      setLoading(false);
+    }
+    load();
+  }, []);
+
   const handleAnswerChange = (id, value) => {
     setAnswers((prev) => ({ ...prev, [id]: value }));
   };
 
+  // Den valgte hund (rigtige data)
   const selectedDog = useMemo(
     () => dogs.find((d) => String(d.id) === String(selectedDogId)),
     [dogs, selectedDogId]
@@ -95,11 +111,31 @@ export default function AdoptionApplicationForm({
     alert("Tak for din ansøgning! Vi kontakter dig hurtigst muligt.");
   };
 
+  // 🔄 Loader visning
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-molten text-2xl font-knewave">
+        Henter hunde…
+      </div>
+    );
+  }
+
   return (
     <div
       className="min-h-screen w-full flex justify-center px-4 py-10 sm:py-14"
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
+            {/* BACK ARROW */}
+            <button
+        onClick={() => navigate("/dog-matches")}
+        className="absolute left-6 top-6 hover:scale-105 transition-transform"
+      >
+        <img
+          src={arrow}
+          alt="Tilbage"
+          className="lg:w-26 md:w-20 w-20 ml-6 mt-6 rotate-180"
+        />
+      </button>
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-5xl space-y-12 font-hel-light"
@@ -131,9 +167,15 @@ export default function AdoptionApplicationForm({
                 "
               >
                 <option value="">Vælg hund</option>
+
                 {dogs.map((dog) => (
                   <option key={dog.id} value={dog.id}>
-                    {dog.name}, {dog.age} år
+                    {dog.name},{" "}
+                    {dog.ageYears
+                      ? `${dog.ageYears} år`
+                      : dog.ageWeeks
+                      ? `${dog.ageWeeks} uger`
+                      : ""}
                   </option>
                 ))}
               </select>
@@ -215,9 +257,7 @@ export default function AdoptionApplicationForm({
             return (
               <div key={q.id} className="space-y-3">
                 <div className="text-center space-y-1">
-                  <h3 className="text-lg sm:text-xl text-molten">
-                    {q.title}
-                  </h3>
+                  <h3 className="text-lg sm:text-xl text-molten">{q.title}</h3>
                   {q.helper && (
                     <p className="text-xs sm:text-sm text-[#ff6b5a]">
                       {q.helper}
@@ -260,7 +300,7 @@ export default function AdoptionApplicationForm({
             med at forstå dine rammer.
           </p>
 
-          {/* Fold-ud */}
+          {/* Fold-ud — LUKKET */}
           <button
             type="button"
             onClick={() => setIsProfileOpen((v) => !v)}
@@ -269,31 +309,66 @@ export default function AdoptionApplicationForm({
               flex items-center justify-between
               px-8 py-6 sm:px-10 sm:py-7
               rounded-[2.5rem] bg-[#ffd0c9] shadow-sm
+              mb-0
             "
           >
             <div>
               <p className="text-xl sm:text-2xl font-knewave text-molten">
                 DIT RESULTAT – ADFÆRDSPROFIL
               </p>
-              <p className="mt-1 text-sm sm:text-base text-molten">
-                Du passer bedst til en let sensitiv, stabil familiehund, der:
+              <p className="mt-1 text-sm sm:text-base font-knewave text-[#ff6b5a]">
+                DU PASSER BEDST TIL EN {behaviorProfile?.label?.toUpperCase() || ""}
+                , DER:
               </p>
             </div>
+
             <span className="text-2xl sm:text-3xl text-[#ff6b5a]">
               {isProfileOpen ? "▲" : "▼"}
             </span>
           </button>
 
+          {/* ÅBEN SEKTION */}
           {isProfileOpen && (
-            <div className="w-full max-w-4xl mx-auto -mt-4 mb-4 px-8 pb-6 text-sm sm:text-base text-molten">
-              {behaviorProfile ? (
-                <p>{behaviorProfile}</p>
-              ) : (
-                <p>
-                  Her vises din adfærdsprofil fra matchquizzen – detaljer om
-                  hvilken hundetype du passer bedst til, og hvad internatet
-                  skal vide.
-                </p>
+            <div
+              className="
+                w-full max-w-4xl mx-auto
+                bg-[#ffd0c9]
+                rounded-b-2xl
+                -mt-8 p-8 pb-10
+                text-molten text-sm sm:text-base
+              "
+            >
+              {/* --- BESKRIVELSE --- */}
+              {behaviorProfile?.description && (
+                <ul className="space-y-4 mb-8">
+                  {behaviorProfile.description.map((line, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[#ff6b5a] leading-relaxed"
+                    >
+                      <span>•</span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Separator */}
+              <hr className="border-[#8B1D14] opacity-40 my-6" />
+
+              {/* --- HVORFOR NETOP DENNE PROFIL --- */}
+              {behaviorProfile?.why && (
+                <ul className="space-y-4">
+                  {behaviorProfile.why.map((line, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[#ff6b5a] leading-relaxed"
+                    >
+                      <span>•</span>
+                      <span dangerouslySetInnerHTML={{ __html: line }} />
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
           )}
