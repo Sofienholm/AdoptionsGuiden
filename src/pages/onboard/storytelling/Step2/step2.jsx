@@ -246,7 +246,7 @@ export default function Step2() {
         ],
         {
           x: 1500,
-          opacity: 1,
+          opacity: 0,
           duration: 1.4,
           ease: "power4.out",
           stagger: 0.15,

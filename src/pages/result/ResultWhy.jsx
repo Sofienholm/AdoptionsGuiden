@@ -33,15 +33,15 @@ export default function ResultWhy() {
 
   return (
     <div className="min-h-screen bg-[#F6F0E8] ">
-      <div className="px-6 pt-20 pb-16 md:px-16 lg:px-32">
+      <div className="px-6  pt-5 md:pt-20 pb-16 md:px-16 lg:px-32">
 
         {/* TITLE */}
-        <h1 className="text-3xl md:text-5xl font-knewave text-[#8B1D14] mb-12">
+        <h1 className="text-3xl md:text-5xl font-knewave text-[#8B1D14] mb-3 md:mb-12">
           HVORFOR NETOP DENNE PROFIL?
         </h1>
 
         {/* SUBTITLE */}
-        <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-12 ">
+        <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-6 md:mb-12 ">
           DU HAR FÅET PROFILEN: {profile.label.toUpperCase()}
         </h2>
 
@@ -50,7 +50,7 @@ export default function ResultWhy() {
           {explanationLines.map((line, index) => (
             <li
               key={index}
-              className="text-[#FF4F3C] font-hel-light text-lg md:text-xl flex gap-6"
+              className="text-[#FF4F3C] font-hel-light text-sm md:text-xl flex gap-6"
             >
               <span>•</span>
               <span dangerouslySetInnerHTML={{ __html: line }} />
@@ -68,15 +68,15 @@ export default function ResultWhy() {
       />
 
       {/* BUTTON → MATCHDOGS */}
-      <div className="flex justify-end lg:justify-between flex-col md:flex-row items-center px-6 md:px-16 lg:px-32 gap-15 md:gap-0">
-        <h3 className="text-xl md:text-3xl font-knewave text-[#FF4F3C] mb-12 mr-3">
+      <div className="flex justify-end lg:justify-between flex-col md:flex-row items-center px-6 md:px-16 lg:px-32 ">
+        <h3 className="text-xl md:text-3xl font-knewave text-[#FF4F3C] mb-6 md:mb-12 mr-3">
           TRYK NU VIDERE OG SE VORES BUD PÅ HUNDE DER KUNNE VÆRE ET MATCH
         </h3>
 
         <img
           src={arrow}
           alt="arrow"
-          className="rotate-90 sm:rotate-0 lg:w-28 md:w-25 w-20 mr-3"
+          className="rotate-142 sm:rotate-0 lg:w-28 md:w-25 w-20 -mr-30 lg:mr-40 mb-6 md:mb-0"
         />
 
         <button
@@ -88,6 +88,7 @@ export default function ResultWhy() {
           className="
             bg-[#FF4F3C] text-white font-knewave
             lg:w-32 lg:h-32 md:w-32 md:h-32 w-35 h-35 rounded-full
+            -ml-30 -mt-5 mb-10 md:mb-0
             flex items-center justify-center p-3
             text-lg md:text-xl shadow-lg
             hover:scale-105 transition-transform
