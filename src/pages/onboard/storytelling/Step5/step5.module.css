@@ -111,8 +111,8 @@
 .videreKnap {
   position: absolute;
   right: 3%;
-  bottom: 3%;
-  width: 12%;
+  bottom: 5.5%;
+  width: 10%;
   height: auto;
   cursor: pointer;
   opacity: 0;

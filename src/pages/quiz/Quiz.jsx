@@ -16,6 +16,7 @@ export default function Quiz() {
     answerQuestion(currentQuestion.options[selectedOption].effects);
     setSelectedOption(null); // reset for næste spørgsmål
   };
+
   const { resetQuiz } = useQuiz();
   const navigate = useNavigate();
 
@@ -25,96 +26,97 @@ export default function Quiz() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F6F0E8] px-6 py-10 md:px-16 lg:px-72 relative left-1/2 -translate-x-1/2 ">
-      {/* PROGRESS BAR */}
-      <div className="flex gap-4 mb-20 justify-center ">
-        {Array.from({ length: total }).map((_, i) => (
-          <div
-            key={i}
-            className={`
-              w-6 h-6 rounded-full border-2 border-[#8B1D14]
-              ${i === currentQuestionIndex ? "bg-[#8B1D14]" : "bg-transparent"}
-            `}
-          />
-        ))}
-      </div>
+    <div className="min-h-screen bg-[#F6F0E8] flex items-center justify-center px-4 md:px-8 lg:px-12 overflow-hidden">
+      {/* INDRE WRAPPER – skaleres lidt ned så alt kan være i framen */}
+      <div className="w-full max-w-3xl md:max-w-4xl transform scale-90 md:scale-95 lg:scale-100 origin-top md:origin-center">
 
-      {/* SPØRGSMÅL */}
-      <h1 className="text-3xl md:text-4xl  text-[#8B1D14] uppercase font-knewave mb-3">
-        SPØRGSMÅL {currentQuestionIndex + 1} –{" "}
-        {currentQuestion.question.toUpperCase()}
-      </h1>
-
-      {/* HJÆLPETEKST */}
-      <p className="text-[#FF4F3C] text-lg md:text-xl uppercase font-knewave mb-14 max-w-3xl">
-        {currentQuestion.helpText}
-      </p>
-
-      {/* SVARMULIGHEDER */}
-      <div className="flex flex-col font-hel-light gap-6 mt-6 max-w-3xl">
-        {currentQuestion.options.map((opt, i) => {
-          const isSelected = selectedOption === i;
-
-          return (
-            <button
+        {/* PROGRESS BAR – rykket lidt højere op */}
+        <div className="flex gap-3 mb-8 justify-center mt-[-10px]">
+          {Array.from({ length: total }).map((_, i) => (
+            <div
               key={i}
-              onClick={() => setSelectedOption(i)}
-              className="flex items-center gap-4 py-3 px-2 text-left hover:scale-105 transition"
-            >
-              {/* RADIO-KNAP */}
-              <div
-                className={`
-                  w-8 h-8 md:w-10 md:h-10 rounded-full border-4 
-                  flex items-center justify-center
-                  ${
-                    isSelected
-                      ? "border-[#8B1D14]"
-                      : "border-[#8B1D14]"
-                  }
-                `}
+              className={`
+                w-5 h-5 md:w-6 md:h-6 rounded-full border-2 border-[#8B1D14]
+                ${i === currentQuestionIndex ? "bg-[#8B1D14]" : "bg-transparent"}
+              `}
+            />
+          ))}
+        </div>
+
+        {/* SPØRGSMÅL */}
+        <h1 className="text-2xl md:text-3xl text-[#8B1D14] uppercase font-knewave mb-3">
+          SPØRGSMÅL {currentQuestionIndex + 1} –{" "}
+          {currentQuestion.question.toUpperCase()}
+        </h1>
+
+        {/* HJÆLPETEKST */}
+        <p className="text-[#FF4F3C] text-base md:text-lg uppercase font-knewave mb-8 max-w-3xl">
+          {currentQuestion.helpText}
+        </p>
+
+        {/* SVARMULIGHEDER */}
+        <div className="flex flex-col font-hel-light gap-4 mt-4 max-w-3xl">
+          {currentQuestion.options.map((opt, i) => {
+            const isSelected = selectedOption === i;
+
+            return (
+              <button
+                key={i}
+                onClick={() => setSelectedOption(i)}
+                className="flex items-center gap-3 py-2 px-2 text-left hover:scale-105 transition"
               >
+                {/* RADIO-KNAP – låst rund form, også på mobil */}
                 <div
                   className={`
-                    w-4 h-4 md:w-5 md:h-5 rounded-full
-                    ${isSelected ? "bg-[#8B1D14]" : "bg-transparent"}
+                    w-7 h-7 md:w-8 md:h-8 rounded-full border-[1.5px]
+                    flex-shrink-0
+                    flex items-center justify-center border-[#8B1D14]
                   `}
-                ></div>
-              </div>
+                >
+                  <div
+                    className={`
+                      w-3.5 h-3.5 md:w-4 md:h-4 rounded-full
+                      ${isSelected ? "bg-[#8B1D14]" : "bg-transparent"}
+                    `}
+                  ></div>
+                </div>
 
-              {/* LABEL */}
-              <span className="text-[#FF4F3C] text-lg md:text-xl">
-                {opt.label}
-              </span>
-            </button>
-          );
-        })}
+                {/* LABEL – mindre tekst på mobil, større på desktop */}
+                <span className="text-[#FF4F3C] text-sm md:text-lg leading-snug">
+                  {opt.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* START FORFRA – under svarmulighederne i bunden */}
+        <button
+          onClick={handleRestart}
+          className="
+            mt-6
+            text-molten font-extralight underline
+            text-sm md:text-base
+            hover:scale-105 transition-transform
+          "
+        >
+          Usikker på dit svar? - Start forfra
+        </button>
       </div>
 
-      {/* NEXT KNAP */}
+      {/* NÆSTE-KNAP – tilbage i hjørnet som før */}
       <button
         onClick={handleNext}
         className="
-      fixed bottom-10 right-10 rounded-full
-          w-28 h-28 md:w-32 md:h-32
+          fixed bottom-10 right-10 rounded-full
+          w-24 h-24 md:w-28 md:h-28
           flex items-center justify-center
           text-lg md:text-xl shadow-lg transition-transform
-    bg-[#FF4F3C] text-linen font-knewave
-    hover:scale-105 
-  "
+          bg-[#FF4F3C] text-linen font-knewave
+          hover:scale-105
+        "
       >
         NÆSTE
-      </button>
-
-      <button
-        onClick={handleRestart}
-        className="
-    fixed bottom-40 left-75
-   text-molten font-extralight underline
-    hover:scale-105 transition-transform
-
-  "
-      >
-        Usikker på dit svar? - Start forfra
       </button>
     </div>
   );

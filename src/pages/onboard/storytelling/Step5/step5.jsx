@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router"; // 👈 bruger samme som Intro1
 
 import bgStep5 from "./frames/baggrund_step5.svg";
 import del2Step5 from "./frames/del2_step5.svg";
@@ -22,6 +23,8 @@ export default function Step5() {
   const videreRef = useRef(null);
 
   const bottomFillRef = useRef(null);
+
+  const navigate = useNavigate(); // 👈 hook til navigation
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -179,12 +182,13 @@ export default function Step5() {
             alt=""
           />
 
-          {/* VIDERE-KNAP nederst til højre */}
+          {/* VIDERE-KNAP nederst til højre – klik for at gå til /quiz */}
           <img
             ref={videreRef}
             src={videreKnap}
             className={styles.videreKnap}
             alt="Videre"
+            onClick={() => navigate("/quiz")}
           />
         </div>
       </div>
