@@ -43,7 +43,7 @@ export default function ResultProfile() {
         </ul>
       </div>
 
-      <div className="flex justify-between flex-row items-center gap-2 px-6 md:px-16 lg:px-32">
+      <div className="flex justify-between flex-row items-center gap-2 px-6 md:px-16 lg:px-32 mb-20">
         <div>
           {/* SHORT SUMMARY */}
           <h3 className="text-xl font-knewave text-[#FF4F3C] mb-2">
