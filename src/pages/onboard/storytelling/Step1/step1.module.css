@@ -5,7 +5,6 @@
   background-color: var(--charcoal-brown-hex);
 }
 
-/* wrapper der holder alt på plads når sektionen er pinned */
 .inner {
   position: relative;
   width: 100%;
@@ -13,7 +12,7 @@
   overflow: hidden;
 }
 
-/* INTRO-TITEL – nu større, og shrinker kun når viewport er lille */
+/* INTRO-TITEL */
 .introTitle {
   position: absolute;
   top: 12%;
@@ -21,23 +20,14 @@
   transform: translateX(-50%);
   color: var(--ash-grey);
   font-family: var(--font-knewave);
-
-  /* STØRRE TEKST */
   font-size: clamp(2.4rem, 4.5vw, 4.4rem);
-
-  /* SØRG FOR AT DEN ALDRIG WRAPPER */
   white-space: nowrap;
-
-  /* CENTERING */
   text-align: center;
-
-  /* MAX WIDTH SLET? NEJ – MEN GØR PLADS NOK */
   max-width: 90vw;
-
   line-height: 1.1;
 }
 
-/* INTRO-TEKST – også større igen */
+/* INTRO-TEKST */
 .introText {
   position: absolute;
   bottom: 12%;
@@ -62,14 +52,22 @@
   pointer-events: none;
 }
 
-/* HUND I MIDTEN */
-.dogCenter {
+/* ⭐ STABIL WRAPPER FOR HUNDEBILLEDE */
+.dogCenterWrapper {
   position: absolute;
-  width: 39%;
   top: 50%;
   left: 50%;
+  width: 39%;
   transform: translate(-50%, -50%);
+  transform-origin: center center;
   z-index: 10;
+}
+
+/* ⭐ HUND – STABIL ZOOM OG CENTERING */
+.dogCenter {
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 50% !important;
 }
 
 /* BOBLER */
@@ -113,7 +111,7 @@
   z-index: 5;
 }
 
-/* KAOS-HUNDE (slutpositioner) */
+/* KAOS HUNDE */
 .chaos1 {
   position: absolute;
   opacity: 0;
@@ -150,7 +148,7 @@
   left: -5%;
 }
 
-/* KAOS-STICKERS – fælles base */
+/* STICKERS */
 .sticker1,
 .sticker2,
 .sticker3,
@@ -164,37 +162,7 @@
   pointer-events: none;
 }
 
-.sticker1 {
-  top: 18%;
-  left: 42%;
-}
-
-.sticker2 {
-  top: 35%;
-  right: -5%;
-}
-
-.sticker3 {
-  bottom: 10%;
-  left: 38%;
-}
-
-.sticker4 {
-  top: 42%;
-  left: 2%;
-}
-
-.sticker5 {
-  bottom: 18%;
-  right: -10%;
-}
-
-.sticker6 {
-  top: 30%;
-  left: -10%;
-}
-
-/* ROLIG TEKST-SCENE – større igen */
+/* Calm text */
 .calmTextTop,
 .calmTextBottom {
   position: absolute;
@@ -208,21 +176,19 @@
   font-weight: 400;
 }
 
-/* Over hunden */
 .calmTextTop {
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* Under hunden */
 .calmTextBottom {
   bottom: 18%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* SLUT-TEKST – LILLE LINJE */
+/* SLUTTEKSTER */
 .finalSmall {
   position: absolute;
   top: 8%;
@@ -238,7 +204,6 @@
   text-transform: uppercase;
 }
 
-/* SLUT-TEKST – STOR LINJE */
 .finalBig {
   position: absolute;
   top: 16%;
@@ -249,16 +214,13 @@
   width: 100%;
   color: var(--ash-grey);
   opacity: 0;
-
-  /* mindre og i én linje */
   font-size: clamp(1rem, 2.4vw, 1.8rem);
   white-space: nowrap;
-
   line-height: 1.28;
   font-weight: 700;
 }
 
-/* SCROLL-HINT */
+/* Scroll hint */
 .scrollHint {
   position: absolute;
   top: 50%;
@@ -268,29 +230,9 @@
   max-width: 550px;
   height: auto;
   z-index: 20;
-  pointer-events: none;
 }
 
-/* 💡 Mobil – stående */
-@media (max-width: 768px) and (orientation: portrait) {
-  .scrollHint {
-    width: 55vw;
-    max-width: 320px;
-  }
-}
-
-/* 💡 Mobil – liggende */
-@media (max-width: 868px) and (orientation: landscape) {
-  .scrollHint {
-    top: 48%;
-    width: 45vw;
-    max-width: 550px;
-  }
-}
-
-/* ---------- MOBIL SKALERING – SAMME PRINCIP SOM STEP 4 ---------- */
-
-/* mindre zoom på mobil / small screens */
+/* Mobil scaling */
 @media (max-width: 868px) {
   .bubbleWrapper {
     width: 100vw;
@@ -299,7 +241,6 @@
   }
 }
 
-/* endnu lidt mindre på meget små mobiler */
 @media (max-width: 480px) {
   .bubbleWrapper {
     transform: translate(-50%, -50%) scale(0.65);
