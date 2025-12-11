@@ -1,3 +1,5 @@
+// -- IMPORTS --
+// Importerer React hooks, GSAP og assets
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,6 +26,8 @@ import styles from "./step2.module.css";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Step2() {
+  // -- REFS --
+  // Indeholder DOM-referencer til animationselementer
   const sectionRef = useRef(null);
 
   const clockRef = useRef(null);
@@ -53,13 +57,16 @@ export default function Step2() {
 
   const containerRef = useRef(null);
 
+  // -- GSAP ANIMATION SETUP --
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Initial tilstand for visere
       gsap.set([minuteHandRef.current, hourHandRef.current], {
         opacity: 1,
         rotation: 0,
       });
 
+      // Global timeline med pinning og scrub
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -70,18 +77,20 @@ export default function Step2() {
         },
       });
 
-      // URET
+      // -- URETS ROTATION --
       tl.to(minuteHandRef.current, { rotation: 360 * 6, ease: "none" });
       tl.to(hourHandRef.current, { rotation: 180, ease: "none" }, "<");
 
       tl.to({}, { duration: 0.3 });
 
+      // Zoom ind på uret
       tl.to(`.${styles.clockWrapper}`, {
         scale: 4,
         y: -450,
         ease: "expo.out",
       });
 
+      // Marker “6 timer”
       tl.to(sixRef.current, { opacity: 1 }, "<0.5");
       tl.to(`.${styles.clockWrapper}`, { opacity: 0 });
 
@@ -93,7 +102,7 @@ export default function Step2() {
         ease: "back.out(1.7)",
       });
 
-      // "TIMER"
+      // -- TEKST: TIMER --
       tl.fromTo(
         timerRef.current,
         { opacity: 0, y: 20 },
@@ -116,7 +125,7 @@ export default function Step2() {
         "-=0.4"
       );
 
-      // Dør ind
+      // Illustration af hund ved døren
       tl.from(
         doorRef.current,
         {
@@ -130,10 +139,10 @@ export default function Step2() {
 
       tl.to({}, { duration: 0.3 });
 
-      // ✨ TEKST-DEL UD – NU MED FADER LIGESOM DØREN ✨
+      // -- FADER UDEFFEKTER FOR TEKSTDEL --
       tl.to(overskriftRef.current, {
         y: -900,
-        opacity: 0,          // 👈 fade ud
+        opacity: 0,
         duration: 1,
       });
 
@@ -141,7 +150,7 @@ export default function Step2() {
         brodtekstRef.current,
         {
           y: -850,
-          opacity: 0,        // 👈 fade ud
+          opacity: 0,
           duration: 1,
         },
         "<"
@@ -150,13 +159,14 @@ export default function Step2() {
       tl.to(
         doorRef.current,
         {
-          opacity: 0,        // kun fade, ingen flytning
+          opacity: 0,
           duration: 0.8,
           ease: "power2.inOut",
         },
         "<"
       );
 
+      // Flytter "6 timer" ud af scenen
       tl.to(
         sixRef.current,
         { y: -1300, duration: 1 },
@@ -167,19 +177,20 @@ export default function Step2() {
         timerRef.current,
         {
           y: -800,
-          opacity: 0,        // 👈 fade TIMER helt væk
+          opacity: 0,
           duration: 1,
         },
         "<"
       );
 
-      // DE FIRE GRUNDBEHOV
+      // -- FIRE GRUNDBEHOV --
       tl.fromTo(
         overskriftTwoRef.current,
         { y: -160, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: "back.out(1)" }
       );
 
+      // Cards flyver ind i sekvens
       tl.to(
         [
           cardOneRef.current,
@@ -199,6 +210,7 @@ export default function Step2() {
 
       tl.to({}, { duration: 0.3 });
 
+      // Cards flyver ud igen
       tl.to(
         [
           cardOneRef.current,
@@ -214,15 +226,17 @@ export default function Step2() {
         }
       );
 
+      // Overskrift forlader scenen
       tl.to(overskriftTwoRef.current, {
         x: 1360,
         duration: 1.4,
         ease: "power3.out",
       });
 
-      // OUTRO
+      // -- OUTRO SEKTION --
       tl.to(sectionRef.current, { backgroundColor: "var(--taupe-hex)" });
 
+      // Outro overskrift
       tl.from(overskriftTreeRef.current, {
         y: -80,
         opacity: 0,
@@ -230,12 +244,14 @@ export default function Step2() {
         ease: "back.out(1.6)",
       });
 
+      // Outro brødtekst
       tl.from(
         brodtekstTreeRef.current,
         { y: 40, opacity: 0, duration: 1, ease: "power3.out" },
         "<0.2"
       );
 
+      // Fem hundefigurer flyver ind sekventielt
       tl.from(
         [
           dogOneRef.current,
@@ -255,7 +271,8 @@ export default function Step2() {
       );
     }, sectionRef);
 
-    // Responsiv skalering af hele scenen
+    // -- RESPONSIV SKALERING --
+    // Skalerer hele scenen proportionalt ift. viewport
     const updateScale = () => {
       const el = containerRef.current;
       if (!el) return;
@@ -275,15 +292,18 @@ export default function Step2() {
     updateScale();
     window.addEventListener("resize", updateScale);
 
+    // Cleanup
     return () => {
       ctx.revert();
       window.removeEventListener("resize", updateScale);
     };
   }, []);
 
+  // -- RENDER --
   return (
     <section ref={sectionRef} className={styles.section}>
       <div ref={containerRef} className={styles.container}>
+        {/* -- UR OG VISERE -- */}
         <div className={styles.clockWrapper}>
           <img ref={clockRef} src={clock} className={styles.clock} alt="" />
           <img ref={minuteHandRef} src={minuteHand} className={styles.minuteHand} alt="" />
@@ -292,6 +312,7 @@ export default function Step2() {
 
         <img ref={sixRef} src={six} className={styles.six} alt="" />
 
+        {/* -- SEKS TIMER SEKTION -- */}
         <div className={styles.seksTimer}>
           <h1 ref={overskriftRef} className={styles.overskrift}>
             EN HUND MÅ IKKE VÆRE ALENE HJEMME MERE END 6 TIMER
@@ -309,6 +330,7 @@ export default function Step2() {
           <img ref={doorRef} src={dogDoor} className={styles.dogDoor} alt="" />
         </div>
 
+        {/* -- FIRE GRUNDBEHOV SEKTION -- */}
         <div className={styles.cardSection}>
           <h1 ref={overskriftTwoRef}>De fire grundbehov</h1>
 
@@ -320,6 +342,7 @@ export default function Step2() {
           </div>
         </div>
 
+        {/* -- OUTRO SEKTION -- */}
         <div className={styles.outro}>
           <h2 ref={overskriftTreeRef} className={styles.outroHeading}>
             En hund er en livsforpligtelse
