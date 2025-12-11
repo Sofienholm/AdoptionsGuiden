@@ -13,15 +13,15 @@ export default function MatchDogs() {
   const { userProfile } = useQuiz();
 
   useEffect(() => {
-        async function loadDogs() {
-          const allDogs = await getDogs();            // hent ALLE hunde
-          const matched = await matchDogs(userProfile, allDogs); // beregn matchscore
-          const top3 = matched.slice(0, 3);            // tag kun top 3
-          setDogs(top3);
-          setLoading(false);
-        }
-        loadDogs();
-      }, []);
+    async function loadDogs() {
+      const allDogs = await getDogs(); // hent ALLE hunde
+      const matched = await matchDogs(userProfile, allDogs); // beregn matchscore
+      const top3 = matched.slice(0, 3); // tag kun top 3
+      setDogs(top3);
+      setLoading(false);
+    }
+    loadDogs();
+  }, []);
 
   if (loading) {
     return (
@@ -33,13 +33,16 @@ export default function MatchDogs() {
 
   return (
     <div className="min-h-screen bg-[var(--soft-linen-hex)] px-6 py-10 md:px-16 lg:px-32 relative">
-
       {/* BACK ARROW */}
       <button
         onClick={() => navigate("/result/why")}
         className="absolute left-6 top-6 hover:scale-105 transition-transform"
       >
-        <img src={arrow} alt="Tilbage"  className="lg:w-26 md:w-20 w-20 ml-6 mt-6 rotate-180"  />
+        <img
+          src={arrow}
+          alt="Tilbage"
+          className="lg:w-26 md:w-20 w-20 ml-6 mt-6 rotate-180"
+        />
       </button>
 
       {/* TITLE */}
@@ -49,7 +52,6 @@ export default function MatchDogs() {
 
       {/* DOG CARDS WRAPPER */}
       <div className="grid grid-cols-1 md:grid-cols-3  place-items-center">
-
         {dogs.map((dog) => (
           <div
             key={dog.id}
@@ -70,36 +72,37 @@ export default function MatchDogs() {
 
             {/* TEXT SECTION */}
             <div className="h-[30%] flex flex-col justify-between p-4 text-center">
-
               {/* NAME */}
               <div className="h-13">
                 <p className="font-knewave text-[var(--charcoal-brown-hex)] text-3xl uppercase">
-                  {dog.name} <span className="text-[var(--tomato-hex)] text-sm opacity-70">GÅR</span>
+                  {dog.name}{" "}
+                  <span className="text-[var(--tomato-hex)] text-sm opacity-70">
+                    {" "}
+                    {dog.ageYears
+                      ? `${dog.ageYears} år`
+                      : dog.ageWeeks
+                      ? `${dog.ageWeeks} uger`
+                      : ""}
+                  </span>
                 </p>
                 <p className="font-hel-light text-[var(--molten-lava-hex)] text-sm mt-1">
                   {dog.race}
                 </p>
               </div>
-              </div>
-
-              {/* BUTTONS */}
-              <div className="flex justify-center gap-5 text-sm font-knewave bg-[var(--molten-lava-hex)] h-50">
-                <button
-                  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition"
-                >
-                  KONTAKT
-                </button>
-
-                <button
-                  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition"
-                >
-                  LÆS MERE
-                </button>
-              </div>
             </div>
-          
-        ))}
 
+            {/* BUTTONS */}
+            <div className="flex justify-center gap-5 text-sm font-knewave bg-[var(--molten-lava-hex)] h-50">
+              <button className=" text-white py-2 px-4 rounded-full hover:scale-105 transition">
+                KONTAKT
+              </button>
+
+              <button   onClick={() => window.open(dog.profileUrl, "_blank")}  className=" text-white py-2 px-4 rounded-full hover:scale-105 transition">
+                LÆS MERE
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* "ALLE HUNDE" BUTTON */}
@@ -110,7 +113,7 @@ export default function MatchDogs() {
             hover:scale-110 transition-transform
           "
         >
-          ALLE HUNDE 
+          ALLE HUNDE
         </button>
         <img src={arrow} alt="pil" className="lg:w-20 md:w-20 w-20 mr-3" />
       </div>
