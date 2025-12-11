@@ -24,7 +24,7 @@ import { QuizProvider } from "../pages/quiz/components/QuizContext.jsx";
 import ResultProfile from "../pages/result/ResultProfile.jsx";
 import ResultWhy from "../pages/result/ResultWhy.jsx";
 
-import DogMatches from "../pages/match/MatchDogs.jsx";
+import MatchDogs from "../pages/match/MatchDogs";
 
 // Ansøgningsformular
 import AdoptionApplicationForm from "../pages/application/AdoptionApplicationForm";
@@ -57,7 +57,8 @@ function App() {
         <Route path="/result" element={<ResultProfile />} />
         <Route path="/result/why" element={<ResultWhy />} />
         {/* Hundematch */}
-        <Route path="/match" element={<DogMatches />} />
+        <Route path="/dog-matches" element={<MatchDogs />} />
+
 
          {/* Ansøgningsformular */}
       <Route path="/ansoegning" element={<AdoptionApplicationForm />} />
