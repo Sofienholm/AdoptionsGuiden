@@ -56,6 +56,7 @@ function App() {
         {/* RESULTATSIDER */}
         <Route path="/result" element={<ResultProfile />} />
         <Route path="/result/why" element={<ResultWhy />} />
+
         {/* Hundematch */}
         <Route path="/dog-matches" element={<MatchDogs />} />
 
