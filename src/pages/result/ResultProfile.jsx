@@ -18,23 +18,23 @@ export default function ResultProfile() {
 
   return (
     <div className="min-h-screen bg-[#F6F0E8]">
-      <div className=" px-6 py-20 md:px-16 lg:px-32">
+      <div className=" px-6  md:py-20 md:px-16 lg:px-32">
         {/* TITLE */}
-        <h1 className="text-3xl md:text-5xl font-knewave text-[#8B1D14] mb-12">
+        <h1 className="text-4xl md:text-5xl font-knewave text-[#8B1D14] mb-2 md:mb-12">
           DIT RESULTAT – ADFÆRDSPROFIL
         </h1>
 
         {/* SUBTITLE */}
-        <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-12">
+        <h2 className="text-xl md:text-2xl font-knewave text-[#FF4F3C] mb-8 md:mb-12">
           DU PASSER BEDST TIL EN {profile.label.toUpperCase()}, DER:
         </h2>
 
         {/* DESCRIPTION LIST */}
-        <ul className="space-y-6 mb-15">
+        <ul className=" md:space-y-6 mb-15">
           {profile.description.map((line, i) => (
             <li
               key={i}
-              className="text-[#FF4F3C]  font-hel-light text-lg md:text-xl flex gap-6"
+              className="text-[#FF4F3C]  font-hel-light text-m md:text-xl flex gap-2 md:gap-6 mb-3 md:mb-7 "
             >
               <span className="text-[#FF4F3C]">•</span>
               <span>{line}</span>
@@ -50,7 +50,7 @@ export default function ResultProfile() {
             KORT SAGT
           </h3>
 
-          <p className="text-[#FF4F3C]  font-hel-light text-lg md:text-xl max-w-xl ">
+          <p className="text-[#FF4F3C]  font-hel-light text-lg md:text-xl md:max-w-xl max-w-50 ">
             {profile.shortSummary}
           </p>
         </div>

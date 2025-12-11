@@ -56,12 +56,13 @@ export default function MatchDogs() {
       </h1>
 
       {/* DOG CARDS WRAPPER */}
-      <div className="grid grid-cols-1 md:grid-cols-3  place-items-center">
+      <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-3 place-items-center">
+
         {dogs.map((dog) => (
           <div
             key={dog.id}
             className="
-              w-[260px] h-[430px]
+          w-[85%] max-w-[300px] h-[420px] sm:w-[260px]
               bg-[var(--lys-beige-hex)] rounded-[30px] border-1 border-[var(--molten-lava-hex)]
               flex flex-col overflow-hidden shadow-md
             "
