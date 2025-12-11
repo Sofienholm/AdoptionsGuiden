@@ -111,7 +111,7 @@
   z-index: 5;
 }
 
-/* KAOS HUNDE */
+/* KAOS-HUNDE */
 .chaos1 {
   position: absolute;
   opacity: 0;
@@ -148,7 +148,7 @@
   left: -5%;
 }
 
-/* STICKERS */
+/* STICKERS – base */
 .sticker1,
 .sticker2,
 .sticker3,
@@ -162,7 +162,38 @@
   pointer-events: none;
 }
 
-/* Calm text */
+/* ⭐ ORIGINALE PLACERINGER genskabt */
+.sticker1 {
+  top: 18%;
+  left: 42%;
+}
+
+.sticker2 {
+  top: 35%;
+  right: -5%;
+}
+
+.sticker3 {
+  bottom: 10%;
+  left: 38%;
+}
+
+.sticker4 {
+  top: 42%;
+  left: 2%;
+}
+
+.sticker5 {
+  bottom: 18%;
+  right: -10%;
+}
+
+.sticker6 {
+  top: 30%;
+  left: -10%;
+}
+
+/* ROLIG TEKST-SCENE */
 .calmTextTop,
 .calmTextBottom {
   position: absolute;
@@ -188,7 +219,7 @@
   transform: translateX(-50%);
 }
 
-/* SLUTTEKSTER */
+/* SLUT-TEKSTER */
 .finalSmall {
   position: absolute;
   top: 8%;
