@@ -111,6 +111,7 @@ export default function ResultWhy() {
             flex items-center justify-center
             text-lg md:text-xl shadow-lg
             hover:scale-105 transition-transform
+            mb:20
   "
 >
   SE MATCH
