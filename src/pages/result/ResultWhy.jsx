@@ -67,36 +67,58 @@ export default function ResultWhy() {
         className="absolute top-20 right-20 invisible lg:visible md:visible lg:w-90 md:w-30"
       />
 
-      {/* BUTTON → MATCHDOGS */}
-      <div className="flex justify-end lg:justify-between flex-col md:flex-row items-center px-6 md:px-16 lg:px-32 ">
-        <h3 className="text-xl md:text-3xl font-knewave text-[#FF4F3C] mb-6 md:mb-12 mr-3">
-          TRYK NU VIDERE OG SE VORES BUD PÅ HUNDE DER KUNNE VÆRE ET MATCH
-        </h3>
 
-        <img
-          src={arrow}
-          alt="arrow"
-          className="rotate-142 sm:rotate-0 lg:w-28 md:w-25 w-20 -mr-30 lg:mr-40 mb-6 md:mb-0"
-        />
+{/* BUTTON → MATCHDOGS */}
+<div
+  className="
+    flex flex-col items-center text-center 
+    mx-6 md:mx-0 lg:mx-0
+    md:flex-row md:justify-center md:text-left w-full
+  "
+>
+  {/* TEXT */}
+  <h3
+    className="
+      text-xl md:text-3xl font-knewave text-[#FF4F3C]
+      mb-6 md:mb-0 md:max-w-[600px]
+    "
+  >
+    TRYK NU VIDERE OG SE VORES BUD PÅ HUNDE DER KUNNE VÆRE ET MATCH
+  </h3>
 
-        <button
-          onClick={() =>
-            navigate("/dog-matches", {
-              state: { behaviorProfile: profileData },
-            })
-          }
-          className="
+  {/* ARROW */}
+  <img
+    src={arrow}
+    alt="arrow"
+    className="
+      w-20 md:w-28 
+      rotate-90 md:rotate-0 
+      mb-8 md:mb-0 mr-9
+    "
+  />
+
+  {/* BUTTON */}
+  <button
+  onClick={() =>
+    navigate("/dog-matches", {
+      state: { behaviorProfile: profileData },
+    })
+  }
+  className="
+   
             bg-[#FF4F3C] text-white font-knewave
-            lg:w-32 lg:h-32 md:w-32 md:h-32 w-35 h-35 rounded-full
-            -ml-30 -mt-5 mb-10 md:mb-0
-            flex items-center justify-center p-3
+            w-28 h-28 md:w-32 md:h-32 rounded-full
+            flex items-center justify-center
             text-lg md:text-xl shadow-lg
             hover:scale-105 transition-transform
-          "
-        >
-          SE MATCH
-        </button>
-      </div>
+  "
+>
+  SE MATCH
+</button>
+
+</div>
+
+
     </div>
   );
 }
