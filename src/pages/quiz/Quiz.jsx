@@ -6,7 +6,6 @@ export default function Quiz() {
   const { currentQuestion, answerQuestion, currentQuestionIndex } = useQuiz();
   const total = 8;
 
-  // Hvilken option er valgt?
   const [selectedOption, setSelectedOption] = useState(null);
 
   if (!currentQuestion) return null;
@@ -14,7 +13,7 @@ export default function Quiz() {
   const handleNext = () => {
     if (selectedOption === null) return;
     answerQuestion(currentQuestion.options[selectedOption].effects);
-    setSelectedOption(null); // reset for næste spørgsmål
+    setSelectedOption(null);
   };
 
   const { resetQuiz } = useQuiz();
@@ -26,22 +25,28 @@ export default function Quiz() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F6F0E8] flex items-center justify-center px-4 md:px-8 lg:px-12 overflow-hidden">
-      {/* INDRE WRAPPER – skaleres lidt ned så alt kan være i framen */}
-      <div className="w-full max-w-3xl md:max-w-4xl transform scale-90 md:scale-95 lg:scale-100 origin-top md:origin-center">
+    <div className="min-h-screen bg-[#F6F0E8] flex justify-center px-4 md:px-8 lg:px-12 overflow-hidden relative">
 
-        {/* PROGRESS BAR – rykket lidt højere op */}
-        <div className="flex gap-3 mb-8 justify-center mt-[-10px]">
-          {Array.from({ length: total }).map((_, i) => (
-            <div
-              key={i}
-              className={`
-                w-5 h-5 md:w-6 md:h-6 rounded-full border-2 border-[#8B1D14]
-                ${i === currentQuestionIndex ? "bg-[#8B1D14]" : "bg-transparent"}
-              `}
-            />
-          ))}
-        </div>
+      {/* ⭐ FIXED PROGRESS BAR WITH AIR UNDER IT */}
+      <div
+        className="
+          fixed top-4 left-1/2 -translate-x-1/2 
+          flex gap-3 z-50 pb-4
+        "
+      >
+        {Array.from({ length: total }).map((_, i) => (
+          <div
+            key={i}
+            className={`
+              w-5 h-5 md:w-6 md:h-6 rounded-full border-2 border-[#8B1D14]
+              ${i === currentQuestionIndex ? "bg-[#8B1D14]" : "bg-transparent"}
+            `}
+          />
+        ))}
+      </div>
+
+      {/* INDRE WRAPPER – pushed down further for visual breathing room */}
+      <div className="w-full max-w-3xl md:max-w-4xl transform scale-90 md:scale-95 lg:scale-100 origin-top mt-28">
 
         {/* SPØRGSMÅL */}
         <h1 className="text-2xl md:text-3xl text-[#8B1D14] uppercase font-knewave mb-3">
@@ -65,12 +70,11 @@ export default function Quiz() {
                 onClick={() => setSelectedOption(i)}
                 className="flex items-center gap-3 py-2 px-2 text-left hover:scale-105 transition"
               >
-                {/* RADIO-KNAP – låst rund form, også på mobil */}
+                {/* RADIO-KNAP */}
                 <div
                   className={`
                     w-7 h-7 md:w-8 md:h-8 rounded-full border-[1.5px]
-                    flex-shrink-0
-                    flex items-center justify-center border-[#8B1D14]
+                    flex-shrink-0 flex items-center justify-center border-[#8B1D14]
                   `}
                 >
                   <div
@@ -78,10 +82,10 @@ export default function Quiz() {
                       w-3.5 h-3.5 md:w-4 md:h-4 rounded-full
                       ${isSelected ? "bg-[#8B1D14]" : "bg-transparent"}
                     `}
-                  ></div>
+                  />
                 </div>
 
-                {/* LABEL – mindre tekst på mobil, større på desktop */}
+                {/* LABEL */}
                 <span className="text-[#FF4F3C] text-sm md:text-lg leading-snug">
                   {opt.label}
                 </span>
@@ -90,7 +94,7 @@ export default function Quiz() {
           })}
         </div>
 
-        {/* START FORFRA – under svarmulighederne i bunden */}
+        {/* START FORFRA */}
         <button
           onClick={handleRestart}
           className="
@@ -104,7 +108,7 @@ export default function Quiz() {
         </button>
       </div>
 
-      {/* NÆSTE-KNAP – tilbage i hjørnet som før */}
+      {/* NÆSTE-KNAP */}
       <button
         onClick={handleNext}
         className="
