@@ -1,7 +1,12 @@
-// Beregn matchscore for én hund
+// -- MATCHSCORE BEREGNING --
+// regner en samlet score mellem bruger og hund
+// jo tættere de ligger på hinanden, jo bedre match
+
 function calculateMatchScore(user, dog) {
   let score = 0;
 
+  // sammenligner alle værdier én for én
+  // små forskelle giver flere point
   score += 10 - Math.abs(user.environment - dog.environmentNeed);
   score += 10 - Math.abs(user.kids - dog.goodWithKids);
   score += 10 - Math.abs(user.otherPets - dog.goodWithOtherPets);
@@ -14,9 +19,11 @@ function calculateMatchScore(user, dog) {
   return score;
 }
 
-// userProfile = objekt med 8 felter
-// dogs = array af hunde (fra Firestore via getDogs)
+// -- MATCH HUNDE --
+// tager brugerprofil og liste af hunde
+// returnerer dem sorteret efter bedste match
 export function matchDogs(userProfile, dogs) {
+  // beregner score for hver hund
   const matches = dogs.map((dog) => {
     const score = calculateMatchScore(userProfile, dog);
 
@@ -26,6 +33,6 @@ export function matchDogs(userProfile, dogs) {
     };
   });
 
-  // Sortér bedste match først
+  // sorterer så bedste match ligger først
   return matches.sort((a, b) => b.matchScore - a.matchScore);
 }
