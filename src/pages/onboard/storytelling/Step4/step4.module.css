@@ -1,3 +1,5 @@
+/* -- STEP 4 · STORYTELLING -- */
+
 .section {
   height: 100vh;
   width: 100%;
@@ -5,6 +7,7 @@
   background-color: var(--tomato);
 }
 
+/* -- SECTION INNER -- */
 .inner {
   position: relative;
   width: 100%;
@@ -12,7 +15,7 @@
   overflow: hidden;
 }
 
-/* Wrapper for hele scenen */
+/* -- SCENE WRAPPER -- */
 .graphicWrapper {
   position: absolute;
   top: 50%;
@@ -24,7 +27,7 @@
   pointer-events: auto;
 }
 
-/* SVG lag */
+/* -- MAIN GRAPHIC LAYERS -- */
 .mainGraphic {
   position: absolute;
   inset: 0;
@@ -34,7 +37,7 @@
   z-index: 1;
 }
 
-/* Tabs grid */
+/* -- TABS GRID -- */
 .tabsGrid {
   position: absolute;
   inset: 0;
@@ -55,9 +58,7 @@
   pointer-events: auto;
 }
 
-
-/* ---------- POPUP ---------- */
-
+/* -- POPUP OVERLAY -- */
 .popupOverlay {
   position: fixed;
   inset: 0;
@@ -68,7 +69,7 @@
   justify-content: center;
 }
 
-/* popupInner – grundstørrelse */
+/* -- POPUP CONTENT -- */
 .popupInner {
   position: relative;
   width: min(95vw, 1100px);
@@ -82,6 +83,7 @@
   object-fit: contain;
 }
 
+/* -- POPUP HIT AREAS -- */
 .closeHitArea {
   position: absolute;
   top: 13%;
@@ -101,9 +103,7 @@
   cursor: pointer;
 }
 
-
-/* ---------- DEL 3 ikoner ---------- */
-
+/* -- DEL 3 ICONS -- */
 .del3Icon {
   position: absolute;
   bottom: 7%;
@@ -115,10 +115,7 @@
 .del3IconDyr { left: 9%; }
 .del3IconArbejde { right: 8%; }
 
-
-/* ---------- MOBIL SKALERING ---------- */
-
-/* mindre zoom på mobil – både scene og popup */
+/* -- RESPONSIVE SCALING -- */
 @media (max-width: 868px) {
   .graphicWrapper {
     width: 100vw;
@@ -126,19 +123,17 @@
     transform: translate(-50%, -50%) scale(0.65);
   }
 
-  /* popup-kortene gøres smallere så de matcher den generelle skalering */
   .popupInner {
-    width: 80vw; /* mindre end 95vw */
+    width: 80vw;
   }
 }
 
-/* endnu lidt mindre på meget små mobiler */
 @media (max-width: 480px) {
   .graphicWrapper {
     transform: translate(-50%, -50%) scale(0.65);
   }
 
   .popupInner {
-    width: 70vw; /* endnu mindre kort */
+    width: 70vw;
   }
 }

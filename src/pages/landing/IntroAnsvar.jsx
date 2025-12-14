@@ -1,6 +1,10 @@
-// IntroAnsvar.jsx
+// -- INTRO · ANSVAR --
+// Første side i intro-flowet
+// Sætter en alvorlig tone før brugeren kan gå videre
+
 import { Link } from "react-router";
 
+// -- GRAFISKE ELEMENTER --
 import tekst2Intro from "./frames/tekst2_intro.svg";
 import trykPåMigIcon from "./frames/trykpaamig_knap.svg";
 
@@ -14,7 +18,7 @@ export default function IntroAnsvar() {
       "
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
-      {/* Stor grafik – rykket op */}
+      {/* -- INTRO TEKST -- */}
       <img
         src={tekst2Intro}
         alt="Klar til ansvar"
@@ -26,9 +30,9 @@ export default function IntroAnsvar() {
         "
       />
 
-      {/* Tryk-på-mig knap – nu korrekt link */}
+      {/* -- NAVIGATION -- */}
       <Link
-        to="/intro-3" 
+        to="/intro-3"
         className="
           fixed 
           bottom-6 right-6

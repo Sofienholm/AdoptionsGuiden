@@ -1,3 +1,4 @@
+/* -- SECTION -- */
 .section {
   position: relative;
   width: 100%;
@@ -6,12 +7,14 @@
   background-color: var(--taupe);
 }
 
+/* -- INNER WRAPPER -- */
 .inner {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
+/* -- GRAPHIC WRAPPER -- */
 .graphicWrapper {
   position: absolute;
   inset: 0;
@@ -20,7 +23,7 @@
   align-items: center;
 }
 
-/* Sceneframes */
+/* -- MAIN GRAPHICS -- */
 .mainGraphic {
   position: absolute;
   top: 50%;
@@ -32,7 +35,7 @@
   z-index: 1;
 }
 
-/* DEL 2 wrapper (overlay + hotspot) */
+/* -- DEL 2 WRAPPER -- */
 .del2Wrapper {
   position: absolute;
   inset: 0;
@@ -40,7 +43,7 @@
   pointer-events: none;
 }
 
-/* Bund-farvefelt */
+/* -- BOTTOM FILL -- */
 .bottomFill {
   position: absolute;
   left: 0;
@@ -52,7 +55,7 @@
   height: 0;
 }
 
-/* Hotspot over den lyse hund */
+/* -- DOG HOTSPOT -- */
 .dogHotspot {
   position: absolute;
   left: 50%;
@@ -64,7 +67,7 @@
   pointer-events: auto;
 }
 
-/* Overlay med blur */
+/* -- CENTER OVERLAY -- */
 .centerOverlay {
   position: absolute;
   left: 50%;
@@ -79,13 +82,14 @@
   opacity: 1;
 }
 
+/* -- OVERLAY BOX -- */
 .centerOverlayBox {
   position: relative;
   text-align: center;
   padding: 10px 10px;
 }
 
-/* Sløret baggrund bag tekst */
+/* -- OVERLAY BACKDROP -- */
 .centerOverlayBox::before {
   content: "";
   position: absolute;
@@ -97,6 +101,7 @@
   border-radius: 999px;
 }
 
+/* -- OVERLAY TEXT -- */
 .centerOverlayLine {
   margin: 2px 0;
   font-family: var(--font-knewave);
@@ -107,7 +112,7 @@
   letter-spacing: 0.05em;
 }
 
-/* Videre-knap i nederste højre hjørne */
+/* -- CTA BUTTON -- */
 .videreKnap {
   position: absolute;
   right: 3%;

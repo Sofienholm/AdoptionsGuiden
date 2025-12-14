@@ -1,33 +1,54 @@
+// -- QUIZ --
+// Selve quiz-flowet
+// brugeren svarer på spørgsmål som bruges til at lave en match-profil
+
 import { useState } from "react";
 import { useQuiz } from "./components/useQuiz";
 import { useNavigate } from "react-router";
 
 export default function Quiz() {
-  const { currentQuestion, answerQuestion, currentQuestionIndex } = useQuiz();
-  const total = 8;
+  // -- QUIZ STATE --
+  // quiz logik og state ligger i useQuiz
+  // her bruger vi bare det vi skal bruge til UI
+  const {
+    currentQuestion,
+    answerQuestion,
+    currentQuestionIndex,
+    resetQuiz,
+  } = useQuiz();
 
+  // bruges når quizzen skal starte forfra
+  const navigate = useNavigate();
+
+  // hvilket svar brugeren har valgt
   const [selectedOption, setSelectedOption] = useState(null);
 
+  // -- KONSTANTER --
+  // antal spørgsmål i alt (bruges kun til progress)
+  const total = 8;
+
+  // -- GUARD --
+  // hvis quiz data ikke er klar endnu, viser vi ingenting
   if (!currentQuestion) return null;
 
+  // -- NÆSTE SPØRGSMÅL --
   const handleNext = () => {
     if (selectedOption === null) return;
+    // sender effekten af svaret videre til quiz hooken
     answerQuestion(currentQuestion.options[selectedOption].effects);
     setSelectedOption(null);
   };
 
-  const { resetQuiz } = useQuiz();
-  const navigate = useNavigate();
-
-  function handleRestart() {
+  // -- RESET QUIZ --
+  const handleRestart = () => {
     resetQuiz();
     navigate("/quiz");
-  }
+  };
 
   return (
     <div className="min-h-screen bg-[#F6F0E8] flex justify-center px-4 md:px-8 lg:px-12 overflow-hidden relative">
-
-      {/* ⭐ FIXED PROGRESS BAR WITH AIR UNDER IT */}
+      {/* -- PROGRESS -- */}
+      {/* viser hvor langt man er i quizzen */}
       <div
         className="
           fixed top-4 left-1/2 -translate-x-1/2 
@@ -45,21 +66,21 @@ export default function Quiz() {
         ))}
       </div>
 
-      {/* INDRE WRAPPER – pushed down further for visual breathing room */}
+      {/* -- QUIZ INDHOLD -- */}
       <div className="w-full max-w-3xl md:max-w-4xl transform scale-90 md:scale-95 lg:scale-100 origin-top mt-28">
-
-        {/* SPØRGSMÅL */}
+        {/* -- SPØRGSMÅL -- */}
         <h1 className="text-2xl md:text-3xl text-[#8B1D14] uppercase font-knewave mb-3">
           SPØRGSMÅL {currentQuestionIndex + 1} –{" "}
           {currentQuestion.question.toUpperCase()}
         </h1>
 
-        {/* HJÆLPETEKST */}
+        {/* -- HJÆLPETEKST -- */}
+        {/* lille ekstra forklaring til spørgsmålet */}
         <p className="text-[#FF4F3C] text-base md:text-lg uppercase font-knewave mb-8 max-w-3xl">
           {currentQuestion.helpText}
         </p>
 
-        {/* SVARMULIGHEDER */}
+        {/* -- SVARMULIGHEDER -- */}
         <div className="flex flex-col font-hel-light gap-4 mt-4 max-w-3xl">
           {currentQuestion.options.map((opt, i) => {
             const isSelected = selectedOption === i;
@@ -70,7 +91,8 @@ export default function Quiz() {
                 onClick={() => setSelectedOption(i)}
                 className="flex items-center gap-3 py-2 px-2 text-left hover:scale-105 transition"
               >
-                {/* RADIO-KNAP */}
+                {/* -- RADIO -- */}
+                {/* bliver fyldt hvis den er valgt */}
                 <div
                   className={`
                     w-7 h-7 md:w-8 md:h-8 rounded-full border-[1.5px]
@@ -85,7 +107,7 @@ export default function Quiz() {
                   />
                 </div>
 
-                {/* LABEL */}
+                {/* -- SVAR -- */}
                 <span className="text-[#FF4F3C] text-sm md:text-lg leading-snug">
                   {opt.label}
                 </span>
@@ -94,7 +116,8 @@ export default function Quiz() {
           })}
         </div>
 
-        {/* START FORFRA */}
+        {/* -- START FORFRA -- */}
+        {/* hvis man bliver i tvivl midt i quizzen */}
         <button
           onClick={handleRestart}
           className="
@@ -108,7 +131,8 @@ export default function Quiz() {
         </button>
       </div>
 
-      {/* NÆSTE-KNAP */}
+      {/* -- NÆSTE -- */}
+      {/* fast knap der går videre når der er valgt et svar */}
       <button
         onClick={handleNext}
         className="

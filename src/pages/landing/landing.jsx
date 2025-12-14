@@ -1,6 +1,11 @@
-// landingpage.jsx
+// -- LANDINGPAGE --
+// Første møde med løsningen
+// Giver brugeren et valg af dyretype og starter flowet
+
 import { Link } from "react-router";
 
+// -- GRAFISKE ELEMENTER --
+// SVG’er bruges for skarp grafik på tværs af skærmstørrelser
 import tekstIntro from "./frames/tekst1_intro.svg";
 import hundIcon from "./frames/hundikon_intro.svg";
 import katIcon from "./frames/katikon_intro.svg";
@@ -17,27 +22,27 @@ export default function LandingPage() {
       "
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
-      {/* Overskrift */}
+      {/* -- OVERSKRIFT -- */}
       <img
         src={tekstIntro}
         alt="Adoption"
         className="
-          w-[80%]         /* ⭐ større på mobil */
-          sm:w-[60%]      /* ⭐ original størrelse fra sm og op */
+          w-[80%]
+          sm:w-[60%]
           max-w-[700px]
           h-auto 
           mb-[3rem]
         "
       />
 
-      {/* Ikon-række – GRID på mobil, FLEX på større */}
+      {/* -- DYREVALG -- */}
       <div
         className="
           grid grid-cols-2 gap-10 mt-[3rem]
           sm:flex sm:flex-row sm:gap-10 sm:justify-center sm:items-center
         "
       >
-        {/* HUND — eneste der kan klikkes */}
+        {/* -- HUND -- */}
         <Link
           to="/intro-ansvar"
           className="transition-transform duration-200 hover:scale-110 flex justify-center"
@@ -45,17 +50,17 @@ export default function LandingPage() {
           <img src={hundIcon} alt="Hund" className="w-[110px] h-auto" />
         </Link>
 
-        {/* KAT */}
+        {/* -- KAT (IKKE IMPLEMENTERET) -- */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={katIcon} alt="Kat" className="w-[110px] h-auto" />
         </div>
 
-        {/* KANIN */}
+        {/* -- KANIN (IKKE IMPLEMENTERET) -- */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={kaninIcon} alt="Kanin" className="w-[110px] h-auto" />
         </div>
 
-        {/* MARSVIN */}
+        {/* -- MARSVIN (IKKE IMPLEMENTERET) -- */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={marsvinIcon} alt="Marsvin" className="w-[110px] h-auto" />
         </div>

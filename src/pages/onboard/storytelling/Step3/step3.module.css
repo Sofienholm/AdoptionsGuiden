@@ -1,3 +1,6 @@
+/* -- STEP 3 · STORYTELLING -- */
+
+/* -- SECTION -- */
 .section {
   width: 100vw;
   height: 100vh;
@@ -8,7 +11,7 @@
   overflow: hidden;
 }
 
-/* Canvas */
+/* -- CANVAS -- */
 .canvas {
   width: 1920px;
   height: 1080px;
@@ -19,10 +22,7 @@
   align-items: center;
 }
 
-/* -------------------------- */
-/*         SCENE 1            */
-/* -------------------------- */
-
+/* -- SCENE 1 -- */
 .scene1 {
   width: 100%;
   height: 100%;
@@ -48,10 +48,7 @@
   color: var(--charcoal-brown-hex);
 }
 
-/* -------------------------- */
-/*         SCENE 2            */
-/* -------------------------- */
-
+/* -- SCENE 2 -- */
 .scene2 {
   width: 100%;
   height: 100%;
@@ -64,7 +61,7 @@
   pointer-events: none;
 }
 
-/* SCENE 2 – overskrift (centeret) */
+/* -- SCENE 2 · OVERSKRIFT -- */
 .scene2headline {
   position: absolute;
   top: 25%;
@@ -87,7 +84,7 @@
   line-height: 1;
 }
 
-/* RESPONSIVE overskrift */
+/* -- SCENE 2 · RESPONSIVE OVERSKRIFT -- */
 @media (max-width: 1400px) {
   .scene2headline {
     font-size: 80px;
@@ -124,7 +121,7 @@
   }
 }
 
-/* Rækken med hunde – fuld “canvas” */
+/* -- SCENE 2 · HUNDE -- */
 .dogRow {
   position: absolute;
   inset: 0;
@@ -134,7 +131,6 @@
   transform-origin: center center;
 }
 
-/* Fælles styling for hver hundeboks */
 .dogBox {
   position: absolute;
   display: flex;
@@ -157,12 +153,12 @@
   text-align: center;
 }
 
-/* ✅ Desktop-positioner – venstre / center / højre */
 .dogOld {
   left: 8%;
   top: 52%;
   transform: translateY(-50%);
 }
+
 .dogOld .dogImg {
   width: 380px;
 }
@@ -179,7 +175,7 @@
   transform: translateY(-50%);
 }
 
-/* Hover-effekt + overlay */
+/* -- SCENE 2 · OVERLAY -- */
 .dogBox:hover .dogImg,
 .dogBox:hover .dogLabel {
   filter: blur(10px) brightness(1.6);
@@ -207,7 +203,6 @@
   inset: 0;
   z-index: 5;
   opacity: 0;
-  filter: blur(0px) brightness(1);
   pointer-events: none;
 }
 
@@ -221,7 +216,7 @@
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  background: var(--ash-grey-hex); /* dækker alt under overlayet */
+  background: var(--ash-grey-hex);
 }
 
 .overlayText {
@@ -236,9 +231,7 @@
   width: 580px;
 }
 
-/* ⭐ RESPONSIVE TWEAKS TIL HUNDERNE – mere luft på mobil */
-
-/* lidt mindre hunde på laptop-ish bredde */
+/* -- SCENE 2 · RESPONSIVE HUNDE -- */
 @media (max-width: 1400px) {
   .dogImg {
     width: 260px;
@@ -251,7 +244,6 @@
   }
 }
 
-/* tablets/mindre skærme */
 @media (max-width: 1100px) {
   .dogImg {
     width: 230px;
@@ -267,7 +259,6 @@
   }
 }
 
-/* mobil landscape – hundene længere fra hinanden */
 @media (max-width: 800px) {
   .dogImg {
     width: 200px;
@@ -292,7 +283,6 @@
   }
 }
 
-/* små mobiler – endnu mere luft */
 @media (max-width: 640px) {
   .dogImg {
     width: 170px;
@@ -317,17 +307,12 @@
   }
 }
 
-/* -------------------------- */
-/*         SCENE 3            */
-/* -------------------------- */
-
-/* lidt mere kontrolleret tekst */
+/* -- SCENE 3 -- */
 .overskrift3 {
- font-family: var(--font-knewave);
+  font-family: var(--font-knewave);
   text-transform: uppercase;
   color: var(--charcoal-brown-hex);
-
-  font-size: clamp(2.2rem, 4.4vw, 92px); /* ⭐ lidt større */
+  font-size: clamp(2.2rem, 4.4vw, 92px);
   text-align: left;
 }
 
@@ -335,29 +320,26 @@
   font-family: var(--font-knewave);
   text-transform: uppercase;
   color: var(--molten-lava);
-
-  font-size: clamp(3rem, 6vw, 120px); /* ⭐ større */
+  font-size: clamp(3rem, 6vw, 120px);
   margin-top: 0.4rem;
   text-align: left;
 }
 
 .tekst3 {
   position: absolute;
-  top: 16%;     /* ⭐ tidligere 12% → rykket ned */
+  top: 16%;
   left: -15%;
   max-width: 1100px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* 🎨 mand-og-hund – lidt større og længere ned */
 .mandOgHund {
   position: absolute;
   right: -24%;
-  top: 8%;         /* før: 2% */
-  width: 580px;    /* før: 520px */
+  top: 8%;
+  width: 580px;
 }
 
 .mandOgHund .overlayIllustration {
@@ -365,16 +347,14 @@
   height: auto;
 }
 
-/* scribble-linjer – rykkes tættere på teksten */
 .scribbleLines {
   position: absolute;
   left: 30%;
-  top: 34%;     /* ⭐ tidligere 40% → tættere på teksten */
+  top: 34%;
   transform: translateX(-50%);
-
   display: flex;
   flex-direction: column;
-  gap: 26px; 
+  gap: 26px;
 }
 
 .lineWrapper {
@@ -397,19 +377,17 @@
   margin-top: 1.8rem;
 }
 
-/* --- SCENE 3 RESPONSIVE --- */
-
-/* store laptops / mindre desktop */
+/* -- SCENE 3 · RESPONSIVE -- */
 @media (max-width: 1600px) {
   .mandOgHund {
     right: -18%;
     top: 9%;
-    width: 520px;   /* lidt større end før */
+    width: 520px;
   }
 
   .scribbleLines {
     left: 28%;
-    top: 38%;       /* rykket op = tættere på tekst */
+    top: 38%;
   }
 
   .scribbleSvg {
@@ -417,7 +395,6 @@
   }
 }
 
-/* ca. 1200–1400 bredde */
 @media (max-width: 1400px) {
   .tekst3 {
     left: -12%;
@@ -432,7 +409,7 @@
 
   .scribbleLines {
     left: 27%;
-    top: 40%;       /* før: 46% */
+    top: 40%;
   }
 
   .scribbleSvg {
@@ -440,7 +417,6 @@
   }
 }
 
-/* tablets / små laptops */
 @media (max-width: 1100px) {
   .tekst3 {
     left: -8%;
@@ -456,7 +432,7 @@
 
   .scribbleLines {
     left: 26%;
-    top: 42%;       /* før: 50% */
+    top: 42%;
   }
 
   .scribbleSvg {
@@ -470,7 +446,6 @@
   }
 }
 
-/* mobil landscape / small width */
 @media (max-width: 800px) {
   .tekst3 {
     left: -4%;
@@ -486,7 +461,7 @@
 
   .scribbleLines {
     left: 25%;
-    top: 44%;       /* før: 54% */
+    top: 44%;
   }
 
   .scribbleSvg {
@@ -494,7 +469,6 @@
   }
 }
 
-/* små mobiler */
 @media (max-width: 640px) {
   .tekst3 {
     left: -2%;
@@ -510,7 +484,7 @@
 
   .scribbleLines {
     left: 24%;
-    top: 46%;       /* før: 56% */
+    top: 46%;
   }
 
   .scribbleSvg {
@@ -524,10 +498,7 @@
   }
 }
 
-/* -------------------------- */
-/*         SCENE 4            */
-/* -------------------------- */
-
+/* -- SCENE 4 -- */
 .scene4Indhold {
   position: absolute;
   top: 10%;
