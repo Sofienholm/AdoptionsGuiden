@@ -1,7 +1,13 @@
+// -- STORYTELLING · STEP 1 --
+// Første del af onboarding
+// Handler om hvad en internathund er
+// Bygger op fra ro → kaos → ro igen, ligesom hundens oplevelse
+
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// -- VISUELLE ELEMENTER --
 import dogBox from "./frames/dog_center_box.svg";
 import bubble1 from "./frames/bubble1.svg";
 import bubble2 from "./frames/bubble2.svg";
@@ -18,28 +24,36 @@ import chaosSticker2 from "./frames/chaos_sticker2.svg";
 
 import illuScroll from "./frames/illu_scroll.svg";
 
+// -- STYLING --
 import styles from "./step1.module.css";
 
+// -- GSAP --
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Step1() {
+  // Section der bruges til pin + trigger
   const sectionRef = useRef(null);
 
+  // Intro tekst refs
   const introTitleRef = useRef(null);
   const introTextRef = useRef(null);
 
+  // Hunden i midten, bruges som fast punkt
   const dogCenterRef = useRef(null);
 
+  // Info bobler
   const bubble1Ref = useRef(null);
   const bubble2Ref = useRef(null);
   const bubble3Ref = useRef(null);
   const bubble4Ref = useRef(null);
 
+  // Chaos elementer
   const chaos1Ref = useRef(null);
   const chaos2Ref = useRef(null);
   const chaos3Ref = useRef(null);
   const chaos4Ref = useRef(null);
 
+  // Stickers der bare larmer lidt ekstra
   const sticker1Ref = useRef(null);
   const sticker2Ref = useRef(null);
   const sticker3Ref = useRef(null);
@@ -47,34 +61,32 @@ export default function Step1() {
   const sticker5Ref = useRef(null);
   const sticker6Ref = useRef(null);
 
+  // Rolige tekster efter kaos
   const calmTextTopRef = useRef(null);
   const calmTextBottomRef = useRef(null);
 
+  // Slut budskab
   const finalSmallRef = useRef(null);
   const finalBigRef = useRef(null);
 
+  // Scroll hint i starten
   const scrollHintRef = useRef(null);
 
   useEffect(() => {
+    // GSAP context så det cleaner rigtigt op
     const ctx = gsap.context(() => {
       const sectionEl = sectionRef.current;
-
-      // START STATES
+  
+      // Start state så der ikke sker mærkelige spring
       gsap.set([introTitleRef.current, introTextRef.current], { opacity: 0 });
       gsap.set(dogCenterRef.current, { opacity: 0 });
       gsap.set(scrollHintRef.current, { opacity: 1 });
-
       gsap.set(
-        [
-          calmTextTopRef.current,
-          calmTextBottomRef.current,
-          finalSmallRef.current,
-          finalBigRef.current,
-        ],
+        [calmTextTopRef.current, calmTextBottomRef.current, finalSmallRef.current, finalBigRef.current],
         { opacity: 0 }
       );
-
-      // TIMELINE (100% urørt bortset fra finalBig-dup fix)
+  
+      // Lang scroll animation der kører hele fortællingen
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionEl,
@@ -84,162 +96,99 @@ export default function Step1() {
           pin: true,
         },
       });
-
-      // Scroll-illu ud
-      tl.to(scrollHintRef.current, { opacity: 0, duration: 0.4 })
-        .to({}, { duration: 1.2 })
-
-        // Intro titel ind
-        .to(introTitleRef.current, { opacity: 1, duration: 0.8 })
-        .to({}, { duration: 0.4 })
-
-        // Intro tekst + hund ind
-        .to([introTextRef.current, dogCenterRef.current], {
-          opacity: 1,
-          duration: 1,
-        })
-
-        // Fade intro ud
-        .to([introTitleRef.current, introTextRef.current], { opacity: 0 })
-
-        // Bobble sekvens
-        .to(bubble1Ref.current, { opacity: 1 })
-        .to({}, { duration: 0.3 })
-        .to(bubble1Ref.current, { opacity: 0 })
-        .to(bubble2Ref.current, { opacity: 1 }, "<")
-        .to({}, { duration: 0.3 })
-        .to(bubble2Ref.current, { opacity: 0 })
-        .to(bubble3Ref.current, { opacity: 1 }, "<")
-        .to({}, { duration: 0.3 })
-        .to(bubble3Ref.current, { opacity: 0 })
-        .to(bubble4Ref.current, { opacity: 1 }, "<")
-        .to(bubble4Ref.current, { opacity: 0 })
-
-        .to({}, { duration: 2 })
-
-        // Chaos hunde
-        .fromTo(
-          chaos1Ref.current,
-          { opacity: 0, x: "-200%", y: "-200%" },
-          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
-          "<"
-        )
-        .fromTo(
-          chaos2Ref.current,
-          { opacity: 0, x: "200%", y: "-200%" },
-          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
-          "<"
-        )
-        .fromTo(
-          chaos3Ref.current,
-          { opacity: 0, x: "200%", y: "200%" },
-          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
-          "<"
-        )
-        .fromTo(
-          chaos4Ref.current,
-          { opacity: 0, x: "-200%", y: "200%" },
-          { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
-          "<"
-        )
-
-        // Stickers ind
-        .fromTo(
-          [
-            sticker1Ref.current,
-            sticker2Ref.current,
-            sticker3Ref.current,
-            sticker4Ref.current,
-            sticker5Ref.current,
-            sticker6Ref.current,
-          ],
-          { opacity: 0, scale: 0.7 },
-          { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 }
-        )
-
-        // Shake
-        .to(
-          [sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
-          {
-            y: "-10%",
-            yoyo: true,
-            repeat: 8,
-            duration: 0.05,
-            stagger: 0.03,
-          },
-          "<"
-        )
-        .to(
-          [sticker2Ref.current, sticker4Ref.current, sticker6Ref.current],
-          {
-            x: "8%",
-            yoyo: true,
-            repeat: 8,
-            duration: 0.05,
-            stagger: 0.03,
-          },
-          "<"
-        )
-
-        // Chaos væk
-        .to(
-          [
-            chaos1Ref.current,
-            chaos2Ref.current,
-            chaos3Ref.current,
-            chaos4Ref.current,
-            sticker1Ref.current,
-            sticker2Ref.current,
-            sticker3Ref.current,
-            sticker4Ref.current,
-            sticker5Ref.current,
-            sticker6Ref.current,
-          ],
-          { opacity: 0, duration: 1.5 }
-        )
-
-        // Calm text ind
-        .to(calmTextTopRef.current, {
-          opacity: 1,
-          y: "-10%",
-          duration: 1,
-        })
-        .to({}, { duration: 1 })
-        .to(calmTextBottomRef.current, {
-          opacity: 1,
-          y: "10%",
-          duration: 1,
-        })
-
-        // Calm text ud
-        .to([calmTextTopRef.current, calmTextBottomRef.current], {
-          opacity: 0,
-          duration: 0.6,
-        })
-
-        // Zoom hunden (bevarede effekt)
-        .to(dogCenterRef.current, {
-          scale: 1.4,
-          transformOrigin: "50% 50%",
-          duration: 2,
-        })
-
-        // Sluttekster
-        .fromTo(
-          finalSmallRef.current,
-          { opacity: 0, y: "-10%" },
-          { opacity: 1, y: "0%", duration: 1.2 }
-        )
-        .fromTo(
-          finalBigRef.current,
-          { opacity: 0, y: "-5%" },
-          { opacity: 1, y: "0%", duration: 1.2 },
-          "<0.2"
-        );
+  
+      // Scroll hint væk
+      tl.to(scrollHintRef.current, { opacity: 0, duration: 0.4 });
+      tl.to({}, { duration: 1.2 });
+  
+      // Intro titel
+      tl.to(introTitleRef.current, { opacity: 1, duration: 0.8 });
+      tl.to({}, { duration: 0.4 });
+  
+      // Intro tekst + hund
+      tl.to([introTextRef.current, dogCenterRef.current], { opacity: 1, duration: 1 });
+  
+      // Intro ud igen
+      tl.to([introTitleRef.current, introTextRef.current], { opacity: 0 });
+  
+      // Info bobler
+      tl.to(bubble1Ref.current, { opacity: 1 });
+      tl.to({}, { duration: 0.3 });
+      tl.to(bubble1Ref.current, { opacity: 0 });
+      tl.to(bubble2Ref.current, { opacity: 1 }, "<");
+      tl.to({}, { duration: 0.3 });
+      tl.to(bubble2Ref.current, { opacity: 0 });
+      tl.to(bubble3Ref.current, { opacity: 1 }, "<");
+      tl.to({}, { duration: 0.3 });
+      tl.to(bubble3Ref.current, { opacity: 0 });
+      tl.to(bubble4Ref.current, { opacity: 1 }, "<");
+      tl.to(bubble4Ref.current, { opacity: 0 });
+  
+      tl.to({}, { duration: 2 });
+  
+      // Kaos ind fra alle sider
+      tl.fromTo(
+        chaos1Ref.current,
+        { opacity: 0, x: "-200%", y: "-200%" },
+        { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+        "<"
+      );
+      tl.fromTo(
+        chaos2Ref.current,
+        { opacity: 0, x: "200%", y: "-200%" },
+        { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+        "<"
+      );
+      tl.fromTo(
+        chaos3Ref.current,
+        { opacity: 0, x: "200%", y: "200%" },
+        { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+        "<"
+      );
+      tl.fromTo(
+        chaos4Ref.current,
+        { opacity: 0, x: "-200%", y: "200%" },
+        { opacity: 1, x: "0%", y: "0%", duration: 1.5 },
+        "<"
+      );
+  
+      // Stickers oveni kaos
+      tl.fromTo(
+        [sticker1Ref.current, sticker2Ref.current, sticker3Ref.current, sticker4Ref.current, sticker5Ref.current, sticker6Ref.current],
+        { opacity: 0, scale: 0.7 },
+        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 }
+      );
+  
+      // Overstimulering / rysten
+      tl.to([sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
+        { y: "-10%", yoyo: true, repeat: 8, duration: 0.05, stagger: 0.03 }, "<");
+  
+      tl.to([sticker2Ref.current, sticker4Ref.current, sticker6Ref.current],
+        { x: "8%", yoyo: true, repeat: 8, duration: 0.05, stagger: 0.03 }, "<");
+  
+      // Alt kaos ud igen
+      tl.to([chaos1Ref.current, chaos2Ref.current, chaos3Ref.current, chaos4Ref.current, sticker1Ref.current, sticker2Ref.current, sticker3Ref.current, sticker4Ref.current, sticker5Ref.current, sticker6Ref.current],
+        { opacity: 0, duration: 1.5 });
+  
+      // Rolige tekster
+      tl.to(calmTextTopRef.current, { opacity: 1, y: "-10%", duration: 1 });
+      tl.to({}, { duration: 1 });
+      tl.to(calmTextBottomRef.current, { opacity: 1, y: "10%", duration: 1 });
+  
+      // Rolige tekster væk
+      tl.to([calmTextTopRef.current, calmTextBottomRef.current], { opacity: 0, duration: 0.6 });
+  
+      // Fokus ind på hunden
+      tl.to(dogCenterRef.current, { scale: 1.4, transformOrigin: "50% 50%", duration: 2 });
+  
+      // Slut tekst
+      tl.fromTo(finalSmallRef.current, { opacity: 0, y: "-10%" }, { opacity: 1, y: "0%", duration: 1.2 });
+      tl.fromTo(finalBigRef.current, { opacity: 0, y: "-5%" }, { opacity: 1, y: "0%", duration: 1.2 }, "<0.2");
     });
-
+  
     return () => ctx.revert();
   }, []);
+  
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -255,30 +204,24 @@ export default function Step1() {
         </p>
 
         <div className={styles.bubbleWrapper}>
-
-          {/* ⭐ FIXED WRAPPER → stabil hund */}
+          {/* CENTRAL HUND */}
           <div className={styles.dogCenterWrapper}>
-            <img
-              ref={dogCenterRef}
-              src={dogBox}
-              className={styles.dogCenter}
-              alt=""
-            />
+            <img ref={dogCenterRef} src={dogBox} className={styles.dogCenter} alt="" />
           </div>
 
-          {/* Bobler */}
+          {/* INFO BOBLER */}
           <img ref={bubble1Ref} src={bubble1} className={styles.bubble1} alt="" />
           <img ref={bubble2Ref} src={bubble2} className={styles.bubble2} alt="" />
           <img ref={bubble3Ref} src={bubble3} className={styles.bubble3} alt="" />
           <img ref={bubble4Ref} src={bubble4} className={styles.bubble4} alt="" />
 
-          {/* Chaos */}
+          {/* CHAOS */}
           <img ref={chaos1Ref} src={chaosDog1} className={styles.chaos1} alt="" />
           <img ref={chaos2Ref} src={chaosDog2} className={styles.chaos2} alt="" />
           <img ref={chaos3Ref} src={chaosDog3} className={styles.chaos3} alt="" />
           <img ref={chaos4Ref} src={chaosDog4} className={styles.chaos4} alt="" />
 
-          {/* Stickers */}
+          {/* STICKERS */}
           <img ref={sticker1Ref} src={chaosSticker1} className={styles.sticker1} alt="" />
           <img ref={sticker2Ref} src={chaosSticker2} className={styles.sticker2} alt="" />
           <img ref={sticker3Ref} src={chaosSticker1} className={styles.sticker3} alt="" />
@@ -286,7 +229,7 @@ export default function Step1() {
           <img ref={sticker5Ref} src={chaosSticker1} className={styles.sticker5} alt="" />
           <img ref={sticker6Ref} src={chaosSticker1} className={styles.sticker6} alt="" />
 
-          {/* Calm text */}
+          {/* RO TEKSTER */}
           <p ref={calmTextTopRef} className={styles.calmTextTop}>
             DET STRESSET MILJØ SÆTTER SIG OFTE I HUNDEN
           </p>
@@ -294,7 +237,7 @@ export default function Step1() {
             DERFOR SER MAN TIT AT HUNDENS ADFÆRD <br /> ÆNDRE SIG NÅR DEN KOMMER HJEM
           </p>
 
-          {/* Sluttekster */}
+          {/* SLUT TEKST */}
           <p ref={finalBigRef} className={styles.finalBig}>
             SÅ HUSK AT HVER INTERNATHUND HAR SIN EGEN HISTORIE!
           </p>

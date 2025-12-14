@@ -1,6 +1,10 @@
-// IntroForstaaet.jsx
+// -- INTRO · FORSTÅET --
+// Anden side i intro-flowet
+// Bekræfter brugerens forståelse før de går videre
+
 import { Link } from "react-router";
 
+// -- GRAFISKE ELEMENTER --
 import tekst3Intro from "./frames/tekst3_intro.svg";
 import forstaaetKnap from "./frames/forstået_knap.svg";
 
@@ -14,7 +18,7 @@ export default function IntroForstaaet() {
       "
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
-      {/* Stor grafik */}
+      {/* -- INTRO TEKST -- */}
       <img
         src={tekst3Intro}
         alt="Intro tekst 3"
@@ -27,7 +31,7 @@ export default function IntroForstaaet() {
         "
       />
 
-      {/* 'FORSTÅET?' Knap – fører videre til næste intro side */}
+      {/* -- NAVIGATION -- */}
       <Link
         to="/intro-4"
         className="

@@ -1,3 +1,7 @@
+// -- QUIZ INTRO --
+// intro til quizzen
+// et lille stop før man går videre i flowet
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import matchText from "./frames/MATCH-QUIZEN.svg";
@@ -5,9 +9,12 @@ import DB from "./frames/db.svg";
 import RotateGateToPortrait from "./RotateGateToPortrait";
 
 export default function Intro1() {
+  // -- ROUTING --
+  // bruges til at sende brugeren videre i quiz flowet
   const navigate = useNavigate();
 
-  // 🔒 Deaktivér scroll KUN på mobil når intro1 er vist
+  // -- SCROLL KONTROL --
+  // slår scroll fra på mobil så introen fylder hele skærmen
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
 
@@ -15,6 +22,7 @@ export default function Intro1() {
       document.body.style.overflow = "hidden";
     }
 
+    // slår scroll til igen når siden forlades
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -28,30 +36,27 @@ export default function Intro1() {
           flex flex-col items-center justify-center 
           px-6 text-center gap-8.5
 
-          -mt-14 md:mt-0    /* ⭐ LØFTER INDHOLDET OP PÅ MOBIL */
+          -mt-14 md:mt-0
         "
       >
-        {/* DYRENES BESKYTTELSE logo/tekst */}
         <img
           src={DB}
           alt=""
           className="
             w-40 md:w-56 lg:w-74 object-contain
-            -mt-6 md:mt-0       /* ⭐ LØFTER LOGOET EN SMULE */
+            -mt-6 md:mt-0
           "
         />
 
-        {/* MATCH QUIZEN tekst */}
         <img
           src={matchText}
           alt=""
           className="
             w-4/5 md:w-[70%] lg:w-[55%] object-contain
-            -mt-4 md:mt-2       /* ⭐ LØFTER SVG EN SMULE MERE PÅ MOBIL */
+            -mt-4 md:mt-2
           "
         />
 
-        {/* Button */}
         <button
           onClick={() => navigate("/quiz/info")}
           className="

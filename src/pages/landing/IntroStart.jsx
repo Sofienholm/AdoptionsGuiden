@@ -1,6 +1,10 @@
-// IntroStart.jsx
+// -- INTRO · START --
+// Sidste side i intro-flowet
+// Samler budskabet og markerer overgangen til onboarding
+
 import { Link } from "react-router";
 
+// -- GRAFISKE ELEMENTER --
 import tekst4Intro from "./frames/tekst4_intro.svg";
 import illuBarIntro from "./frames/illu_bar_intro.svg";
 import startKnap from "./frames/start_knap.svg";
@@ -15,7 +19,7 @@ export default function IntroStart() {
       "
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
-      {/* Top grafik */}
+      {/* -- INTRO TEKST -- */}
       <img
         src={tekst4Intro}
         alt="Intro tekst 4"
@@ -25,14 +29,14 @@ export default function IntroStart() {
           md:w-4/5 
           lg:w-3/5 
           h-auto
-          mb-0      /* ← INGEN AFSTAND */
+          mb-0
         "
       />
 
-      {/* Illustration bar – ligger direkte under */}
+      {/* -- ILLUSTRATION -- */}
       <img
         src={illuBarIntro}
-        alt="Illustration bar"
+        alt="Illustration"
         className="
           w-10/12 
           sm:w-8/12 
@@ -42,7 +46,7 @@ export default function IntroStart() {
         "
       />
 
-      {/* START – fixed i hjørnet */}
+      {/* -- START -- */}
       <Link
         to="/onboard"
         className="
