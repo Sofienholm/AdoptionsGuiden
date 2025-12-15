@@ -6,7 +6,7 @@ import "./styles/global.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/AdoptionsGuiden/"}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
