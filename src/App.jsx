@@ -5,51 +5,51 @@
 import { Routes, Route } from "react-router";
 
 //Landing & overordnet intro
-import Landing from "../pages/landing/landing";
+import Landing from "./pages/landing/landing.jsx";
 
 //Intro-sider
 // Introforløb der klæder brugeren på før onboarding og quiz
-import IntroAnsvar from "../pages/landing/IntroAnsvar";
-import IntroForstaaet from "../pages/landing/IntroForstaaet";
-import IntroStart from "../pages/landing/IntroStart";
+import IntroAnsvar from "./pages/landing/IntroAnsvar.jsx";
+import IntroForstaaet from "./pages/landing/IntroForstaaet.jsx";
+import IntroStart from "./pages/landing/IntroStart.jsx";
 
 //Onboarding
-import Onboard from "../pages/onboard/Onboard";
+import Onboard from "./pages/onboard/Onboard.jsx";
 
 //Storytelling steps
 // Opdelt i separate routes pga. scroll-baseret storytelling
 // Giver bedre overblik og gør flowet nemmere at arbejde med
-import Step1 from "../pages/onboard/storytelling/Step1/Step1.jsx";
-import Step2 from "../pages/onboard/storytelling/Step2/step2.jsx";
-import Step3 from "../pages/onboard/storytelling/Step3/step3.jsx";
-import Step4 from "../pages/onboard/storytelling/Step4/Step4.jsx";
-import Step5 from "../pages/onboard/storytelling/Step5/step5.jsx";
+import Step1 from "./pages/onboard/storytelling/Step1/Step1.jsx";
+import Step2 from "./pages/onboard/storytelling/Step2/step2.jsx";
+import Step3 from "./pages/onboard/storytelling/Step3/step3.jsx";
+import Step4 from "./pages/onboard/storytelling/Step4/Step4.jsx";
+import Step5 from "./pages/onboard/storytelling/Step5/step5.jsx";
 
 //Quiz intro & flow
 // Quiz-flow opdelt i intro og selve quizzen
 // for at styre tempo og forventninger hos brugeren
-import Intro1 from "../pages/quiz/Intro1";
-import Intro2 from "../pages/quiz/Intro2";
-import Quiz from "../pages/quiz/Quiz";
+import Intro1 from "./pages/quiz/Intro1.jsx";
+import Intro2 from "./pages/quiz/Intro2.jsx";
+import Quiz from "./pages/quiz/Quiz.jsx";
 
 //Quiz context
 // Bruges til at dele quiz-state på tværs af flere sider
 // Valgt for at samle quiz-data ét sted og undgå prop drilling
-import { QuizProvider } from "../pages/quiz/components/QuizContext.jsx";
+import { QuizProvider } from "./pages/quiz/components/QuizContext.jsx";
 
 //Resultatsider
 // Resultatet opdelt i profil og forklaring
 // så indholdet er lettere at overskue
-import ResultProfile from "../pages/result/ResultProfile.jsx";
-import ResultWhy from "../pages/result/ResultWhy.jsx";
+import ResultProfile from "./pages/result/ResultProfile.jsx";
+import ResultWhy from "./pages/result/ResultWhy.jsx";
 
 //Hundematch
 // Viser hunde der matcher brugerens resultatprofil
-import MatchDogs from "../pages/match/MatchDogs";
+import MatchDogs from "./pages/match/MatchDogs.jsx";
 
 //Ansøgningsformular
 // Afsluttende formular i sit eget flow
-import AdoptionApplicationForm from "../pages/application/AdoptionApplicationForm";
+import AdoptionApplicationForm from "./pages/application/AdoptionApplicationForm.jsx";
 
 function App() {
   return (
