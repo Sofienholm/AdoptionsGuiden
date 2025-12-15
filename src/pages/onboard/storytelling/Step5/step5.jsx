@@ -1,4 +1,4 @@
-// -- STEP 5 · STORYTELLING --
+//Storytelling/step 5
 // sidste step før quiz
 // lille opsamling + sender folk videre
 
@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router";
 
-// -- SVG LAG --
+// svg lag
 // kører i rækkefølge via scroll
 import bgStep5 from "./frames/baggrund_step5.svg";
 import del2Step5 from "./frames/del2_step5.svg";
@@ -15,7 +15,7 @@ import del31Step5 from "./frames/del3.1_step5.svg";
 import del4Step5 from "./frames/del4_step5.svg";
 import videreKnap from "./frames/videre_knap.svg";
 
-// -- STYLING --
+// styling
 // fast layout, ingen hop
 import styles from "./step5.module.css";
 
@@ -32,7 +32,7 @@ export default function Step5() {
   const del4Ref = useRef(null);
   const videreRef = useRef(null);
 
-  // lukker evt hul i bunden
+  // lukker evt. hul i bunden
   const bottomFillRef = useRef(null);
 
   // videre til quiz
@@ -62,35 +62,63 @@ export default function Step5() {
       // lille intro-pause
       tl.to({}, { duration: 0.45 });
 
-      // bg ud
-      tl.to(bgRef.current, { opacity: 0, duration: 0.2, ease: "power2.out" });
+      // baggrund ud
+      tl.to(bgRef.current, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.out",
+      });
 
       // del 2 ind
-      tl.to(del2Ref.current, { opacity: 1, duration: 0.2, ease: "power2.inOut" }, "<");
+      tl.to(
+        del2Ref.current,
+        { opacity: 1, duration: 0.2, ease: "power2.inOut" },
+        "<"
+      );
 
       // kort pause
       tl.to({}, { duration: 0.45 });
 
       // del 2 ud samlet
-      tl.to(".del2Wrapper", { opacity: 0, duration: 0.2, ease: "power2.out" });
+      tl.to(".del2Wrapper", {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.out",
+      });
 
       // del 3.1 ind
-      tl.to(del31Ref.current, { opacity: 1, duration: 0.2, ease: "power2.inOut" }, "<");
+      tl.to(
+        del31Ref.current,
+        { opacity: 1, duration: 0.2, ease: "power2.inOut" },
+        "<"
+      );
 
       // igen lidt luft
       tl.to({}, { duration: 0.45 });
 
       // del 3.1 ud
-      tl.to(del31Ref.current, { opacity: 0, duration: 0.2, ease: "power2.out" });
+      tl.to(del31Ref.current, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.out",
+      });
 
       // del 4 ind
-      tl.to(del4Ref.current, { opacity: 1, duration: 0.2, ease: "power2.inOut" }, "<");
+      tl.to(
+        del4Ref.current,
+        { opacity: 1, duration: 0.2, ease: "power2.inOut" },
+        "<"
+      );
 
       // sidste pause
       tl.to({}, { duration: 0.45 });
 
       // CTA frem
-      tl.to(videreRef.current, { opacity: 1, duration: 0.2, ease: "power2.inOut" });
+      tl.to(videreRef.current, {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power2.inOut",
+      });
     }, sectionRef);
 
     // matcher bunden af svg så der ikke opstår hul
@@ -124,22 +152,47 @@ export default function Step5() {
       <div className={styles.inner}>
         <div className={styles.graphicWrapper}>
           {/* baggrund / intro */}
-          <img ref={bgRef} src={bgStep5} className={styles.mainGraphic} alt="" />
+          <img
+            ref={bgRef}
+            src={bgStep5}
+            className={styles.mainGraphic}
+            alt=""
+          />
 
           {/* del 2 */}
           <div className={`${styles.del2Wrapper} del2Wrapper`}>
-            <img ref={del2Ref} src={del2Step5} className={styles.mainGraphic} alt="" />
+            <img
+              ref={del2Ref}
+              src={del2Step5}
+              className={styles.mainGraphic}
+              alt=""
+            />
           </div>
 
           {/* del 3.1 */}
-          <img ref={del31Ref} src={del31Step5} className={styles.mainGraphic} alt="" />
+          <img
+            ref={del31Ref}
+            src={del31Step5}
+            className={styles.mainGraphic}
+            alt=""
+          />
 
           {/* del 4 */}
-          <img ref={del4Ref} src={del4Step5} className={styles.mainGraphic} alt="" />
+          <img
+            ref={del4Ref}
+            src={del4Step5}
+            className={styles.mainGraphic}
+            alt=""
+          />
 
           {/* videre-knap */}
-          <img ref={videreRef} src={videreKnap} className={styles.videreKnap} alt="Videre" 
-          onClick={() => navigate("/quiz")} />
+          <img
+            ref={videreRef}
+            src={videreKnap}
+            className={styles.videreKnap}
+            alt="Videre"
+            onClick={() => navigate("/quiz")}
+          />
         </div>
       </div>
 

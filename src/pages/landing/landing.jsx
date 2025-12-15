@@ -1,10 +1,10 @@
-// -- LANDINGPAGE --
+//Landingpage
 // Første møde med løsningen
 // Giver brugeren et valg af dyretype og starter flowet
 
 import { Link } from "react-router";
 
-// -- GRAFISKE ELEMENTER --
+//Grafiske elementer
 // SVG’er bruges for skarp grafik på tværs af skærmstørrelser
 import tekstIntro from "./frames/tekst1_intro.svg";
 import hundIcon from "./frames/hundikon_intro.svg";
@@ -22,7 +22,7 @@ export default function LandingPage() {
       "
       style={{ backgroundColor: "var(--soft-linen)" }}
     >
-      {/* -- OVERSKRIFT -- */}
+      {/* Overskrift */}
       <img
         src={tekstIntro}
         alt="Adoption"
@@ -35,14 +35,14 @@ export default function LandingPage() {
         "
       />
 
-      {/* -- DYREVALG -- */}
+      {/* Dyrevalg */}
       <div
         className="
           grid grid-cols-2 gap-10 mt-[3rem]
           sm:flex sm:flex-row sm:gap-10 sm:justify-center sm:items-center
         "
       >
-        {/* -- HUND -- */}
+        {/* Hund */}
         <Link
           to="/intro-ansvar"
           className="transition-transform duration-200 hover:scale-110 flex justify-center"
@@ -50,17 +50,17 @@ export default function LandingPage() {
           <img src={hundIcon} alt="Hund" className="w-[110px] h-auto" />
         </Link>
 
-        {/* -- KAT (IKKE IMPLEMENTERET) -- */}
+        {/* Kat (ikke implementeret) */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={katIcon} alt="Kat" className="w-[110px] h-auto" />
         </div>
 
-        {/* -- KANIN (IKKE IMPLEMENTERET) -- */}
+        {/* Kanin (ikke implementeret) */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={kaninIcon} alt="Kanin" className="w-[110px] h-auto" />
         </div>
 
-        {/* -- MARSVIN (IKKE IMPLEMENTERET) -- */}
+        {/* Marsvin (ikke implementeret) */}
         <div className="opacity-40 pointer-events-none flex justify-center">
           <img src={marsvinIcon} alt="Marsvin" className="w-[110px] h-auto" />
         </div>

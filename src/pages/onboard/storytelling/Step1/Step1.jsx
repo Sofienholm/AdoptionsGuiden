@@ -1,4 +1,4 @@
-// -- STORYTELLING · STEP 1 --
+//Storytelling/step 1
 // Første del af onboarding
 // Handler om hvad en internathund er
 // Bygger op fra ro → kaos → ro igen, ligesom hundens oplevelse
@@ -7,7 +7,7 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// -- VISUELLE ELEMENTER --
+//Visuelle elementer
 import dogBox from "./frames/dog_center_box.svg";
 import bubble1 from "./frames/bubble1.svg";
 import bubble2 from "./frames/bubble2.svg";
@@ -24,10 +24,10 @@ import chaosSticker2 from "./frames/chaos_sticker2.svg";
 
 import illuScroll from "./frames/illu_scroll.svg";
 
-// -- STYLING --
+//Styling
 import styles from "./step1.module.css";
 
-// -- GSAP --
+//Gsap
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Step1() {
@@ -82,7 +82,12 @@ export default function Step1() {
       gsap.set(dogCenterRef.current, { opacity: 0 });
       gsap.set(scrollHintRef.current, { opacity: 1 });
       gsap.set(
-        [calmTextTopRef.current, calmTextBottomRef.current, finalSmallRef.current, finalBigRef.current],
+        [
+          calmTextTopRef.current,
+          calmTextBottomRef.current,
+          finalSmallRef.current,
+          finalBigRef.current,
+        ],
         { opacity: 0 }
       );
   
@@ -106,7 +111,10 @@ export default function Step1() {
       tl.to({}, { duration: 0.4 });
   
       // Intro tekst + hund
-      tl.to([introTextRef.current, dogCenterRef.current], { opacity: 1, duration: 1 });
+      tl.to([introTextRef.current, dogCenterRef.current], {
+        opacity: 1,
+        duration: 1,
+      });
   
       // Intro ud igen
       tl.to([introTitleRef.current, introTextRef.current], { opacity: 0 });
@@ -154,42 +162,103 @@ export default function Step1() {
   
       // Stickers oveni kaos
       tl.fromTo(
-        [sticker1Ref.current, sticker2Ref.current, sticker3Ref.current, sticker4Ref.current, sticker5Ref.current, sticker6Ref.current],
+        [
+          sticker1Ref.current,
+          sticker2Ref.current,
+          sticker3Ref.current,
+          sticker4Ref.current,
+          sticker5Ref.current,
+          sticker6Ref.current,
+        ],
         { opacity: 0, scale: 0.7 },
         { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 }
       );
   
       // Overstimulering / rysten
-      tl.to([sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
-        { y: "-10%", yoyo: true, repeat: 8, duration: 0.05, stagger: 0.03 }, "<");
+      tl.to(
+        [sticker1Ref.current, sticker3Ref.current, sticker5Ref.current],
+        {
+          y: "-10%",
+          yoyo: true,
+          repeat: 8,
+          duration: 0.05,
+          stagger: 0.03,
+        },
+        "<"
+      );
   
-      tl.to([sticker2Ref.current, sticker4Ref.current, sticker6Ref.current],
-        { x: "8%", yoyo: true, repeat: 8, duration: 0.05, stagger: 0.03 }, "<");
+      tl.to(
+        [sticker2Ref.current, sticker4Ref.current, sticker6Ref.current],
+        {
+          x: "8%",
+          yoyo: true,
+          repeat: 8,
+          duration: 0.05,
+          stagger: 0.03,
+        },
+        "<"
+      );
   
       // Alt kaos ud igen
-      tl.to([chaos1Ref.current, chaos2Ref.current, chaos3Ref.current, chaos4Ref.current, sticker1Ref.current, sticker2Ref.current, sticker3Ref.current, sticker4Ref.current, sticker5Ref.current, sticker6Ref.current],
-        { opacity: 0, duration: 1.5 });
+      tl.to(
+        [
+          chaos1Ref.current,
+          chaos2Ref.current,
+          chaos3Ref.current,
+          chaos4Ref.current,
+          sticker1Ref.current,
+          sticker2Ref.current,
+          sticker3Ref.current,
+          sticker4Ref.current,
+          sticker5Ref.current,
+          sticker6Ref.current,
+        ],
+        { opacity: 0, duration: 1.5 }
+      );
   
       // Rolige tekster
-      tl.to(calmTextTopRef.current, { opacity: 1, y: "-10%", duration: 1 });
+      tl.to(calmTextTopRef.current, {
+        opacity: 1,
+        y: "-10%",
+        duration: 1,
+      });
       tl.to({}, { duration: 1 });
-      tl.to(calmTextBottomRef.current, { opacity: 1, y: "10%", duration: 1 });
+      tl.to(calmTextBottomRef.current, {
+        opacity: 1,
+        y: "10%",
+        duration: 1,
+      });
   
       // Rolige tekster væk
-      tl.to([calmTextTopRef.current, calmTextBottomRef.current], { opacity: 0, duration: 0.6 });
+      tl.to([calmTextTopRef.current, calmTextBottomRef.current], {
+        opacity: 0,
+        duration: 0.6,
+      });
   
       // Fokus ind på hunden
-      tl.to(dogCenterRef.current, { scale: 1.4, transformOrigin: "50% 50%", duration: 2 });
+      tl.to(dogCenterRef.current, {
+        scale: 1.4,
+        transformOrigin: "50% 50%",
+        duration: 2,
+      });
   
       // Slut tekst
-      tl.fromTo(finalSmallRef.current, { opacity: 0, y: "-10%" }, { opacity: 1, y: "0%", duration: 1.2 });
-      tl.fromTo(finalBigRef.current, { opacity: 0, y: "-5%" }, { opacity: 1, y: "0%", duration: 1.2 }, "<0.2");
+      tl.fromTo(
+        finalSmallRef.current,
+        { opacity: 0, y: "-10%" },
+        { opacity: 1, y: "0%", duration: 1.2 }
+      );
+      tl.fromTo(
+        finalBigRef.current,
+        { opacity: 0, y: "-5%" },
+        { opacity: 1, y: "0%", duration: 1.2 },
+        "<0.2"
+      );
     });
   
     return () => ctx.revert();
   }, []);
   
-
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.inner}>

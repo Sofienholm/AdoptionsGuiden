@@ -1,9 +1,9 @@
-// -- ADFÆRDSPROFIL SELECTOR --
+// adfærdsprofil selector
 // finder hvilken overordnet adfærdsprofil brugeren passer bedst til
 // baseret på de samlede quiz-svar
 
 export function selectAdfaerdsprofil(user) {
-  // -- PROFIL DATA --
+  // profil data
   // trækker de værdier ud vi bruger til vurderingen
   const {
     activity,
@@ -15,14 +15,14 @@ export function selectAdfaerdsprofil(user) {
     otherPets
   } = user;
 
-  // -- AFLEDTE VURDERINGER --
+  // afledte vurderinger
   // små helpers så reglerne er nemmere at læse
   const isSensitiveHome = environment <= 4;
   const hasSimpleHousehold = kids === 0 && otherPets === 0;
   const lowEnergy = activity <= 4;
   const highEnergy = activity >= 7;
 
-  // -- PROFIL 1: SENSITIVE & STABLE --
+  // profil 1: sensitive & stable
   // rolige rammer, lav energi og nogen erfaring
   if (
     isSensitiveHome &&
@@ -34,7 +34,7 @@ export function selectAdfaerdsprofil(user) {
     return "sensitive_stable";
   }
 
-  // -- PROFIL 2: SOCIAL & MILD --
+  // profil 2: social & mild
   // ret bred profil med middel aktivitet og få krav
   if (
     activity >= 3 &&
@@ -46,7 +46,7 @@ export function selectAdfaerdsprofil(user) {
     return "social_mild";
   }
 
-  // -- PROFIL 3: AKTIV & ROBUST --
+  // profil 3: aktiv & robust
   // høj energi og ejere der kan håndtere udfordringer
   if (
     highEnergy &&
@@ -56,7 +56,7 @@ export function selectAdfaerdsprofil(user) {
     return "active_robust";
   }
 
-  // -- PROFIL 4: UNG & TRÆNINGSKRÆVENDE --
+  // profil 4: ung & træningskrævende
   // meget energi men mindre erfaring eller struktur
   if (
     highEnergy &&
@@ -66,7 +66,7 @@ export function selectAdfaerdsprofil(user) {
     return "young_training";
   }
 
-  // -- PROFIL 5: CALM SENIOR --
+  // profil 5: calm senior
   // lav energi og stabile rammer
   if (
     lowEnergy &&
@@ -76,7 +76,7 @@ export function selectAdfaerdsprofil(user) {
     return "calm_senior";
   }
 
-  // -- PROFIL 6: SPECIAL NEEDS --
+  // profil 6: special needs
   // kræver simple rammer og ekstra opmærksomhed
   if (
     challengeComfort <= 4 &&
@@ -86,7 +86,7 @@ export function selectAdfaerdsprofil(user) {
     return "special_needs";
   }
 
-  // -- FALLBACK --
+  // fallback
   // hvis ingen regler matcher helt, lander vi her
   return "social_mild";
 }

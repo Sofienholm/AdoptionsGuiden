@@ -1,4 +1,4 @@
-/* -- STEP 4 · STORYTELLING -- */
+/* STEP 4 · STORYTELLING */
 
 .section {
   height: 100vh;
@@ -7,7 +7,7 @@
   background-color: var(--tomato);
 }
 
-/* -- SECTION INNER -- */
+/* SECTION INNER */
 .inner {
   position: relative;
   width: 100%;
@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-/* -- SCENE WRAPPER -- */
+/* SCENE WRAPPER */
 .graphicWrapper {
   position: absolute;
   top: 50%;
@@ -27,7 +27,7 @@
   pointer-events: auto;
 }
 
-/* -- MAIN GRAPHIC LAYERS -- */
+/* MAIN GRAPHIC LAYERS */
 .mainGraphic {
   position: absolute;
   inset: 0;
@@ -37,7 +37,7 @@
   z-index: 1;
 }
 
-/* -- TABS GRID -- */
+/* TABS GRID */
 .tabsGrid {
   position: absolute;
   inset: 0;
@@ -58,7 +58,7 @@
   pointer-events: auto;
 }
 
-/* -- POPUP OVERLAY -- */
+/* POPUP OVERLAY */
 .popupOverlay {
   position: fixed;
   inset: 0;
@@ -69,7 +69,7 @@
   justify-content: center;
 }
 
-/* -- POPUP CONTENT -- */
+/* POPUP CONTENT */
 .popupInner {
   position: relative;
   width: min(95vw, 1100px);
@@ -83,7 +83,7 @@
   object-fit: contain;
 }
 
-/* -- POPUP HIT AREAS -- */
+/* POPUP HIT AREAS */
 .closeHitArea {
   position: absolute;
   top: 13%;
@@ -103,7 +103,7 @@
   cursor: pointer;
 }
 
-/* -- DEL 3 ICONS -- */
+/* DEL 3 ICONS */
 .del3Icon {
   position: absolute;
   bottom: 7%;
@@ -115,7 +115,7 @@
 .del3IconDyr { left: 9%; }
 .del3IconArbejde { right: 8%; }
 
-/* -- RESPONSIVE SCALING -- */
+/* RESPONSIVE SCALING */
 @media (max-width: 868px) {
   .graphicWrapper {
     width: 100vw;

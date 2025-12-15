@@ -1,5 +1,5 @@
-// -- QUIZ --
-// Selve quiz-flowet
+//Quiz
+// selve quiz-flowet
 // brugeren svarer på spørgsmål som bruges til at lave en match-profil
 
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { useQuiz } from "./components/useQuiz";
 import { useNavigate } from "react-router";
 
 export default function Quiz() {
-  // -- QUIZ STATE --
+  //Quiz state
   // quiz logik og state ligger i useQuiz
   // her bruger vi bare det vi skal bruge til UI
   const {
@@ -17,21 +17,23 @@ export default function Quiz() {
     resetQuiz,
   } = useQuiz();
 
+  //Routing
   // bruges når quizzen skal starte forfra
   const navigate = useNavigate();
 
+  //Lokalt state
   // hvilket svar brugeren har valgt
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // -- KONSTANTER --
+  //Konstanter
   // antal spørgsmål i alt (bruges kun til progress)
   const total = 8;
 
-  // -- GUARD --
+  //Guard
   // hvis quiz data ikke er klar endnu, viser vi ingenting
   if (!currentQuestion) return null;
 
-  // -- NÆSTE SPØRGSMÅL --
+  //Næste spørgsmål
   const handleNext = () => {
     if (selectedOption === null) return;
     // sender effekten af svaret videre til quiz hooken
@@ -39,7 +41,7 @@ export default function Quiz() {
     setSelectedOption(null);
   };
 
-  // -- RESET QUIZ --
+  //Reset quiz
   const handleRestart = () => {
     resetQuiz();
     navigate("/quiz");
@@ -47,7 +49,7 @@ export default function Quiz() {
 
   return (
     <div className="min-h-screen bg-[#F6F0E8] flex justify-center px-4 md:px-8 lg:px-12 overflow-hidden relative">
-      {/* -- PROGRESS -- */}
+      {/* progress */}
       {/* viser hvor langt man er i quizzen */}
       <div
         className="
@@ -66,21 +68,21 @@ export default function Quiz() {
         ))}
       </div>
 
-      {/* -- QUIZ INDHOLD -- */}
+      {/* quiz indhold */}
       <div className="w-full max-w-3xl md:max-w-4xl transform scale-90 md:scale-95 lg:scale-100 origin-top mt-28">
-        {/* -- SPØRGSMÅL -- */}
+        {/* spørgsmål */}
         <h1 className="text-2xl md:text-3xl text-[#8B1D14] uppercase font-knewave mb-3">
           SPØRGSMÅL {currentQuestionIndex + 1} –{" "}
           {currentQuestion.question.toUpperCase()}
         </h1>
 
-        {/* -- HJÆLPETEKST -- */}
+        {/* hjælpetekst */}
         {/* lille ekstra forklaring til spørgsmålet */}
         <p className="text-[#FF4F3C] text-base md:text-lg uppercase font-knewave mb-8 max-w-3xl">
           {currentQuestion.helpText}
         </p>
 
-        {/* -- SVARMULIGHEDER -- */}
+        {/* svarmuligheder */}
         <div className="flex flex-col font-hel-light gap-4 mt-4 max-w-3xl">
           {currentQuestion.options.map((opt, i) => {
             const isSelected = selectedOption === i;
@@ -91,7 +93,7 @@ export default function Quiz() {
                 onClick={() => setSelectedOption(i)}
                 className="flex items-center gap-3 py-2 px-2 text-left hover:scale-105 transition"
               >
-                {/* -- RADIO -- */}
+                {/* radio */}
                 {/* bliver fyldt hvis den er valgt */}
                 <div
                   className={`
@@ -107,7 +109,7 @@ export default function Quiz() {
                   />
                 </div>
 
-                {/* -- SVAR -- */}
+                {/* svar */}
                 <span className="text-[#FF4F3C] text-sm md:text-lg leading-snug">
                   {opt.label}
                 </span>
@@ -116,7 +118,7 @@ export default function Quiz() {
           })}
         </div>
 
-        {/* -- START FORFRA -- */}
+        {/* start forfra */}
         {/* hvis man bliver i tvivl midt i quizzen */}
         <button
           onClick={handleRestart}
@@ -131,7 +133,7 @@ export default function Quiz() {
         </button>
       </div>
 
-      {/* -- NÆSTE -- */}
+      {/* næste */}
       {/* fast knap der går videre når der er valgt et svar */}
       <button
         onClick={handleNext}

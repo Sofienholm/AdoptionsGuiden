@@ -2,7 +2,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-//Services / utils
+//Services/utils
 import { getDogs } from "../../services/getDogs";
 
 //Grafiske elementer

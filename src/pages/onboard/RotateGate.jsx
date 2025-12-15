@@ -1,31 +1,31 @@
-// -- ROTATION GATE --
-// Bruges til onboarding, hvor oplevelsen er lavet horisontalt
-// Viser en overlay hvis man er på mobil og holder telefonen lodret
+//Rotation gate
+// bruges til onboarding, hvor oplevelsen er lavet horisontalt
+// viser en overlay hvis man er på mobil og holder telefonen lodret
 
 import { useEffect, useState } from "react";
 
-// -- GRAFIK --
+//Grafik
 import flipIcon from "./frames/flip_ikon.svg";
 
 export default function RotateGate({ children }) {
-  // Styrer om rotate-overlay skal vises eller ej
+  // styrer om rotate-overlay skal vises eller ej
   const [showGate, setShowGate] = useState(false);
 
   useEffect(() => {
-    // Tjekker om brugeren er på mobil og i portræt
+    // tjekker om brugeren er på mobil og i portræt
     const check = () => {
       if (typeof window === "undefined") return;
 
       const isMobile = window.innerWidth <= 768;
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      // Overlay vises kun ved mobil + portræt
+      // overlay vises kun ved mobil + portræt
       setShowGate(isMobile && isPortrait);
     };
 
     check();
 
-    // Lytter på ændringer i størrelse og rotation
+    // lytter på ændringer i størrelse og rotation
     window.addEventListener("resize", check);
     window.addEventListener("orientationchange", check);
 
@@ -37,10 +37,10 @@ export default function RotateGate({ children }) {
 
   return (
     <>
-      {/* INDHOLD */}
+      {/* indhold */}
       {children}
 
-      {/* ROTATE OVERLAY */}
+      {/* rotate overlay */}
       {showGate && (
         <div
           className="
@@ -50,7 +50,7 @@ export default function RotateGate({ children }) {
           "
           style={{ backgroundColor: "var(--soft-linen-hex)" }}
         >
-          {/* IKON */}
+          {/* ikon */}
           <img
             src={flipIcon}
             alt="rotate phone"
@@ -58,7 +58,7 @@ export default function RotateGate({ children }) {
             style={{ width: "180px" }}
           />
 
-          {/* TEKST */}
+          {/* tekst */}
           <p
             className="text-center text-3xl sm:text-4xl"
             style={{

@@ -12,7 +12,7 @@ import { getDogs } from "../../services/getDogs.js";
 //Grafiske elementer
 import arrow from "./frames/arrow.svg";
 
-//Resultat · match hunde
+//Resultat/match hunde
 //viser de tre hunde der matcher bedst med brugerens profil
 export default function MatchDogs() {
   //Routing

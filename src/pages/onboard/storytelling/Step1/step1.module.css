@@ -1,14 +1,14 @@
-/* -- STEP 1 · STORYTELLING -- */
+/*  STEP 1 · STORYTELLING  */
 
-/* -- SECTION WRAPPER -- */
+/*  SECTION WRAPPER  */
 .section {
   height: 100vh;
   width: 100%;
   position: relative;
-  background-color: var(--charcoal-brown-hex);
+  background-color: var(charcoal-brown-hex);
 }
 
-/* -- INNER CONTAINER -- */
+/*  INNER CONTAINER  */
 .inner {
   position: relative;
   width: 100%;
@@ -16,14 +16,14 @@
   overflow: hidden;
 }
 
-/* -- INTRO TITEL -- */
+/*  INTRO TITEL  */
 .introTitle {
   position: absolute;
   top: 12%;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--ash-grey);
-  font-family: var(--font-knewave);
+  color: var(ash-grey);
+  font-family: var(font-knewave);
   font-size: clamp(2.4rem, 4.5vw, 4.4rem);
   white-space: nowrap;
   text-align: center;
@@ -31,21 +31,21 @@
   line-height: 1.1;
 }
 
-/* -- INTRO TEKST -- */
+/*  INTRO TEKST  */
 .introText {
   position: absolute;
   bottom: 12%;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-knewave);
-  color: var(--ash-grey);
+  font-family: var(font-knewave);
+  color: var(ash-grey);
   font-size: clamp(1.1rem, 2.1vw, 1.9rem);
   text-align: center;
   max-width: min(42rem, 80vw);
   line-height: 1.25;
 }
 
-/* -- BOBLE-SCENE WRAPPER -- */
+/*  BOBLE-SCENE WRAPPER  */
 .bubbleWrapper {
   position: absolute;
   top: 50%;
@@ -56,7 +56,7 @@
   pointer-events: none;
 }
 
-/* -- HUND · WRAPPER -- */
+/*  HUND · WRAPPER  */
 .dogCenterWrapper {
   position: absolute;
   top: 50%;
@@ -67,14 +67,14 @@
   z-index: 10;
 }
 
-/* -- HUND · BILLEDE -- */
+/*  HUND · BILLEDE  */
 .dogCenter {
   width: 100%;
   height: auto;
   transform-origin: 50% 50% !important;
 }
 
-/* -- BOBLER -- */
+/*  BOBLER  */
 .bubble1 {
   position: absolute;
   top: 6%;
@@ -115,7 +115,7 @@
   z-index: 5;
 }
 
-/* -- KAOS-HUNDE -- */
+/*  KAOS-HUNDE  */
 .chaos1 {
   position: absolute;
   opacity: 0;
@@ -152,7 +152,7 @@
   left: -5%;
 }
 
-/* -- STICKERS · BASE -- */
+/*  STICKERS · BASE  */
 .sticker1,
 .sticker2,
 .sticker3,
@@ -166,7 +166,7 @@
   pointer-events: none;
 }
 
-/* -- STICKERS · PLACERINGER -- */
+/*  STICKERS · PLACERINGER  */
 .sticker1 {
   top: 18%;
   left: 42%;
@@ -197,14 +197,14 @@
   left: -10%;
 }
 
-/* -- ROLIG TEKST -- */
+/*  ROLIG TEKST  */
 .calmTextTop,
 .calmTextBottom {
   position: absolute;
   text-align: center;
-  font-family: var(--font-knewave);
+  font-family: var(font-knewave);
   width: 100%;
-  color: var(--ash-grey);
+  color: var(ash-grey);
   opacity: 0;
   font-size: clamp(1rem, 2.2vw, 1.9rem);
   line-height: 1.3;
@@ -223,16 +223,16 @@
   transform: translateX(-50%);
 }
 
-/* -- SLUT-TEKSTER -- */
+/*  SLUT-TEKSTER  */
 .finalSmall {
   position: absolute;
   top: 8%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  font-family: var(--font-knewave);
+  font-family: var(font-knewave);
   width: 100%;
-  color: var(--ash-grey);
+  color: var(ash-grey);
   opacity: 0;
   font-size: clamp(0.8rem, 1.3vw, 1.1rem);
   letter-spacing: 0.12em;
@@ -245,9 +245,9 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  font-family: var(--font-knewave);
+  font-family: var(font-knewave);
   width: 100%;
-  color: var(--ash-grey);
+  color: var(ash-grey);
   opacity: 0;
   font-size: clamp(1rem, 2.4vw, 1.8rem);
   white-space: nowrap;
@@ -255,7 +255,7 @@
   font-weight: 700;
 }
 
-/* -- SCROLL HINT -- */
+/*  SCROLL HINT  */
 .scrollHint {
   position: absolute;
   top: 50%;
@@ -267,7 +267,7 @@
   z-index: 20;
 }
 
-/* -- RESPONSIV SKALERING -- */
+/*  RESPONSIV SKALERING  */
 @media (max-width: 868px) {
   .bubbleWrapper {
     width: 100vw;

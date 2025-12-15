@@ -1,4 +1,4 @@
-// QUIZ CONTEXT
+//Quiz context
 // samler hele quiz flowet ét sted
 // svar, progression og resultat
 
@@ -12,27 +12,27 @@ import { useNavigate } from "react-router";
 export const QuizContext = createContext();
 
 export function QuizProvider({ children }) {
-  // ROUTING 
+  //Routing
   // bruges når quizzen er færdig og vi skal videre
   const navigate = useNavigate();
 
-  // STATE BRUGERPROFIL
+  //State brugerprofil
   // profil der bliver bygget op løbende gennem quizzen
   const [userProfile, setUserProfile] = useState({ ...userProfileTemplate });
 
-  // STATE RESULTAT
+  //State resultat
   // id på den adfærdsprofil brugeren ender med
   const [selectedProfileId, setSelectedProfileId] = useState(null);
 
-  // STATE PROGRESSION
+  //State progression
   // hvilket spørgsmål vi er nået til
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  // AKTUELT SPØRGSMÅL
+  //Aktuelt spørgsmål
   // slås op ud fra index
   const currentQuestion = quizQuestions[currentQuestionIndex];
 
-  // RESET QUIZ
+  //Reset quiz
   // starter quizzen helt forfra
   function resetQuiz() {
     setUserProfile({ ...userProfileTemplate });
@@ -40,7 +40,7 @@ export function QuizProvider({ children }) {
     setCurrentQuestionIndex(0);
   }
 
-  // BESVAR SPØRGSMÅL
+  //Besvar spørgsmål
   // kaldes når brugeren går videre til næste
   function answerQuestion(effects) {
     // lægger svarets effekter oven i den nuværende profil
@@ -58,7 +58,7 @@ export function QuizProvider({ children }) {
     finishQuiz();
   }
 
-  // AFSLUT QUIZ
+  //Afslut quiz
   // finder den adfærdsprofil der matcher bedst
   // og sender brugeren videre til resultat
   function finishQuiz() {

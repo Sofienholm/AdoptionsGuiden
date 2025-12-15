@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
-// -- HENT HUNDE --
+//Hente hunde
 // lille helper der henter alle hunde fra firestore
 // bruges i match og resultatsider
 export async function getDogs() {

@@ -1,4 +1,4 @@
-// -- RESULTATFORKLARINGSGENERATOR --
+// resultatforklaringsgenerator
 // laver forklarende tekst til resultatet
 // bruges til at vise hvorfor matchningen giver mening
 
@@ -6,7 +6,7 @@ export function generateExplanation(user, profileId) {
   // samler alle forklaringer i en liste
   const reasons = [];
 
-  // -- BOLIG / OMGIVELSER --
+  // bolig / omgivelser
   if (user.environment <= 4) {
     reasons.push(
       "Du bor i omgivelser med begrænset stimuli, hvilket passer godt til hunde, der trives i rolige rammer."
@@ -17,7 +17,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- BØRN --
+  // børn
   if (user.kids === 0) {
     reasons.push(
       "Du har ingen børn i hjemmet, hvilket gør introduktionen lettere for følsomme hunde."
@@ -28,7 +28,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- ANDRE DYR --
+  // andre dyr
   if (user.otherPets === 0) {
     reasons.push(
       "Der er ingen andre dyr i hjemmet, hvilket giver hunden ro til at falde trygt til."
@@ -39,7 +39,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- ALENETID --
+  // alenetid
   if (user.aloneTolerance <= 3) {
     reasons.push(
       "Du har meget begrænset alenetid i hverdagen, hvilket passer godt til hunde med behov for nærhed."
@@ -50,7 +50,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- ERFARING --
+  // erfaring
   if (user.experience <= 3) {
     reasons.push(
       "Dit erfaringsniveau passer bedst til en hund uden store adfærdsmæssige udfordringer."
@@ -61,7 +61,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- AKTIVITET --
+  // aktivitet
   if (user.activity <= 4) {
     reasons.push(
       "Dit aktivitetsniveau passer til hunde med lavt til moderat energi."
@@ -72,7 +72,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- KOMFORT MED UDFORDRINGER --
+  // komfort med udfordringer
   if (user.challengeComfort <= 3) {
     reasons.push(
       "Du ønsker en hund uden større udfordringer, hvilket guider matchningen mod stabile og rolige profiler."
@@ -83,7 +83,7 @@ export function generateExplanation(user, profileId) {
     );
   }
 
-  // -- OPSTART --
+  // opstart
   if (user.introStyle <= 3) {
     reasons.push(
       "Din ønskede rolige opstart passer godt til hunde, der har brug for struktur og tryghed i begyndelsen."
