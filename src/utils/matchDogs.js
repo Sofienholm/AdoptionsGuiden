@@ -1,4 +1,4 @@
-// -- MATCHSCORE BEREGNING --
+// matchscore beregning
 // regner en samlet score mellem bruger og hund
 // jo tættere de ligger på hinanden, jo bedre match
 
@@ -19,7 +19,7 @@ function calculateMatchScore(user, dog) {
   return score;
 }
 
-// -- MATCH HUNDE --
+// match hunde
 // tager brugerprofil og liste af hunde
 // returnerer dem sorteret efter bedste match
 export function matchDogs(userProfile, dogs) {

@@ -3,30 +3,30 @@ import { useNavigate } from "react-router";
 import profiles from "../../data/profiles.json";
 import { useQuiz } from "../../pages/quiz/components/useQuiz";
 
-// -- RESULTAT · PROFIL --
+//resultat/profil
 // viser hvilken adfærdsprofil quizzen er endt med
 
 export default function ResultProfile() {
-  // -- ROUTING --
+  //routing
   // bruges til at sende brugeren videre / tilbage
   const navigate = useNavigate();
 
-  // -- QUIZ STATE --
+  //quiz state
   // id på den profil quizzen er endt med
   const { selectedProfileId } = useQuiz();
 
-  // -- GUARD --
+  //guard
   // hvis man lander her uden at have taget quizzen
   // så sendes man tilbage til start
   useEffect(() => {
     if (!selectedProfileId) navigate("/quiz/start");
   }, [selectedProfileId, navigate]);
 
-  // -- STOP RENDER --
+  //stop render
   // mens redirect kører
   if (!selectedProfileId) return null;
 
-  // -- PROFIL DATA --
+  //profil data
   // slår profilen op ud fra id
   const profile = profiles[selectedProfileId];
 

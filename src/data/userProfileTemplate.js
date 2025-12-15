@@ -1,4 +1,4 @@
-// BRUGERPROFIL SKABELON 
+// Brugerprofil skabelon 
 // udgangspunkt for brugerens score profil
 // værdierne justeres løbende ud fra quiz-svar
 

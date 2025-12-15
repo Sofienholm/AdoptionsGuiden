@@ -1,11 +1,11 @@
-// -- QUIZ INTRO --
+//Quiz intro
 // kort forklaring før quizzen går i gang
 // sætter forventninger, ikke et facit
 
 import { useNavigate } from "react-router";
 
 export default function Intro2() {
-  // -- NAVIGATION --
+  //Navigation
   // bruges kun til at hoppe videre til quizzen
   const navigate = useNavigate();
 

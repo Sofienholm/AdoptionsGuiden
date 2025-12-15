@@ -1,4 +1,4 @@
-// ANSWER EFFECT HANDLER 
+// Answer effect handler
 // lille helper der lægger et svar oven i brugerens nuværende profil
 
 export function applyAnswerEffects(currentProfile, effects) {

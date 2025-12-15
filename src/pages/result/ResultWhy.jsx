@@ -4,45 +4,45 @@ import { useQuiz } from "../../pages/quiz/components/useQuiz";
 import profiles from "../../data/profiles.json";
 import { generateExplanation } from "../../utils/generateExplanation";
 
-//Grafiske elementer
+//grafiske elementer
 import arrow from "./frames/arrow.svg";
 import pote from "./frames/pote.svg";
 
-//Resultat · hvorfor
-//forklarer hvorfor brugeren har fået netop denne profil
+//resultat, hvorfor
+// forklarer hvorfor brugeren har fået netop denne profil
 export default function ResultWhy() {
-  //Routing
-  //bruges til at hoppe videre i flowet
+  //routing
+  // bruges til at hoppe videre i flowet
   const navigate = useNavigate();
 
-  //Quiz state
-  //både valgt profil og samlet brugerprofil
+  //quiz state
+  // både valgt profil og samlet brugerprofil
   const { selectedProfileId, userProfile } = useQuiz();
 
- 
-  //hvis man lander her uden resultat
-  //sendes man tilbage til quiz start
+  //guard
+  // hvis man lander her uden resultat
+  // sendes man tilbage til quiz start
   useEffect(() => {
     if (!selectedProfileId) navigate("/quiz/start");
   }, [selectedProfileId, navigate]);
 
-  //Stop render
-  //mens redirect håndteres
+  //stop render
+  // mens redirect håndteres
   if (!selectedProfileId) return null;
 
-  //Profil data
-  //slår den fulde adfærdsprofil op
+  //profil data
+  // slår den fulde adfærdsprofil op
   const profile = profiles[selectedProfileId];
 
-  //Forklaring
-  //laver konkrete begrundelser ud fra svarene
+  //forklaring
+  // laver konkrete begrundelser ud fra svarene
   const explanationLines = generateExplanation(
     userProfile,
     selectedProfileId
   );
 
-  //Data til næste side
-  //samler det der skal sendes med videre
+  //data til næste side
+  // samler det der skal sendes med videre
   const profileData = {
     label: profile.label,
     description: profile.description,

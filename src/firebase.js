@@ -1,4 +1,4 @@
-//  FIREBASE OPSÆTNING 
+//  Fiirebase opsætning 
 // samler firebase-opstart ét sted
 // så resten af appen bare kan importere databasen
 

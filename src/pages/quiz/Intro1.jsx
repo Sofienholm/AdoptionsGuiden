@@ -1,4 +1,4 @@
-// -- QUIZ INTRO --
+//Quiz intro
 // intro til quizzen
 // et lille stop før man går videre i flowet
 
@@ -9,11 +9,11 @@ import DB from "./frames/db.svg";
 import RotateGateToPortrait from "./RotateGateToPortrait";
 
 export default function Intro1() {
-  // -- ROUTING --
+  //Routing
   // bruges til at sende brugeren videre i quiz flowet
   const navigate = useNavigate();
 
-  // -- SCROLL KONTROL --
+  //Scroll kontrol
   // slår scroll fra på mobil så introen fylder hele skærmen
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
