@@ -98,7 +98,7 @@
   max-width: 360px;
 
   color: white;
-  font-family: var((--font-hel-light);
+  font-family: var(--font-hel-light);
   font-size: 1.5rem;
   line-height: 1.35;
 }
@@ -126,7 +126,7 @@
   color: white;
   font-size: 4rem;
   opacity: 0;
-  font-family: var((--font-knewave);
+  font-family: var(--font-knewave);
   text-transform: uppercase;
 }
 

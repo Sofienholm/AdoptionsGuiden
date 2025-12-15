@@ -9,7 +9,6 @@ import { getDogs } from "../../services/getDogs";
 import arrow from "../../pages/match/frames/arrow.svg";
 
 //Form opsætning
-// bruges både til rendering, state og validering
 const QUESTIONS = [
   {
     id: "everyday",
@@ -19,7 +18,8 @@ const QUESTIONS = [
   {
     id: "offer",
     title: "Hvad kan du tilbyde?",
-    helper: "Hvordan ville du aktivere hunden mentalt? Har du erfaring med træning eller særlige racer? Hvordan vil du skabe tryghed i den første tid?",
+    helper:
+      "Hvordan ville du aktivere hunden mentalt? Har du erfaring med træning eller særlige racer? Hvordan vil du skabe tryghed i den første tid?",
   },
   {
     id: "expectations",
@@ -39,43 +39,29 @@ const QUESTIONS = [
 ];
 
 export default function AdoptionApplicationForm() {
-  //Routing
-  // navigation + data fra tidligere views
   const location = useLocation();
   const navigate = useNavigate();
 
-  //Data fra firestore
-  // alle hunde der kan vælges i dropdown
   const [dogs, setDogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //State fra forrige side
-  // evt. forudvalgt hund + adfærdsprofil fra match-flowet
   const preselectedDogId = location.state?.dogId || "";
   const behaviorProfile = location.state?.behaviorProfile || null;
 
-  //Form state  basis
-  // klassiske kontaktoplysninger
   const [selectedDogId, setSelectedDogId] = useState(preselectedDogId);
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
-  //Form state svarbokse
-  // et felt pr. spørgsmål
-  const [answers, setAnswers] = useState(QUESTIONS.reduce((acc, q) => ({ ...acc, [q.id]: "" }), {}));
+  const [answers, setAnswers] = useState(
+    QUESTIONS.reduce((acc, q) => ({ ...acc, [q.id]: "" }), {})
+  );
 
-  //UI state
-  // fold-ud af adfærdsprofil nederst
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  //Validering
-  // minimumslængde på alle svarbokse
   const MIN_CHARS = 300;
 
-  //Hent hunde
-  // bruges til dropdown + visning
   useEffect(() => {
     async function load() {
       const result = await getDogs();
@@ -85,30 +71,29 @@ export default function AdoptionApplicationForm() {
     load();
   }, []);
 
-  //Input handler
-  // opdaterer svar pr. spørgsmål
   const handleAnswerChange = (id, value) => {
     setAnswers((prev) => ({ ...prev, [id]: value }));
   };
 
-  //Afledt data
-  // den hund brugeren aktuelt har valgt
-  const selectedDog = useMemo(() => dogs.find((d) => String(d.id) === String(selectedDogId)), [dogs, selectedDogId]);
+  const selectedDog = useMemo(
+    () => dogs.find((d) => String(d.id) === String(selectedDogId)),
+    [dogs, selectedDogId]
+  );
 
-  //Validering svarbokse
-  // alle spørgsmål skal være lange nok
-  const allLongAnswersValid = useMemo(() => QUESTIONS.every((q) => answers[q.id].trim().length >= MIN_CHARS), [answers]);
+  const allLongAnswersValid = useMemo(
+    () => QUESTIONS.every((q) => answers[q.id].trim().length >= MIN_CHARS),
+    [answers]
+  );
 
-  //Validering basis
-  // simple skal-felter
-  const basicFieldsValid = fullName.trim() && phone.trim() && email.trim() && address.trim() && selectedDogId;
+  const basicFieldsValid =
+    fullName.trim() &&
+    phone.trim() &&
+    email.trim() &&
+    address.trim() &&
+    selectedDogId;
 
-  //Samlet validering
-  // styrer submit-knappen
   const isFormValid = basicFieldsValid && allLongAnswersValid;
 
-  //Submit
-  // her ville ansøgningen normalt blive sendt videre
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
@@ -126,30 +111,74 @@ export default function AdoptionApplicationForm() {
     alert("Tak for din ansøgning! Vi kontakter dig hurtigst muligt.");
   };
 
-  //Loading
-  // mens hunde hentes
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center text-molten text-2xl font-knewave">Henter hunde…</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center text-molten text-2xl font-knewave">
+        Henter hunde…
+      </div>
+    );
   }
+
   return (
-    <div className="min-h-screen w-full flex justify-center px-4 py-10 sm:py-14" style={{ backgroundColor: "var(--soft-linen)" }}>
-      <button onClick={() => navigate("/dog-matches")} className="absolute left-6 top-6 hover:scale-105 transition-transform">
-        <img src={arrow} alt="Tilbage" className="lg:w-26 md:w-20 w-20 ml-6 mt-6 rotate-180" />
+    <div
+      className="
+        relative min-h-screen w-full
+        flex justify-center
+        px-4
+        pt-24 sm:pt-28 md:pt-10
+        pb-10 sm:pb-14
+      "
+      style={{ backgroundColor: "var(--soft-linen)" }}
+    >
+      {/* Tilbage-knap: fast øverst på mobil, uden overlap */}
+      <button
+        onClick={() => navigate("/dog-matches")}
+        className="
+          absolute left-4 top-4
+          sm:left-6 sm:top-6
+          hover:scale-105 transition-transform
+          z-50
+        "
+        aria-label="Tilbage"
+      >
+        <img
+          src={arrow}
+          alt="Tilbage"
+          className="w-16 sm:w-20 md:w-20 lg:w-26 rotate-180"
+        />
       </button>
 
-      <form onSubmit={handleSubmit} className="w-full max-w-5xl space-y-12 font-hel-light">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-5xl space-y-12 font-hel-light"
+      >
         <header className="text-center space-y-6 mb-12 sm:mb-16">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight font-knewave text-molten">ANSØGNINGSFORMULAR</h1>
+          {/* Holder sig på én linje + skalerer ned på mobil */}
+          <h1
+            className="
+              font-knewave text-molten font-normal tracking-tight
+              whitespace-nowrap
+              mx-auto
+              max-w-[92vw]
+              leading-none
+            "
+            style={{ fontSize: "clamp(2.2rem, 8vw, 4.5rem)" }}
+          >
+            ANSØGNINGSFORMULAR
+          </h1>
 
           <div className="space-y-4">
-            <p className="text-lg sm:text-xl font-semibold font-knewave text-molten">HUNDEN DU ANSØGER PÅ:</p>
+            <p className="text-lg sm:text-xl font-semibold font-knewave text-molten">
+              HUNDEN DU ANSØGER PÅ:
+            </p>
 
             <div className="flex justify-center">
               <select
                 value={selectedDogId}
                 onChange={(e) => setSelectedDogId(e.target.value)}
                 className="
-                  w-60 sm:w-72 px-4 py-3
+                  w-72 max-w-[92vw] sm:w-72
+                  px-4 py-3
                   rounded-full shadow-md
                   bg-[#ffd0c9] text-molten
                   text-sm sm:text-base
@@ -162,7 +191,12 @@ export default function AdoptionApplicationForm() {
 
                 {dogs.map((dog) => (
                   <option key={dog.id} value={dog.id}>
-                    {dog.name}, {dog.ageYears ? `${dog.ageYears} år` : dog.ageWeeks ? `${dog.ageWeeks} uger` : ""}
+                    {dog.name},{" "}
+                    {dog.ageYears
+                      ? `${dog.ageYears} år`
+                      : dog.ageWeeks
+                      ? `${dog.ageWeeks} uger`
+                      : ""}
                   </option>
                 ))}
               </select>
@@ -171,11 +205,15 @@ export default function AdoptionApplicationForm() {
         </header>
 
         <section className="space-y-6 mb-10 sm:mb-14">
-          <h2 className="text-center text-2xl sm:text-3xl font-knewave text-molten">DINE OPLYSNINGER</h2>
+          <h2 className="text-center text-2xl sm:text-3xl font-knewave text-molten">
+            DINE OPLYSNINGER
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-sm text-[#c3362b] text-center md:text-left">Fulde navn</label>
+              <label className="block text-sm text-[#c3362b] text-center md:text-left">
+                Fulde navn
+              </label>
               <input
                 type="text"
                 value={fullName}
@@ -185,7 +223,9 @@ export default function AdoptionApplicationForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm text-[#c3362b] text-center md:text-left">tlf. nr.</label>
+              <label className="block text-sm text-[#c3362b] text-center md:text-left">
+                tlf. nr.
+              </label>
               <input
                 type="tel"
                 value={phone}
@@ -195,7 +235,9 @@ export default function AdoptionApplicationForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm text-[#c3362b] text-center md:text-left">Email</label>
+              <label className="block text-sm text-[#c3362b] text-center md:text-left">
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
@@ -205,7 +247,9 @@ export default function AdoptionApplicationForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm text-[#c3362b] text-center md:text-left">Adresse</label>
+              <label className="block text-sm text-[#c3362b] text-center md:text-left">
+                Adresse
+              </label>
               <input
                 type="text"
                 value={address}
@@ -217,7 +261,9 @@ export default function AdoptionApplicationForm() {
         </section>
 
         <section className="space-y-10">
-          <h2 className="text-center text-2xl sm:text-3xl font-knewave text-molten">DIN HVERDAG & RAMMER</h2>
+          <h2 className="text-center text-2xl sm:text-3xl font-knewave text-molten">
+            DIN HVERDAG & RAMMER
+          </h2>
 
           {QUESTIONS.map((q) => {
             const length = answers[q.id].trim().length;
@@ -225,9 +271,13 @@ export default function AdoptionApplicationForm() {
 
             return (
               <div key={q.id} className="space-y-3">
-                <div className="text-center space-y-1">
+                <div className="text-center space-y-1 px-2">
                   <h3 className="text-lg sm:text-xl text-molten">{q.title}</h3>
-                  {q.helper && <p className="text-xs sm:text-sm text-[#ff6b5a]">{q.helper}</p>}
+                  {q.helper && (
+                    <p className="text-xs sm:text-sm text-[#ff6b5a]">
+                      {q.helper}
+                    </p>
+                  )}
                 </div>
 
                 <div className="max-w-4xl mx-auto">
@@ -244,7 +294,9 @@ export default function AdoptionApplicationForm() {
                     "
                   />
                   <div className="mt-2 text-right text-xs sm:text-sm">
-                    <span className={tooShort ? "text-[#ff6b5a]" : "text-molten"}>
+                    <span
+                      className={tooShort ? "text-[#ff6b5a]" : "text-molten"}
+                    >
                       {length} / {MIN_CHARS} tegn
                     </span>
                   </div>
@@ -254,27 +306,43 @@ export default function AdoptionApplicationForm() {
           })}
         </section>
 
-        <section className="space-y-8">
-          <p className="text-center text-sm sm:text-base text-[#ff6b5a] max-w-3xl mx-auto">
-            Denne profil bliver sendt med din ansøgning. Det hjælper internatet med at forstå dine rammer.
-          </p>
+        <section className="space-y-0">
+     <p className="text-center text-sm sm:text-base text-[#ff6b5a] max-w-3xl mx-auto px-2 mb-6">
+  Denne profil bliver sendt med din ansøgning. Det hjælper internatet
+  med at forstå dine rammer.
+</p>
+
 
           <button
             type="button"
             onClick={() => setIsProfileOpen((v) => !v)}
-            className="
+            className={`
               w-full max-w-4xl mx-auto
               flex items-center justify-between
-              px-8 py-6 sm:px-10 sm:py-7
-              rounded-[2.5rem] bg-[#ffd0c9] shadow-sm
-            "
+              px-6 py-5 sm:px-10 sm:py-7
+              bg-[#ffd0c9] shadow-sm
+              gap-4
+              transition
+              ${
+                isProfileOpen
+                  ? "rounded-t-[2.5rem] rounded-b-none"
+                  : "rounded-[2.5rem]"
+              }
+            `}
           >
-            <div>
-              <p className="text-xl sm:text-2xl font-knewave text-molten">DIT RESULTAT – ADFÆRDSPROFIL</p>
-              <p className="mt-1 text-sm sm:text-base font-knewave text-[#ff6b5a]">DU PASSER BEDST TIL EN {behaviorProfile?.label?.toUpperCase() || ""}, DER:</p>
+            <div className="text-left">
+              <p className="text-lg sm:text-2xl font-knewave text-molten">
+                DIT RESULTAT – ADFÆRDSPROFIL
+              </p>
+              <p className="mt-1 text-xs sm:text-base font-knewave text-[#ff6b5a]">
+                DU PASSER BEDST TIL EN{" "}
+                {behaviorProfile?.label?.toUpperCase() || ""}, DER:
+              </p>
             </div>
 
-            <span className="text-2xl sm:text-3xl text-[#ff6b5a]">{isProfileOpen ? "▲" : "▼"}</span>
+            <span className="text-2xl sm:text-3xl text-[#ff6b5a] flex-shrink-0">
+              {isProfileOpen ? "▲" : "▼"}
+            </span>
           </button>
 
           {isProfileOpen && (
@@ -282,15 +350,20 @@ export default function AdoptionApplicationForm() {
               className="
                 w-full max-w-4xl mx-auto
                 bg-[#ffd0c9]
-                rounded-b-2xl
-                -mt-8 p-8 pb-10
+                rounded-b-[2.5rem]
+                -mt-px
+                px-6 sm:px-8
+                pt-6 pb-10
                 text-molten text-sm sm:text-base
               "
             >
               {behaviorProfile?.description && (
                 <ul className="space-y-4 mb-8">
                   {behaviorProfile.description.map((line, idx) => (
-                    <li key={idx} className="flex gap-3 text-[#ff6b5a] leading-relaxed">
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[#ff6b5a] leading-relaxed"
+                    >
                       <span>•</span>
                       <span>{line}</span>
                     </li>
@@ -303,7 +376,10 @@ export default function AdoptionApplicationForm() {
               {behaviorProfile?.why && (
                 <ul className="space-y-4">
                   {behaviorProfile.why.map((line, idx) => (
-                    <li key={idx} className="flex gap-3 text-[#ff6b5a] leading-relaxed">
+                    <li
+                      key={idx}
+                      className="flex gap-3 text-[#ff6b5a] leading-relaxed"
+                    >
                       <span>•</span>
                       <span dangerouslySetInnerHTML={{ __html: line }} />
                     </li>
@@ -322,8 +398,12 @@ export default function AdoptionApplicationForm() {
                 rounded-[2.5rem]
                 text-lg sm:text-xl font-knewave
                 bg-[#ffd0c9] text-molten
-                shadow-md transition
-                ${isFormValid ? "hover:scale-105 cursor-pointer" : "opacity-50 cursor-not-allowed"}
+                shadow-md transition mt-6
+                ${
+                  isFormValid
+                    ? "hover:scale-105 cursor-pointer"
+                    : "opacity-50 cursor-not-allowed"
+                }
               `}
             >
               SEND ANSØGNING
