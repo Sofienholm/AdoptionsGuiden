@@ -19,11 +19,11 @@ import Onboard from "./pages/onboard/Onboard.jsx";
 //Storytelling steps
 // Opdelt i separate routes pga. scroll-baseret storytelling
 // Giver bedre overblik og gør flowet nemmere at arbejde med
-import Step1 from "../src/pages/onboard/storytelling/Step1/Step1.jsx";
-import Step2 from "../src/pages/onboard/storytelling/Step2/step2.jsx";
-import Step3 from "../src/pages/onboard/storytelling/Step3/step3.jsx";
-import Step4 from "../src/pages/onboard/storytelling/Step4/Step4.jsx";
-import Step5 from "../src/pages/onboard/storytelling/Step5/step5.jsx";
+import Step1 from "./pages/onboard/storytelling/Step1/Step1.jsx";
+import Step2 from "./pages/onboard/storytelling/Step2/step2.jsx";
+import Step3 from "./pages/onboard/storytelling/Step3/step3.jsx";
+import Step4 from "./pages/onboard/storytelling/Step4/Step4.jsx";
+import Step5 from "./pages/onboard/storytelling/Step5/step5.jsx";
 
 //Quiz intro & flow
 // Quiz-flow opdelt i intro og selve quizzen
