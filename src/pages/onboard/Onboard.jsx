@@ -5,7 +5,7 @@
 import Step1 from "./storytelling/Step1/Step1.jsx";
 import Step2 from "./storytelling/Step2/step2.jsx";
 import Step3 from "./storytelling/Step3/step3.jsx";
-import Step4 from "./storytelling/Step4/Step4.jsx";
+import Step4 from "./storytelling/Step4/step4.jsx";
 import Step5 from "./storytelling/Step5/step5.jsx";
 
 //Rotation gate
