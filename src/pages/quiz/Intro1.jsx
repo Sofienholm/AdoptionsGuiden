@@ -5,7 +5,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import matchText from "./frames/MATCH-QUIZEN.svg";
-import DB from "./frames/db.svg";
+import DB from "./frames/DB.svg";
 import RotateGateToPortrait from "./RotateGateToPortrait";
 
 export default function Intro1() {
