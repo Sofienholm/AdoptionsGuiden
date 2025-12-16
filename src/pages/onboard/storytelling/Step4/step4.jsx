@@ -1,4 +1,4 @@
-//Storytelling · step 4
+//Storytelling, step 4
 // handler om forskelle på hundetyper
 // skal give lidt at tænke over inden quizzen starter
 

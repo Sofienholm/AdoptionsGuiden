@@ -109,6 +109,8 @@ export default function AdoptionApplicationForm() {
     });
 
     alert("Tak for din ansøgning! Vi kontakter dig hurtigst muligt.");
+    window.location.href =
+    "https://www.dyrenesbeskyttelse.dk/adopter-et-dyr?species[1140]=1140";
   };
 
   if (loading) {
