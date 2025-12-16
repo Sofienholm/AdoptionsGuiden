@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 //Grafiske elementer
 import tekst3Intro from "./frames/tekst3_intro.svg";
-import forstaaetKnap from "./frames/forstået_knap.svg";
+import forstaaetKnap from "./frames/forstaaet_knap.svg";
 
 export default function IntroForstaaet() {
   return (
