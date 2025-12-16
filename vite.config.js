@@ -8,6 +8,6 @@ export default defineConfig(({ command }) => {
     react(),
     tailwindcss(), 
   ],
-    base: command === "serve" ? "/" : "/AdoptionsGuiden/"
+  base: command === "serve" ? "/" : "/AdoptionsGuiden/"
   };
 });
